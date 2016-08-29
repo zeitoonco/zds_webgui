@@ -17,6 +17,8 @@
         'ZDSGUI.pages.maps',
         'ZDSGUI.pages.login',
         'ZDSGUI.pages.profile',
+        'ZDSGUI.pages.user-mng',
+        'ZDSGUI.pages.core',
     ])
         .config(routeConfig);
 
