@@ -47,19 +47,18 @@
 <main ng-if="$pageFinishedLoading"
       ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
 
-    <div ng-if='$connected'>
         <ba-sidebar></ba-sidebar>
         <page-top></page-top>
-    </div>
+
 
     <div class="al-main">
         <div class="al-content">
-            <content-top ng-if='$connected'></content-top>
+            <content-top ></content-top >
             <div ui-view></div>
         </div>
     </div>
 
-    <footer ng-if='$connected' class="al-footer clearfix">
+    <footer  class="al-footer clearfix">
         <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
         <div class="al-footer-main clearfix">
             <div class="al-copy">Blur Admin 2016</div>
