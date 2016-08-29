@@ -6,15 +6,20 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
     .factory('zdsSocket', function ($websocket) {
         var ws = $websocket('ws://138.201.152.83:5455/');
         var collection = [];
+        var callbacks = [];
 
         ws.onMessage(function (event) {
             console.log('message: ', event);
             var res;
             try {
                 res = JSON.parse(event.data);
+                if (res.id in callbacks) {
+                    callbacks[res.id](res);
+                }
             } catch (e) {
                 res = {};
             }
+
             collection.push(res);
         });
 
@@ -34,11 +39,15 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
             status: function () {
                 return ws.readyState;
             },
-            send: function (message) {
+            send: function (message, callback) {
                 if (angular.isString(message)) {
                     ws.send(message);
                 }
                 else if (angular.isObject(message)) {
+                    message.id = parseInt(Math.random() * 10000000000000000000);
+                    if (typeof callback === 'function') {
+                        callbacks[message.id] = callback;
+                    }
                     ws.send(JSON.stringify(message));
                 }
             }
