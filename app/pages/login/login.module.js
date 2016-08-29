@@ -3,24 +3,34 @@
 
     var login = angular.module('ZDSGUI.pages.login', [])
         .config(routeConfig);
-    login.controller('loginAction', function ($scope,$location, $rootScope, zdsSocket) {
-
+    login.controller('loginAction', function ($scope, $location, $rootScope, zdsSocket, toastr) {
+        $scope.LoginDisabled = false;
 
         $scope.dologin = function () {
+            $scope.LoginDisabled = true;
+
             var msg = {
                 type: "call",
                 node: "userman.login",
                 id: "1234568",
                 data: {username: $scope.username, password: $scope.password}
             };
-            zdsSocket.send(msg, function (data) {
-                if (data["data"]["result"] == "ok") {
-                    $location.path("/dashboard");
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["data"]["result"] == "ok") {
+                        $rootScope.$logedin = true;
+                        $location.path("/dashboard");
 
-                } else {
-                    alert("Invalid Password");
-                }
-            });
+                    } else {
+                        toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
+                        $scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
             console.log("Hello! " + $scope.username)
 
         }
