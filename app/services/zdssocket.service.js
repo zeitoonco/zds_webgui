@@ -13,9 +13,8 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
             try {
                 res = JSON.parse(event.data);
             } catch (e) {
-                res = {'username': 'anonymous', 'message': event.data};
+                res = {};
             }
-
             collection.push(res);
         });
 
@@ -29,14 +28,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
 
         ws.onOpen(function () {
             console.log('connection open');
-            ws.send('Hello World');
-            ws.send('again');
-            ws.send('and again');
         });
-        // setTimeout(function() {
-        //   ws.close();
-        // }, 500)
-
         return {
             collection: collection,
             status: function () {
