@@ -24,6 +24,14 @@
 
     /** @ngInject */
     function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
+        $urlRouterProvider.rule(function ($injector, $location) {
+            var rScope = $injector.get('$rootScope');
+            var path = $location.path(), normalized = path.toLowerCase();
+
+            if (!rScope.logenin && path.indexOf('login') === -1) {
+                $location.path('/login');
+            }
+        });
         $urlRouterProvider.otherwise('/login');
 
         baSidebarServiceProvider.addStaticItem({
