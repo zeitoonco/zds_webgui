@@ -3,14 +3,14 @@
  */
 (function () {
     'use strict';
-    angular.module('ZDSGUI.pages.accounting', [])
+    angular.module('ZDSGUI.pages.accounting', ['ZDSGUI.pages.accounting.accounts'])
         .config(routeConfig);
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
             .state('accounting', {
                 url: '/accounting',
-                templateUrl: 'app/pages/accounting/accounting.html',
+                template: '<ui-view></ui-view>',
                 abstract: true,
                 title: 'حسابداری',
                 sidebarMeta: {
