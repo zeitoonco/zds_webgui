@@ -10,7 +10,7 @@
 
         'ZDSGUI.pages.dashboard',
         'ZDSGUI.pages.ui',
-        'ZDSGUI.pages.components',
+        //'ZDSGUI.pages.components',
         'ZDSGUI.pages.form',
         'ZDSGUI.pages.tables',
         'ZDSGUI.pages.charts',
