@@ -8,7 +8,7 @@
         $scope.username = "admin";
         $scope.password = "admin";
         $scope.dologin = function () {
-            $scope.LoginDisabled = true;
+
 
             var msg = {
                 type: "call",
@@ -17,6 +17,7 @@
                 data: {username: $scope.username, password: $scope.password}
             };
             if (zdsSocket.status() == 1) {
+                $scope.LoginDisabled = true;
                 zdsSocket.send(msg, function (data) {
                     if (data["data"]["result"] == "ok") {
                         $rootScope.$logedin = true;
