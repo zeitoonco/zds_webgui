@@ -79,12 +79,11 @@
 
 <main ng-if="$pageFinishedLoading && !$logedin"
       ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
-<script>
-    if(window.location.hash.indexOf("/login") == -1)
-    {
-        window.location = "#/login"
-    }
-</script>
+    <script>
+        if (window.location.hash.indexOf("/login") == -1) {
+            window.location = "#/login"
+        }
+    </script>
     <div class="al-main">
         <div class="al-content">
             <div ui-view></div>
@@ -294,6 +293,7 @@
 <script src="app/pages/user-mng/user/user.module.js"></script>
 <script src="app/pages/user-mng/prs-mng/prs-mng.module.js"></script>
 <script src="app/pages/core/core.module.js"></script>
+<script src="app/pages/accounting/accounting.module.js"></script>
 
 
 <!-- endinject -->
