@@ -5,14 +5,15 @@
     <title>مدیریت کاربران</title>
 </head>
 <body>
-<div class="container-fluid" ng-app="ZDSGUI.pages.user" ng-controller="useraction">
+<div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="useraction">
     <div class="row">
         <div id="listusers" class="box col-lg-6 col-md-6">
+            <h3>{{result}}</h3>
             <table id="data" class="table table-bordered table-hover table-condensed">
 
             </table>
         </div>
-        <button id="listuser-btn">get info</button>
+        <button id="listuser-btn" ng-click="getlistuser()">get info</button>
     </div>
 </div>
 <script>

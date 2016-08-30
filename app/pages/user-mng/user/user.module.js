@@ -4,9 +4,41 @@
 (function () {
     'use strict';
 
-    angular.module('ZDSGUI.pages.user-mng.user', [])
+    var user = angular.module('ZDSGUI.pages.user-mng.user', [])
         .config(routeConfig);
+    user.controller('useraction',function ($scope,zdsSocket) {
 
+        $scope.getlistuser = function () {
+           // $scope.LoginDisabled = true;
+            $scope.result = 'clicked';
+            alert('clicked');
+            var msg = {
+                type: "call",
+                node: "userman.listUsers",
+                id: "1234568"
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["data"]["success"] == true) {
+                        alert('ok');
+                        $scope.result = "True";
+
+                    } else {
+                        toastr.error('!', 'خطا!');
+                        alert('no');
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+            //console.log("Hello! " + $scope.username)
+
+        }
+
+    });
 
     function routeConfig($stateProvider) {
         $stateProvider
