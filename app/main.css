@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2016
- */
-
+@charset "UTF-8";
 @font-face {
     font-family: 'koodak';
     src: url('../fonts/BKoodakBold.eot?#') format('eot'),
@@ -17,8 +14,6 @@ p, div {
     font-family: 'koodak', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
-
-@charset "UTF-8";
 .alert {
     color: #ffffff;
     font-size: 13px;
@@ -3988,7 +3983,7 @@ a {
 }
 
 .al-main {
-    margin-left: 180px;
+    margin-right: 180px;
     padding: 66px 0 34px 0;
     min-height: 500px;
 }
@@ -5762,7 +5757,7 @@ h1.al-title {
 }
 
 .al-msg-center {
-    float: right;
+    float: left;
     padding: 0;
     list-style: none;
     margin: 13px 47px 0 0;
@@ -5865,8 +5860,8 @@ h1.al-title {
 
 .top-dropdown-menu {
     width: 316px;
-    left: auto;
-    right: -47px;
+    left: -30px;
+    right: auto;
     top: 26px;
 }
 
@@ -6002,7 +5997,6 @@ h1.al-title {
 .top-dropdown-menu.profile-dropdown {
     width: 145px;
     top: 55px;
-    right: -25px;
 }
 
 .top-dropdown-menu.profile-dropdown a {
@@ -6027,13 +6021,13 @@ h1.al-title {
 }
 
 .top-dropdown-menu.profile-dropdown i.dropdown-arr {
-    right: 25px;
+    left: 32px;
 }
 
 .top-dropdown-menu i.dropdown-arr {
     position: absolute;
     top: -22px;
-    right: 42px;
+    left: 42px;
     display: block;
     width: 0;
     height: 0;
@@ -6086,7 +6080,7 @@ a.al-logo {
     font-size: 24px;
     font-family: "koodak", "Roboto", sans-serif;
     white-space: nowrap;
-    float: left;
+    float: right;
     outline: none !important;
     line-height: 60px;
 }
@@ -6096,13 +6090,13 @@ a.al-logo span {
 }
 
 .user-profile {
-    float: right;
+    float: left;
     min-width: 230px;
     margin-top: 10px;
 }
 
 .al-user-profile {
-    float: right;
+    float: left;
     margin-right: 12px;
     -webkit-transition: all .15s ease-in-out;
     transition: all .15s ease-in-out;
@@ -6146,7 +6140,7 @@ a.collapse-menu-link {
     line-height: 42px;
     color: #ffffff;
     padding: 0;
-    float: left;
+    float: right;
     margin: 11px 0 0 25px;
 }
 
@@ -6185,7 +6179,7 @@ a.collapse-menu-link:hover {
     white-space: nowrap;
     overflow: hidden;
     width: 162px;
-    float: left;
+    float: right;
     margin: 20px 0 0 30px;
 }
 
@@ -6249,7 +6243,7 @@ a.collapse-menu-link:hover {
 .al-sidebar {
     width: 180px;
     top: 66px;
-    left: 0;
+    right: 0;
     z-index: 904;
     display: block;
     min-height: 100%;
@@ -6262,6 +6256,7 @@ a.collapse-menu-link:hover {
     margin: 0;
     padding: 18px 0 0 0;
     list-style: none;
+    direction: rtl;
 }
 
 .al-sidebar-sublist .subitem-submenu-list {
@@ -6305,7 +6300,7 @@ a.al-sidebar-list-link {
     height: 42px;
     padding-left: 18px;
     text-shadow: none;
-    font-size: 13px;
+    font-size: 16px;
     text-decoration: none;
     color: #ffffff;
     line-height: 42px;
@@ -6323,7 +6318,7 @@ a.al-sidebar-list-link:hover b {
 }
 
 a.al-sidebar-list-link i {
-    margin-right: 18px;
+    margin-left: 18px;
     width: 16px;
     display: inline-block;
 }
@@ -6337,7 +6332,7 @@ a.al-sidebar-list-link b {
     text-shadow: none;
     font-size: 18px;
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 12px;
     padding: 0;
     text-align: center;
@@ -6418,7 +6413,7 @@ a.al-sidebar-list-link b {
 
 @media (min-width: 1200px) {
     .menu-collapsed .al-main {
-        margin-left: 50px;
+        margin-right: 50px;
     }
 
     .menu-collapsed .al-footer {
@@ -6473,7 +6468,7 @@ a.al-sidebar-list-link b {
 
 @media (max-width: 1200px) and (min-width: 500px) {
     .al-main {
-        margin-left: 50px;
+        margin-right: 50px;
     }
 
     .al-footer {
@@ -6560,7 +6555,7 @@ a.al-sidebar-list-link b {
     }
 
     .al-main {
-        margin-left: 0;
+        margin-right: 0;
     }
 
     .al-footer {
