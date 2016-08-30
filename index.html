@@ -78,7 +78,12 @@
 
 <main ng-if="$pageFinishedLoading && !$logedin"
       ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
-
+<script>
+    if(window.location.hash.indexOf("/login") == -1)
+    {
+        window.location = "#/login"
+    }
+</script>
     <div class="al-main">
         <div class="al-content">
             <div ui-view></div>

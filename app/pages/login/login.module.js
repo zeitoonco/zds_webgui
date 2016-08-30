@@ -5,7 +5,8 @@
         .config(routeConfig);
     login.controller('loginAction', function ($scope, $location, $rootScope, zdsSocket, toastr) {
         $scope.LoginDisabled = false;
-
+        $scope.username = "admin";
+        $scope.password = "admin";
         $scope.dologin = function () {
             $scope.LoginDisabled = true;
 
