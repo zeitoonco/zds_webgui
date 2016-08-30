@@ -6,8 +6,9 @@
 
     var user = angular.module('ZDSGUI.pages.user-mng.user', [])
         .config(routeConfig);
-    user.controller('useraction',function ($scope,zdsSocket) {
+    user.controller('useraction',function ($scope,zdsSocket,toastr) {
 
+        //$scope.gridOptions = { data: 'myData' };
         $scope.getlistuser = function () {
            // $scope.LoginDisabled = true;
             $scope.result = 'clicked';
@@ -19,10 +20,10 @@
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
-                    if (data["data"]["success"] == true) {
+                    if (data["success"] == true) {
                         alert('ok');
                         $scope.result = "True";
-
+                        $scope.myData = data['data']['userList'];
                     } else {
                         toastr.error('!', 'خطا!');
                         alert('no');
