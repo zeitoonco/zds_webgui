@@ -39,6 +39,10 @@
             //console.log("Hello! " + $scope.username)
 
         };
+        $scope.doremove(i
+
+
+
         $scope.getlistuser();
     });
 
