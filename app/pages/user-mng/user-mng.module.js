@@ -20,7 +20,7 @@
                 title: 'User Management',
                 sidebarMeta: {
                     icon: 'ion-android-home',
-                    order: 2,
+                    order: 100,
                 },
             });
     }
