@@ -17,7 +17,7 @@
                 url: '/user-mng',
                 template : '<ui-view></ui-view>',
                 abstract: true,
-                title: 'User Management',
+                title: 'مدیریت کاربران',
                 sidebarMeta: {
                     icon: 'ion-android-home',
                     order: 100,

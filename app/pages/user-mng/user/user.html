@@ -13,20 +13,21 @@
                 <thead>
                 <tr">
                     <th class="table-id">#</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>banreason</th>
-                    <th>banned</th>
-                    <th>isOnline</th>
+                    <th>نام کاربری</th>
+                    <th>نام</th>
+                    <th>وضعیت آنلاین</th>
+                    <th>وضعیت تعلیق</th>
+                    <th>علت تعلیق</th>
+                    <th>-----</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="x in myData">
                     <td>{{ x.userID }}</td>
                     <td>{{ x.username }}</td>
                     <td>{{ x.name }}</td>
-                    <td>{{ x.banReason }}</td>
-                    <td>{{ x.banned }}</td>
                     <td>{{ x.isOnline }}</td>
+                    <td>{{ x.banned }}</td>
+                    <td>{{ x.banReason }}</td>
                     <td><button id='edit-btn'>ویرایش</button><button id='remove-btn'>حذف</button></td>
                 </tr>
             </table>

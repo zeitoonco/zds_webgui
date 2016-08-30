@@ -44,10 +44,10 @@
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('user', {
+            .state('user-mng.user', {
                 url: '/user',
                 templateUrl: 'app/pages/user-mng/user/user.html',
-                title: 'Users',
+                title: 'کاربران',
                 sidebarMeta: {
                     icon: 'ion-android-home',
                     order: 3,

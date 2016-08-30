@@ -10,10 +10,10 @@
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('prs-mng', {
+            .state('user-mng.prs-mng', {
                 url: '/prs-mng',
                 templateUrl: 'app/pages/user-mng/prs-mng/prs-mng.html',
-                title: 'permissions',
+                title: 'دسترسی ها',
                 sidebarMeta: {
                     icon: 'ion-android-home',
                     order: 4,
