@@ -44,7 +44,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
                     ws.send(message);
                 }
                 else if (angular.isObject(message)) {
-                    message.id = parseInt(Math.random() * 10000000000000000000);
+                    message.id = parseInt(Math.random() * 10000);
                     if (typeof callback === 'function') {
                         callbacks[message.id] = callback;
                     }
