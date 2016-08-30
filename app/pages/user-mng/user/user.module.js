@@ -10,7 +10,8 @@
 
         $scope.getlistuser = function () {
            // $scope.LoginDisabled = true;
-
+            $scope.result = 'clicked';
+            alert('clicked');
             var msg = {
                 type: "call",
                 node: "userman.listUsers",
@@ -18,11 +19,13 @@
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
-                    if (data["data"]["success"] == "true") {
+                    if (data["data"]["success"] == true) {
+                        alert('ok');
                         $scope.result = "True";
 
                     } else {
                         toastr.error('!', 'خطا!');
+                        alert('no');
                         //$scope.LoginDisabled = false;
 
                     }
