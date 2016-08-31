@@ -61,10 +61,79 @@
             }
         }
 
+        $scope.doedit = function (id,un,n) {
+            //var rnd = Math.round(Math.random() * 1000000000);
+            var msg = {
+                type: "call",
+                node: "userman.modifyUser",
+                data:{userID: id,username: un,password: pw,name: n}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('اطلاعات با موفقیت اعمال شد');
+                        $scope.getlistuser();
+                    } else {
+                        toastr.error('!', 'خطا!');
+                        alert('no');
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
 
 
         $scope.getlistuser();
     });
+
+    user.controller('newuser', function ($scope, zdsSocket, toastr) {
+        $scope.adduser = function (id,un,n,pw) {
+            var msg = {
+                type: "call",
+                node: "userman.addUser",
+                data:{userID: id,username: un,password: pw,name: n}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('کاربر با موفقیت اضافه شد!');
+                        $scope.getlistuser();
+                    } else {
+                        toastr.error('!', 'خطا!');
+
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
+    });
+
+
+   var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
+    usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
+    /** @ngInject */
+    function ModalsPageCtrl($scope, $uibModal) {
+        $scope.open = function (page, size) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+        };
+    }
 
     function routeConfig($stateProvider) {
         $stateProvider
