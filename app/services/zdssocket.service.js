@@ -3,7 +3,7 @@
  */
 
 angular.module('ZDSGUI.websocket', ['ngWebSocket'])
-    .factory('zdsSocket', function ($websocket) {
+    .factory('zdsSocket', function ($websocket, $rootScope, $location) {
         var ws = $websocket('ws://138.201.152.83:5455/');
         var collection = [];
         var callbacks = [];
@@ -28,6 +28,8 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
         });
 
         ws.onClose(function (event) {
+            $rootScope.$logedin = true;
+            $location.path("/dashboard");
             console.log('connection closed', event);
         });
 
@@ -50,6 +52,19 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
                     }
                     ws.send(JSON.stringify(message));
                 }
+            },
+            call: function (node, data, callback) {
+                var msg = {
+                    type: "call",
+                    node: node,
+                    id: parseInt(Math.random() * 10000),
+                    data: data
+                };
+                if (typeof callback === 'function') {
+                    callbacks[msg.id] = callback;
+                }
+                ws.send(JSON.stringify(msg));
+                send(msg, callback);
             }
 
         };

@@ -5708,8 +5708,9 @@ th {
 
 h1.al-title {
     font-weight: 700;
+    font-family: 'koodak', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #666666;
-    float: left;
+    float: right;
     width: auto;
     margin: 0;
     padding: 0;
@@ -5723,8 +5724,9 @@ h1.al-title {
     color: #666666;
     padding: 0;
     margin: 0;
-    float: right;
+    float: left;
     padding-top: 11px;
+    direction: rtl;
 }
 
 .al-breadcrumb li {

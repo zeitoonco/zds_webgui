@@ -19,7 +19,7 @@
                 abstract: true,
                 title: 'مدیریت کاربران',
                 sidebarMeta: {
-                    icon: 'ion-android-home',
+                    icon: 'ion-person-stalker',
                     order: 100,
                 },
             });

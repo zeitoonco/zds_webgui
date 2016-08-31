@@ -8,17 +8,17 @@
         .config(routeConfig);
 
 
-function routeConfig($stateProvider) {
-    $stateProvider
-        .state('core', {
-            url: '/core',
-            templateUrl: 'app/pages/core/core.html',
-            title: 'Core',
-            sidebarMeta: {
-                icon: 'ion-android-home',
-                order: 5,
-            },
-        });
-}
+    function routeConfig($stateProvider) {
+        $stateProvider
+            .state('core', {
+                url: '/core',
+                templateUrl: 'app/pages/core/core.html',
+                title: 'هسته',
+                sidebarMeta: {
+                    icon: 'ion-planet',
+                    order: 5,
+                },
+            });
+    }
 
 })();
