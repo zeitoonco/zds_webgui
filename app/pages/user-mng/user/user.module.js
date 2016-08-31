@@ -11,9 +11,6 @@
         //$scope.gridOptions = { data: 'myData' };
 
         $scope.getlistuser = function () {
-            // $scope.LoginDisabled = true;
-            $scope.result = 'clicked';
-            alert('clicked');
             var msg = {
                 type: "call",
                 node: "userman.listUsers",
@@ -22,12 +19,12 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        alert('ok');
+
                         $scope.result = "True";
                         $scope.myData = data['data']['userList'];
                     } else {
                         toastr.error('!', 'خطا!');
-                        alert('no');
+
                         //$scope.LoginDisabled = false;
 
                     }
@@ -39,9 +36,55 @@
             //console.log("Hello! " + $scope.username)
 
         };
-        $scope.doremove(i
+        $scope.doremove = function (id) {
+            //var rnd = Math.round(Math.random() * 1000000000);
+            var msg = {
+                type: "call",
+                node: "userman.removeUser",
+                data:{value: id}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('کاربر با موفقیت حذف شد!');
+                        $scope.getlistuser();
+                    } else {
+                        toastr.error('!', 'خطا!');
+                        alert('no');
+                        //$scope.LoginDisabled = false;
 
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
+            }
+        }
+
+        $scope.doedit = function (id) {
+            //var rnd = Math.round(Math.random() * 1000000000);
+            var msg = {
+                type: "call",
+                node: "userman.removeUser",
+                data:{value: id}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('کاربر با موفقیت حذف شد!');
+                        $scope.getlistuser();
+                    } else {
+                        toastr.error('!', 'خطا!');
+                        alert('no');
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
 
         $scope.getlistuser();
     });
