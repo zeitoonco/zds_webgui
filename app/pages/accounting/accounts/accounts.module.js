@@ -16,12 +16,12 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('accounting.accounts', {
-                url: '/accounting/accounts',
+                url: '/accounts',
                 templateUrl: 'app/pages/accounting/accounts/accounts.html',
                 title: 'حساب ها',
                 sidebarMeta: {
-                    order: 800,
-                },
+                    order: 800
+                }
             });
     }
 

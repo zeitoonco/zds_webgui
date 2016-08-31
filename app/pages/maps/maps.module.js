@@ -26,6 +26,7 @@
           templateUrl: 'app/pages/maps/google-maps/google-maps.html',
           controller: 'GmapPageCtrl',
           title: 'Google Maps',
+
           sidebarMeta: {
             order: 0,
           },

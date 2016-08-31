@@ -15,7 +15,7 @@
                 title: 'حسابداری',
                 sidebarMeta: {
                     icon: 'ion-ios-bookmarks',
-                    order: 200
+                    order: 99
                 }
             });
     }
