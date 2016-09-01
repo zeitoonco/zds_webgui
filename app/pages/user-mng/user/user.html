@@ -8,10 +8,10 @@
 <div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="useraction">
     <div class="row">
         <div id="listusers" class="box col-lg-6 col-md-6" ng-app="ZDSGUI.pages.ui.notifications" ng-controller="ModalsPageCtrl">
-            <h3>لیست کاربران</h3>
+            <h3>لیست کاربران</h3><div class="button-wrapper"><button type="button" ng-click="getlistuser()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
             <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
-                <tr">
+                <tr>
                     <th class="table-id">#</th>
                     <th>نام کاربری</th>
                     <th>نام</th>
@@ -32,8 +32,9 @@
                         <button class="btn btn-danger" ng-click="doremove(x.userID)" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>
+            <div class="button-wrapper"><button type="button" class="btn btn-warning" data-toggle="modal" ng-click="open('app/pages/user-mng/user/newmodal.html', 'md')">کاربر جدید</button></div>
         </div>
-        <button id="listuser-btn" ng-click="getlistuser()">get info</button>
+
     </div>
 </div>
 <script>

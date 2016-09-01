@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var user = angular.module('ZDSGUI.pages.user-mng.user', [])
+    var user = angular.module('ZDSGUI.pages.user-mng.user', ['ZDSGUI.pages.ui.notifications'])
         .config(routeConfig);
     user.controller('useraction', function ($scope, zdsSocket, toastr) {
 
@@ -50,7 +50,7 @@
                         $scope.getlistuser();
                     } else {
                         toastr.error('!', 'خطا!');
-                        alert('no');
+
                         //$scope.LoginDisabled = false;
 
                     }
@@ -61,12 +61,11 @@
             }
         }
 
-        $scope.doedit = function (id,un,n) {
-            //var rnd = Math.round(Math.random() * 1000000000);
+        $scope.doedit = function () {
             var msg = {
                 type: "call",
                 node: "userman.modifyUser",
-                data:{userID: id,username: un,password: pw,name: n}
+                data:{username: $scope.username,password: $scope.pwd,name: $scope.name}
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
@@ -75,7 +74,7 @@
                         $scope.getlistuser();
                     } else {
                         toastr.error('!', 'خطا!');
-                        alert('no');
+
                         //$scope.LoginDisabled = false;
 
                     }
@@ -86,18 +85,15 @@
             }
         }
 
+        $scope.adduser = function () {
 
-        $scope.getlistuser();
-    });
-
-    user.controller('newuser', function ($scope, zdsSocket, toastr) {
-        $scope.adduser = function (id,un,n,pw) {
             var msg = {
                 type: "call",
                 node: "userman.addUser",
-                data:{userID: id,username: un,password: pw,name: n}
+                data:{username: $scope.username,password: $scope.pwd,name: $scope.name}
             };
             if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('کاربر با موفقیت اضافه شد!');
@@ -114,10 +110,12 @@
 
             }
         }
+
+        $scope.getlistuser();
     });
 
 
-   var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
+   angular.module('ZDSGUI.pages.ui.notifications');
     usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
     /** @ngInject */
     function ModalsPageCtrl($scope, $uibModal) {
