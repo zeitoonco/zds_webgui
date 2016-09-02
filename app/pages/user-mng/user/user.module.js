@@ -4,9 +4,9 @@
 (function () {
     'use strict';
 
-    var user = angular.module('ZDSGUI.pages.user-mng.user', ['ZDSGUI.pages.ui.notifications'])
+    var user = angular.module('ZDSGUI.pages.user-mng.user', [])
         .config(routeConfig);
-    user.controller('useraction', function ($scope, zdsSocket, toastr) {
+    user.controller('useraction', function ($scope, zdsSocket, toastr, $uibModal) {
 
         //$scope.gridOptions = { data: 'myData' };
 
@@ -112,14 +112,8 @@
         }
 
         $scope.getlistuser();
-    });
 
-
-   angular.module('ZDSGUI.pages.ui.notifications');
-    usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
-    /** @ngInject */
-    function ModalsPageCtrl($scope, $uibModal) {
-        $scope.open = function (page, size) {
+        $scope.openmodal = function (page, size, id) {
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -130,6 +124,29 @@
                     }
                 }
             });
+            alert(id);
+        }
+
+    });
+
+
+  var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
+    usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
+    /** @ngInject */
+    function ModalsPageCtrl($scope, $uibModal) {
+        $scope.open = function (page, size,n) {
+            $uibModal.open({
+
+                animation: true,
+                templateUrl: page,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+            $scope.name = n;
         };
     }
 

@@ -7,7 +7,7 @@
 <body>
 <div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="useraction">
     <div class="row">
-        <div id="listusers" class="box col-lg-6 col-md-6" ng-app="ZDSGUI.pages.ui.notifications" ng-controller="ModalsPageCtrl">
+        <div id="listusers" class="box col-lg-6 col-md-6">
             <h3>لیست کاربران</h3><div class="button-wrapper"><button type="button" ng-click="getlistuser()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
             <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
@@ -28,7 +28,7 @@
                     <td>{{ x.isOnline }}</td>
                     <td>{{ x.banned }}</td>
                     <td>{{ x.banReason }}</td>
-                    <td><button class="btn btn-warning"  id='edit-btn' data-toggle="modal" ng-click="open('app/pages/user-mng/user/editmodal.html', 'md')">ویرایش</button>
+                    <td><button class="btn btn-info" ng-click="usergroups(x.userID)" id='usergroup-btn'>گروه ها</button><button class="btn btn-warning"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/user-mng/user/editmodal.html', 'md',x.name)">ویرایش</button>
                         <button class="btn btn-danger" ng-click="doremove(x.userID)" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>
