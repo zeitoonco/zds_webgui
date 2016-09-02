@@ -1034,3 +1034,6 @@
         right: auto;
     }
 }
+
+#listusers {;width:100%;direction:rtl}
+#listusers table thead th,tbody {text-align:center;}
