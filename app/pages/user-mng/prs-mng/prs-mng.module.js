@@ -1,6 +1,7 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
+var editid;
 (function () {
     'use strict';
     var prs = angular.module('ZDSGUI.pages.user-mng.prs-mng', [])

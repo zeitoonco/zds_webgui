@@ -1,7 +1,7 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
-var editname,editusername,editid,editpwd;
+
 
 (function () {
     'use strict';
@@ -64,6 +64,7 @@ var editname,editusername,editid,editpwd;
         }
 
         $scope.doedit = function () {
+
             var msg = {
                 type: "call",
                 node: "userman.modifyUser",
@@ -115,7 +116,9 @@ var editname,editusername,editid,editpwd;
 
         $scope.getlistuser();
 
-        $scope.openmodal = function (page, size, id) {
+        $scope.openmodal = function (page, size, username) {
+
+
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -126,7 +129,7 @@ var editname,editusername,editid,editpwd;
                     }
                 }
             });
-            alert(id);
+
         }
 
     });
@@ -168,3 +171,4 @@ var editname,editusername,editid,editpwd;
     }
 
 })();
+

@@ -7,12 +7,16 @@
 <body>
 <div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.prs-mng" ng-controller="prsaction">
     <div class="row">
-        <div id="listusers" class="box col-lg-6 col-md-6">
-            <h3>لیست دستری ها</h3><div class="button-wrapper"><button type="button" ng-click="getlistprs()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
-            <table id="data" class="table table-bordered table-hover table-condensed" st-table="smartTableData">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-warning bootstrap-panel">
+                    <div class="panel-heading">لیست دسترسی ها</div>
+                    <div id="listusers" class="panel-body">
+                        <div class="button-wrapper"><button type="button" ng-click="getlistuser()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
+                        <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
-                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th class="table-id">#</th>
                     <th>نام</th>
                     <th>عنوان</th>
                     <th>توضیحات</th>
@@ -31,17 +35,12 @@
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn' ng-disabled="true">حذف</button></td>
                 </tr>
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="6" class="text-center">
-                        <div st-pagination="" st-items-by-page="12" st-displayed-pages="10"></div>
-                    </td>
-                </tr>
-                </tfoot>
             </table>
             <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')">دسترسی جدید</button></div>
+            </div>
+                </div>
+                </div>
         </div>
-
     </div>
 </div>
 <script>
