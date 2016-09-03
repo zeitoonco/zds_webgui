@@ -1,6 +1,8 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
+var editname,editusername,editid,editpwd;
+
 (function () {
     'use strict';
 
@@ -128,7 +130,9 @@
         }
 
     });
+    user.controller('editaction', function ($scope, zdsSocket, toastr, $uibModal) {
 
+    });
 
   var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
     usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);

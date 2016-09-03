@@ -2,9 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>مدیریت دسترسی ها</title>
 </head>
 <body>
+<div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.prs-mng" ng-controller="prsaction">
+    <div class="row">
+        <div id="listusers" class="box col-lg-6 col-md-6">
+            <h3>لیست دستری ها</h3><div class="button-wrapper"><button type="button" ng-click="getlistprs()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
+            <table id="data" class="table table-bordered table-hover table-condensed" st-table="smartTableData">
+                <thead>
+                <tr>
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th>نام</th>
+                    <th>عنوان</th>
+                    <th>توضیحات</th>
+                    <th>دستور والد</th>
+                    <th>----</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in myData">
+                    <td>{{ x.permissionID }}</td>
+                    <td>{{ x.name }}</td>
+                    <td>{{ x.title }}</td>
+                    <td>{{ x.description }}</td>
+                    <td>{{ x.parentID }}</td>
+                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID)" ng-disabled="true">ویرایش</button>
+                        <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn' ng-disabled="true">حذف</button></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="12" st-displayed-pages="10"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')">دسترسی جدید</button></div>
+        </div>
 
+    </div>
+</div>
+<script>
+
+</script>
 </body>
 </html>
