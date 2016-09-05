@@ -1,7 +1,7 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
-
+var tempname = '',tempun = '',tempid = '';
 
 (function () {
     'use strict';
@@ -11,7 +11,10 @@
     user.controller('useraction', function ($scope, zdsSocket, toastr, $uibModal) {
 
         //$scope.gridOptions = { data: 'myData' };
+        $scope.username = tempun;
+        $scope.name = tempname;
 
+        $scope.id = tempid;
         $scope.getlistuser = function () {
             var msg = {
                 type: "call",
@@ -63,30 +66,7 @@
             }
         }
 
-        $scope.doedit = function () {
 
-            var msg = {
-                type: "call",
-                node: "userman.modifyUser",
-                data:{username: $scope.username,password: $scope.pwd,name: $scope.name}
-            };
-            if (zdsSocket.status() == 1) {
-                zdsSocket.send(msg, function (data) {
-                    if (data["success"] == true) {
-                        toastr.success('اطلاعات با موفقیت اعمال شد');
-                        $scope.getlistuser();
-                    } else {
-                        toastr.error('!', 'خطا!');
-
-                        //$scope.LoginDisabled = false;
-
-                    }
-                });
-            } else {
-                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
-
-            }
-        }
 
         $scope.adduser = function () {
 
@@ -116,7 +96,10 @@
 
         $scope.getlistuser();
 
-        $scope.openmodal = function (page, size, username) {
+        $scope.openmodal = function (page, size,id,un,n) {
+            tempid = id;
+            tempun = un;
+            tempname = n;
 
 
             $uibModal.open({
@@ -129,13 +112,45 @@
                     }
                 }
             });
+            //$modalInstance.$scope.username = 'ali';
 
         }
 
     });
-    user.controller('editaction', function ($scope, zdsSocket, toastr, $uibModal) {
+    user.controller('modalctrl', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.username = tempun;
+        $scope.name = tempname;
+        $scope.id = tempid;
+        $scope.doedit = function () {
+            var msg = {
+                type: "call",
+                node: "userman.modifyUser",
+                data:{userID: $scope.id,username: $scope.username,password: $scope.pwd,name: $scope.name}
+            };
+            if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('اطلاعات با موفقیت اعمال شد');
+                        $scope.getlistuser();
+                    } else {
+                        toastr.error('!', 'خطا!');
 
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
     });
+
+
+
+
+
 
   var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
     usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
