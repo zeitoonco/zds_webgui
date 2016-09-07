@@ -5,6 +5,7 @@
 angular.module('ZDSGUI.websocket', ['ngWebSocket'])
     .factory('zdsSocket', function ($websocket, $rootScope, $location) {
         var ws = $websocket('ws://138.201.152.83:5455/');
+        //var ws = $websocket('ws://192.168.1.44:5455/');
         var collection = [];
         var callbacks = [];
 

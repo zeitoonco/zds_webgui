@@ -117,7 +117,36 @@ var tempname = '',tempun = '',tempid = '';
         }
 
     });
-    user.controller('modalctrl', function ($scope, zdsSocket, toastr, $uibModal) {
+
+
+    user.controller('usergroup',function ($scope, zdsSocket, toastr) {
+        var msg = {
+            type: "call",
+            node: "userman.listGroups",
+            data:{value: tempid}
+        };
+        if (zdsSocket.status() == 1) {
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data){
+
+                if (data["success"] == true && data["data"]["userGroupsList"].length) {
+                    //toastr.success('گروهی برای این کاربر وجود ندارد');
+                    //$scope.getlistuser();
+                    $scope.myData = data['data']['userGroupsList'];
+                } else {
+                    toastr.success('no info');
+                }
+            });
+            } else {
+            toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+        }
+
+
+    });
+
+
+
+    user.controller('modalctrl', function ($scope, zdsSocket, toastr) {
         $scope.username = tempun;
         $scope.name = tempname;
         $scope.id = tempid;

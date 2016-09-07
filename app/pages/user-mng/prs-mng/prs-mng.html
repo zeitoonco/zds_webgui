@@ -13,7 +13,14 @@
                     <div class="panel-heading">لیست دسترسی ها</div>
                     <div id="listusers" class="panel-body">
                         <div class="button-wrapper"><button type="button" ng-click="getlistuser()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
-                        <table id="data" class="table table-bordered table-hover table-condensed">
+                        <div class="form-group select-page-size-wrap ">
+                            <label>Rows on page
+                                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                        ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                </select>
+                            </label>
+                        </div>
+                        <table id="data" class="table table-bordered table-hover table-condensed" st-table="smartTableData">
                 <thead>
                 <tr>
                     <th class="table-id">#</th>
@@ -35,6 +42,13 @@
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn' ng-disabled="true">حذف</button></td>
                 </tr>
                 </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
             </table>
             <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')">دسترسی جدید</button></div>
             </div>
