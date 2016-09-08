@@ -5,8 +5,66 @@
 (function () {
   'use strict';
 
-  angular.module('ZDSGUI.pages.dashboard', [])
-      .config(routeConfig);
+   var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
+
+    dash.controller('contact',function ($scope,zdsSocket, toastr, $uibModal) {
+    function listcontact() {
+        var msg = {
+            type: "call",
+            node: "userman.listContacts",
+            id: "1234568",
+            data: {value: uid}
+        };
+        if (zdsSocket.status() == 1) {
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    toastr.success('لیست مخاطبین دریافت شد!');
+                    var myData = data["data"]["contactList"];
+                } else {
+                    toastr.error('!', 'خطا!');
+
+                    //$scope.LoginDisabled = false;
+
+                }
+            });
+        } else {
+            toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+        }
+    }
+        listcontact();
+    });
+
+    dash.controller('group',function ($scope,zdsSocket, toastr, $uibModal) {
+        function listgroup() {
+            var msg = {
+                type: "call",
+                node: "userman.listGroups",
+                id: "1234568",
+                data: {value: uid}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('لیست مخاطبین دریافت شد!');
+                        var myData = data["data"]["groupList"];
+                    } else {
+                        toastr.error('!', 'خطا!');
+
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
+        listgroup();
+
+    });
+
+
 
   /** @ngInject */
   function routeConfig($stateProvider) {

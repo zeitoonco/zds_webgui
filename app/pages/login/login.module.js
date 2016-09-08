@@ -1,3 +1,4 @@
+var uid;
 (function () {
     'use strict';
 
@@ -9,7 +10,6 @@
         $scope.password = "admin";
         $scope.dologin = function () {
 
-
             var msg = {
                 type: "call",
                 node: "userman.login",
@@ -20,6 +20,8 @@
                 $scope.LoginDisabled = true;
                 zdsSocket.send(msg, function (data) {
                     if (data["data"]["result"] == "ok") {
+                        uid = data.data.userInfo['userID'];
+                        alert(uid);
                         $rootScope.$logedin = true;
                         $location.path("/dashboard");
 
