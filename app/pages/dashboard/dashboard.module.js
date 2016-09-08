@@ -18,7 +18,7 @@
         if (zdsSocket.status() == 1) {
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
-                    toastr.success('لیست مخاطبین دریافت شد!');
+                    toastr.success('لیست مخاطبین شما دریافت شد!');
                     var myData = data["data"]["contactList"];
                 } else {
                     toastr.error('!', 'خطا!');
@@ -46,7 +46,7 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        toastr.success('لیست مخاطبین دریافت شد!');
+                        toastr.success('لیست گروه های شما دریافت شد!');
                         var myData = data["data"]["groupList"];
                     } else {
                         toastr.error('!', 'خطا!');
