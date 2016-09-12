@@ -1,4 +1,4 @@
-var uid;
+var uid,myname,myun,mypwd;
 (function () {
     'use strict';
 
@@ -21,7 +21,9 @@ var uid;
                 zdsSocket.send(msg, function (data) {
                     if (data["data"]["result"] == "ok") {
                         uid = data.data.userInfo['userID'];
-                        alert(uid);
+                        myname = data.data.userInfo['name'];
+                        myun = data.data.userInfo['username'];
+                        //mypwd = data.data.userInfo['password'];
                         $rootScope.$logedin = true;
                         $location.path("/dashboard");
 
