@@ -9,18 +9,41 @@
 (function () {
     'use strict';
 
- var account = angular.module('ZDSGUI.pages.accounting.accounts', [
-        'ZDSGUI.pages.accounting.accounts.accountree','ZDSGUI.pages.accounting.accounts.accounttable','ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
+    var account = angular.module('ZDSGUI.pages.accounting.accounts', [
+        'ZDSGUI.pages.accounting.accounts.accountree', 'ZDSGUI.pages.accounting.accounts.accounttable', 'ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
         .config(routeConfig);
+    account.controller('editaccount',function () {
 
+    })
 
-    account.controller('accounttable',function($scope, zdsSocket, toastr, $uibModal){
+    account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
+
+        $scope.openmodal = function (page, size, id) {
+
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+            //$modalInstance.$scope.username = 'ali';
+
+        }
 
         $scope.getaccounts = function () {
             var msg = {
-                type:"call",
-                node:"AccountingRelay.query",
-                data:{'table': 'Account','columns':['accountid','type','title2','HasDL','HasCurrency','HasTracking','IsActive']}
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive'],
+                    'where': [['accountid', '=', '0']]
+                }
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
