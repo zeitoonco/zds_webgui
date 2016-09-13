@@ -6,7 +6,7 @@
 </head>
 <div class="row" ng-controller="treeCtrl">
     <div class="col-md-6">
-<div ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
+<div id="account-tree"  ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
     <div class="row">
         <div class="col-sm-4">
             <div class="control-side text-center">
@@ -32,7 +32,7 @@
 </div>
 
     <div class="col-md-6">
-        <div ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
+        <div id="account-table" ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
             <div class="row">
                 <table id="data" class="table table-bordered table-hover table-condensed">
                     <thead>
@@ -41,9 +41,11 @@
                         <th>عنوان حساب</th>
                         <th>نوع حساب</th>
                         <th>عنوان حساب</th>
-                        <th>وضعیت تعلیق</th>
-                        <th>علت تعلیق</th>
-                        <th>-----</th>
+                        <th>تفضیلی پذیر</th>
+                        <th>ارزی</th>
+                        <th>پیگیری</th>
+                        <th>فعال</th>
+                        <th>---</th>
                     </tr>
                     </thead>
                     <tr ng-repeat="x in myData">
@@ -60,9 +62,7 @@
                 <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/user/newmodal.html', 'md')">کاربر جدید</button></div>
 
             </div>
-                <div class="col-sm-8">
-                    <div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events="ready:readyCB"></div>
-                </div>
+
             </div>
         </div>
     </div>

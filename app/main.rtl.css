@@ -1035,12 +1035,12 @@
     }
 }
 
-#listusers {;
-    width: 100%;
-    direction: rtl
+
+table {
+    direction:rtl;
 }
 
-#listusers table thead th, tbody {
+table thead th, tbody {
     text-align: center;
 }
 
