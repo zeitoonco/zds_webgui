@@ -5,7 +5,7 @@
     <title>مدیریت حساب ها</title>
 </head>
 <div class="row" ng-app='ZDSGUI.pages.accounting.accounts'>
-    <div class="col-md-6" ng-controller="accounttree">
+    <div class="col-md-12" ng-controller="accounttree">
 <div id="account-tree"  ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
     <div class="row">
         <div class="col-sm-4">
@@ -31,7 +31,7 @@
 </div>
 </div>
 
-    <div class="col-md-6" ng-controller="accounttable">
+    <div class="col-md-12" ng-controller="accounttable">
         <div id="account-table" ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
             <div class="row">
                 <table id="data" class="table table-bordered table-hover table-condensed">
@@ -55,8 +55,8 @@
                         <td>{{ x[4] }}</td>
                         <td>{{ x[5] }}</td>
                         <td>{{x[6]}}</td>
-                        <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/user-mng/user/editmodal.html', 'md',x.userID,x.username,x.name)">ویرایش</button>
-                            <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn'>حذف</button></td>
+                        <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0],x[1],x[2],x[3],x[4],)">ویرایش</button>
+                            <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
                     </tr>
                 </table>
                 <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/user/newmodal.html', 'md')">کاربر جدید</button></div>

@@ -48,9 +48,8 @@
         $stateProvider
             .state('accounting.accounts', {
                 url: '/accounts',
-                templateUrl: '<ui-view></ui-view>',
+                templateUrl: 'app/pages/accounting/accounts/accounts.html',
                 title: 'حساب ها',
-                abstract: true,
                 sidebarMeta: {
                     order: 800
                 }
