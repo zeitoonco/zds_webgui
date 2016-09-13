@@ -1,4 +1,4 @@
-var uid;
+var uid,myname,myun;
 (function () {
     'use strict';
 
