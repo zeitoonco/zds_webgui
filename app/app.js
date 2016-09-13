@@ -16,5 +16,6 @@ angular.module('ZDSGUI', [
     'ZDSGUI.websocket',
     'ZDSGUI.boolean',
     'ZDSGUI.theme',
-    'ZDSGUI.pages'
+    'ZDSGUI.pages',
+    'ngJalaliFlatDatepicker'
 ]);
