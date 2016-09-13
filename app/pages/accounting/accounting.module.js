@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    angular.module('ZDSGUI.pages.accounting', ['ZDSGUI.pages.accounting.accounts'])
+    angular.module('ZDSGUI.pages.accounting', ['ZDSGUI.pages.accounting.accounts', 'ZDSGUI.pages.accounting.fiscalyear'])
         .config(routeConfig);
     /** @ngInject */
     function routeConfig($stateProvider) {

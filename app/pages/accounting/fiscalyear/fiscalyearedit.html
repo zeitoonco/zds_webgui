@@ -1,0 +1,35 @@
+<div class="modal-content" ng-app="ZDSGUI.pages.accounting.fiscalyear" ng-controller="editfiscal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">ویرایش سال مالی</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="title">عنوان:</label>
+            <input type="text" class="form-control" id="title" value="{{row[1]}}">
+        </div>
+
+        <div class="form-group">
+            <label for="pstartdate">شروع:</label>
+            <input type="text" class="form-control" id="pstartdate" value="{{row[2]}}"
+                   ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
+                   gregorian-formatted-picked-date="startdate" gregorian-picked-date="startgdate" ng-model="startdate">
+        </div>
+
+        <div class="form-group">
+            <label for="penddate">پایان:</label>
+            <input type="text" class="form-control" id="penddate" value="{{row[3]}}" ng-jalali-flat-datepicker
+                   datepicker-config="datepickerConfig"
+                   gregorian-formatted-picked-date="enddate" gregorian-picked-date="endgdate" ng-model="enddate">
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="doedit()">تایید</button>
+    </div>
+</div>

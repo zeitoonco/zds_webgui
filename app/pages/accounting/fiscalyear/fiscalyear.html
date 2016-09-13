@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>مدیریت حساب ها</title>
+</head>
+<div class="row" ng-app='ZDSGUI.pages.accounting.fiscalyear'>
+    <div class="col-md-12" ng-controller="fiscaltable">
+        <div id="account-table" ba-panel ba-panel-title="سال مالی" ba-panel-class="with-scroll tree-panel">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="button-wrapper">
+                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                                style="float: right;"
+                                ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearedit.html', 'md')"><i
+                                class="ion-plus"></i>
+                            سال مالی جدید
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="button-wrapper" style="text-align: left;">
+                        <button type="button" ng-click="getfiscalyears()" class="btn btn-default"><i
+                                class="ion-refresh"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-condensed">
+                    <thead>
+                    <tr>
+                        <th class="table-id">#</th>
+                        <th>عنوان</th>
+                        <th>تاریخ شروع</th>
+                        <th>تاریخ خاتمه</th>
+                        <th>وضعیت</th>
+                        <th>عملیات</th>
+                    </tr>
+                    </thead>
+                    <tr ng-repeat="x in myData">
+                        <td>{{ x[0] }}</td>
+                        <td>{{ x[1] }}</td>
+                        <td>{{ x[2] | jalaliDate:'jYYYY/jMM/jDD' }}</td>
+                        <td>{{ x[3] | jalaliDate:'jYYYY/jMM/jDD' }}</td>
+                        <td>{{ x[4] | pStatus }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                    ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearedit.html', 'md',x   )">
+                                ویرایش
+                            </button>
+                            <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
