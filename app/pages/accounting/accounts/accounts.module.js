@@ -9,13 +9,10 @@
 (function () {
     'use strict';
 
-    angular.module('ZDSGUI.pages.accounting.accounts', [
+ var account = angular.module('ZDSGUI.pages.accounting.accounts', [
         'ZDSGUI.pages.accounting.accounts.accountree','ZDSGUI.pages.accounting.accounts.accounttable','ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
         .config(routeConfig);
 
-    account.controller('accounttree',function($scope, zdsSocket, toastr, $uibModal){
-
-    });
 
     account.controller('accounttable',function($scope, zdsSocket, toastr, $uibModal){
 

@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-angular.module('ZDSGUI.pages.accounting.accounts.accountree',['ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
+var accounttree = angular.module('ZDSGUI.pages.accounting.accounts.accountree',['ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
     .config(routeConfig);
 
     accounttree.controller('accounttree', function ($scope, zdsSocket, toastr, $uibModal) {

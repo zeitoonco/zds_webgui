@@ -3,10 +3,10 @@
  */
 (function () {
     'use strict';
-    angular.module('ZDSGUI.pages.accounting.accounts.accounttable',['ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
+var accounttable = angular.module('ZDSGUI.pages.accounting.accounts.accounttable',['ZDSGUI.pages.components.tree','ZDSGUI.boolean'])
     .config(routeConfig);
 
-accounttree.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
+accounttable.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
 
 });
 
