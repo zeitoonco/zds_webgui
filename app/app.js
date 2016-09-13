@@ -14,6 +14,7 @@ angular.module('ZDSGUI', [
     'ngWebSocket',
     'angular-progress-button-styles',
     'ZDSGUI.websocket',
+    'ZDSGUI.boolean',
     'ZDSGUI.theme',
     'ZDSGUI.pages'
 ]);

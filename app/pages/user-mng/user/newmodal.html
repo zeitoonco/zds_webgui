@@ -1,26 +1,26 @@
 <div class="modal-content" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="useraction">
-  <div class="modal-header bg-success">
-    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
-      <em class="ion-ios-close-empty sn-link-close"></em>
-    </button>
-    <h4 class="modal-title" id="myModalLabel">ایجاد کاربر جدید</h4>
-  </div>
-  <div class="modal-body" >
-    <form>
-      <div class="form-group">
-        <label for="username">نام کاربری</label>
-        <input type="text" class="form-control" id="username" placeholder="نام کاربری" ng-model='username'>
-      </div>
-      <div class="form-group">
-        <label for="input02">نام</label>
-        <input type="text" class="form-control" id="input02" placeholder="نام" ng-model='name'>
-      </div>
-      <div class="form-group">
-        <label for="input03">رمز عبور:</label>
-        <input type="password" class="form-control" id="input03" placeholder="رمز عبور" ng-model='pwd'>
-      </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-success" ng-click="adduser()">تایید</button>
-  </div>
+    <div class="modal-header bg-success">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">ایجاد کاربر جدید</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="username">نام کاربری</label>
+                <input type="text" class="form-control" id="username" placeholder="نام کاربری" ng-model='username'>
+            </div>
+            <div class="form-group">
+                <label for="input02">نام</label>
+                <input type="text" class="form-control" id="input02" placeholder="نام" ng-model='name'>
+            </div>
+            <div class="form-group">
+                <label for="input03">رمز عبور:</label>
+                <input type="password" class="form-control" id="input03" placeholder="رمز عبور" ng-model='pwd'>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="adduser();$dismiss();">تایید</button>
+    </div>
 </div>

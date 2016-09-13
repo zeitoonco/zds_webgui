@@ -1,25 +1,25 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
-var tempname,tempun,tempid;
+var tempname = '', tempun = '', tempid = '';
 
 (function () {
     'use strict';
 
-    var user = angular.module('ZDSGUI.pages.user-mng.user', [])
+    var user = angular.module('ZDSGUI.pages.user-mng.user', ['ZDSGUI.boolean'])
         .config(routeConfig);
-    user.controller('useraction', function ($scope, zdsSocket, toastr, $uibModal) {
+    user.controller('useraction', function ($scope, zdsSocket, toastr, $uibModal, $timeout) {
 
         //$scope.gridOptions = { data: 'myData' };
         $scope.username = tempun;
         $scope.name = tempname;
 
         $scope.id = tempid;
+
         $scope.getlistuser = function () {
             var msg = {
                 type: "call",
                 node: "userman.listUsers",
-                id: "1234568"
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
@@ -29,7 +29,7 @@ var tempname,tempun,tempid;
                         $scope.myData = data['data']['userList'];
                     } else {
                         toastr.error('!', 'خطا!');
-                        
+
                         //$scope.LoginDisabled = false;
 
                     }
@@ -46,18 +46,15 @@ var tempname,tempun,tempid;
             var msg = {
                 type: "call",
                 node: "userman.removeUser",
-                data:{value: id}
+                data: {value: id}
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('کاربر با موفقیت حذف شد!');
-                        $scope.getlistuser();
+                        $timeout($scope.getlistuser, 1000);
                     } else {
                         toastr.error('!', 'خطا!');
-
-                        //$scope.LoginDisabled = false;
-
                     }
                 });
             } else {
@@ -67,20 +64,19 @@ var tempname,tempun,tempid;
         }
 
 
-
         $scope.adduser = function () {
 
             var msg = {
                 type: "call",
                 node: "userman.addUser",
-                data:{username: $scope.username,password: $scope.pwd,name: $scope.name}
+                data: {username: $scope.username, password: $scope.pwd, name: $scope.name}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('کاربر با موفقیت اضافه شد!');
-                        $scope.getlistuser();
+                        $scope.$emit('forceUpdate', false);
                     } else {
                         toastr.error('!', 'خطا!');
 
@@ -95,8 +91,10 @@ var tempname,tempun,tempid;
         }
 
         $scope.getlistuser();
-
-        $scope.openmodal = function (page, size,id,un,n) {
+        $scope.$on('forceUpdate', function (event, args) {
+            $scope.getlistuser();
+        });
+        $scope.openmodal = function (page, size, id, un, n) {
             tempid = id;
             tempun = un;
             tempname = n;
@@ -106,6 +104,7 @@ var tempname,tempun,tempid;
                 animation: true,
                 templateUrl: page,
                 size: size,
+                scope: $scope,
                 resolve: {
                     items: function () {
                         return $scope.items;
@@ -119,31 +118,30 @@ var tempname,tempun,tempid;
     });
 
 
-    user.controller('usergroup',function ($scope, zdsSocket, toastr) {
+    user.controller('usergroup', function ($scope, zdsSocket, toastr) {
         var msg = {
             type: "call",
             node: "userman.listGroups",
-            data:{value: tempid}
+            data: {value: tempid}
         };
         if (zdsSocket.status() == 1) {
             console.log(JSON.stringify(msg));
-            zdsSocket.send(msg, function (data){
+            zdsSocket.send(msg, function (data) {
 
                 if (data["success"] == true && data["data"]["userGroupsList"].length) {
                     //toastr.success('گروهی برای این کاربر وجود ندارد');
                     //$scope.getlistuser();
                     $scope.myData = data['data']['userGroupsList'];
                 } else {
-                    toastr.success('no info');
+                    toastr.warning('اطلاعاتی موجود نیست');
                 }
             });
-            } else {
+        } else {
             toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
         }
 
 
     });
-
 
 
     user.controller('modalctrl', function ($scope, zdsSocket, toastr) {
@@ -154,7 +152,7 @@ var tempname,tempun,tempid;
             var msg = {
                 type: "call",
                 node: "userman.modifyUser",
-                data:{userID: $scope.id,username: $scope.username,password: $scope.pwd,name: $scope.name}
+                data: {userID: $scope.id, username: $scope.username, password: $scope.pwd, name: $scope.name}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -177,15 +175,11 @@ var tempname,tempun,tempid;
     });
 
 
-
-
-
-
-  var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
+    var usermodal = angular.module('ZDSGUI.pages.ui.notifications');
     usermodal.controller('ModalsPageCtrl', ModalsPageCtrl);
     /** @ngInject */
     function ModalsPageCtrl($scope, $uibModal) {
-        $scope.open = function (page, size,n) {
+        $scope.open = function (page, size, n) {
             $uibModal.open({
 
                 animation: true,

@@ -14,7 +14,6 @@ var editid;
             var msg = {
                 type: "call",
                 node: "userman.listPermissions",
-                id: "1234568"
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
@@ -35,12 +34,13 @@ var editid;
             //console.log("Hello! " + $scope.username)
 
         };
+        $scope.itemsByPage = 15;
         $scope.doremove = function (id) {
             //var rnd = Math.round(Math.random() * 1000000000);
             var msg = {
                 type: "call",
                 node: "userman.removePermission",
-                data:{value: id}
+                data: {value: id}
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
@@ -64,7 +64,13 @@ var editid;
             var msg = {
                 type: "call",
                 node: "userman.updatePermission",
-                data:{permissionID: $scope.id,name: $scope.pname,title: $scope.ptitle,description: $scope.pdec,parentID: $scope.pid}
+                data: {
+                    permissionID: $scope.id,
+                    name: $scope.pname,
+                    title: $scope.ptitle,
+                    description: $scope.pdec,
+                    parentID: $scope.pid
+                }
             };
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
@@ -89,7 +95,7 @@ var editid;
             var msg = {
                 type: "call",
                 node: "userman.registerPermission",
-                data:{name: $scope.pname,title: $scope.ptitle,description: $scope.pdec,parentID: $scope.pid}
+                data: {name: $scope.pname, title: $scope.ptitle, description: $scope.pdec, parentID: $scope.pid}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -117,6 +123,7 @@ var editid;
                 animation: true,
                 templateUrl: page,
                 size: size,
+                scope: $scope,
                 resolve: {
                     items: function () {
                         return $scope.items;
@@ -127,7 +134,6 @@ var editid;
         }
 
     });
-
 
 
     function routeConfig($stateProvider) {

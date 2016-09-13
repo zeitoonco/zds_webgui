@@ -1035,5 +1035,41 @@
     }
 }
 
-#listusers {;width:100%;direction:rtl}
-#listusers table thead th,tbody {text-align:center;}
+#listusers {;
+    width: 100%;
+    direction: rtl
+}
+
+#listusers table thead th, tbody {
+    text-align: center;
+}
+
+.modal {
+    direction: rtl;
+    text-align: right;
+}
+
+.modal-title {
+    direction: rtl;
+    text-align: right;
+}
+
+.modal .modal-dialog {
+    text-align: right !important;
+}
+
+.modal .modal-header .close {
+    margin-top: -2px !important;
+    margin-left: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'koodak', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    width: 100%;
+    margin-top: 0;
+}
+
+.panel-heading {
+    text-align: right;
+    direction: rtl;
+}
