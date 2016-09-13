@@ -4,7 +4,7 @@
   <div id="listcontact" class="col-lg-6 col-md-12 col-sm-12"
        ba-panel
        ba-panel-title="مخاطبین"
-       ba-panel-class="medium-panel" ng-controller="contact">
+       ba-panel-class="medium-panel" ng-app="ZDSGUI.pages.dashboard" ng-controller="contact">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
       <tr ng-repeat="x in myData">
-        <td class="table-id">{{x.contactID}}</td>
+        <td class="table-id">{{x.ContactID}}</td>
         <td></td>
         <td>{{x.note}}</td>
         <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
@@ -25,6 +25,7 @@
       </tr>
       </tbody>
     </table>
+
   </div>
   <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12"
        ba-panel
@@ -40,7 +41,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="x in myData">
+      <tr ng-repeat="x in mycontacts">
         <td class="table-id">{{x.groupID}}</td>
         <td></td>
         <td>{{x.note}}</td>

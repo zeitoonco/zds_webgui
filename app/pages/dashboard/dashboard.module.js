@@ -8,7 +8,7 @@
    var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
 
     dash.controller('contact',function ($scope,zdsSocket, toastr, $uibModal) {
-    function listcontact() {
+    $scope.listcontacts = function () {
         var msg = {
             type: "call",
             node: "userman.listContacts",
@@ -19,7 +19,8 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     toastr.success('لیست مخاطبین شما دریافت شد!');
-                    var myData = data["data"]["contactList"];
+                    $scope.mycontacts = data['data']['contactList'];
+
                 } else {
                     toastr.error('!', 'خطا!');
 
@@ -32,7 +33,7 @@
 
         }
     }
-        listcontact();
+        $scope.listcontacts();
     });
 
     dash.controller('group',function ($scope,zdsSocket, toastr, $uibModal) {
@@ -47,7 +48,7 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('لیست گروه های شما دریافت شد!');
-                        var myData = data["data"]["groupList"];
+                        //var myData = data["data"]["groupList"];
                     } else {
                         toastr.error('!', 'خطا!');
 
