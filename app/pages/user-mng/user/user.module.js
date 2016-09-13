@@ -1,7 +1,7 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
-var tempname = '',tempun = '',tempid = '';
+var tempname,tempun,tempid;
 
 (function () {
     'use strict';

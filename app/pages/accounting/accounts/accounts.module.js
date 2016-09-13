@@ -9,8 +9,14 @@
 (function () {
     'use strict';
 
-    angular.module('ZDSGUI.pages.accounting.accounts', [])
+    var account = angular.module('ZDSGUI.pages.accounting.accounts', [])
         .config(routeConfig);
+
+    account.controller('tree',function($scope, zdsSocket, toastr, $uibModal){
+
+    });
+
+
 
     /** @ngInject */
     function routeConfig($stateProvider) {
