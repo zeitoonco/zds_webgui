@@ -12,6 +12,53 @@
 var aid;
     var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
         .config(routeConfig);
+    account.controller('newaccount',function ($scope,zdsSocket,toastr){
+        $scope.accounttypes = [
+            { label: "کل" , value: 1 },
+            { label: "گروه", value: 2 },
+            { label: "معین", value: 3 }
+        ];
+
+        $scope.refreshmodal = function () {
+            if ($scope.selectedtype.value==3 || $scope.selectedtype.value==2){
+                //alert("گروه یا معین");
+                $scope.i1 = 'بدهکار';
+                $scope.i2 = 'بستانکار';
+                $scope.i3 = 'مهم نیست';
+            } else {
+                //alert("معین");
+                $scope.i1 = 'ترازنامه ای';
+                $scope.i2 = 'سود و زیانی';
+                $scope.i3 = 'انتظامی';
+            }
+        }
+
+        $scope.addaccount = function () {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.newAccount",
+                data:{userID: uid,parent: $scope.pid,type: $scope.type,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
+                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: ht,hastrackingcheck:'0'}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('حساب جدید اضافه شد!');
+
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
+    });
+
+
+
     account.controller('editaccount',function ($scope,zdsSocket,toastr) {
         $scope.accounttypes = [
             { label: "کل" , value: 1 },
@@ -62,11 +109,32 @@ var aid;
 
             }
         }
+        $scope.modifyaccount = function () {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.modifyAccount",
+                data:{userID: uid,id: aid,parent: $scope.pid,type: $scope.type,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
+                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: ht,hastrackingcheck:'0'}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('تغییرات با موفقیت اعمال شد!');
+
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
         $scope.getinfo();
     });
 
     account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
-        $scope.test = ['1','2','3'];
 
         $scope.openmodal = function (page, size, id) {
             aid = id;
