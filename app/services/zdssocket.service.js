@@ -3,7 +3,7 @@
  */
 
 angular.module('ZDSGUI.websocket', ['ngWebSocket'])
-    .factory('zdsSocket', function ($websocket, $rootScope, $location) {
+    .factory('zdsSocket', function ($websocket, $rootScope, $location, toastr) {
         var ws = $websocket('ws://138.201.152.83:5455/');
         //var ws = $websocket('ws://192.168.1.44:5455/');
         var collection = [];
@@ -43,6 +43,10 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
                 return ws.readyState;
             },
             send: function (message, callback) {
+                if (ws.readyState != 1) {
+                    toastr.error('اتصال با وبسوکت برقرار نیست.', 'خطا!');
+                    return;
+                }
                 if (angular.isString(message)) {
                     ws.send(message);
                 }
@@ -55,17 +59,21 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
                 }
             },
             call: function (node, data, callback) {
-                var msg = {
+                var message = {
                     type: "call",
                     node: node,
-                    id: parseInt(Math.random() * 10000),
                     data: data
                 };
-                if (typeof callback === 'function') {
-                    callbacks[msg.id] = callback;
+                if (angular.isString(message)) {
+                    ws.send(message);
                 }
-                ws.send(JSON.stringify(msg));
-                send(msg, callback);
+                else if (angular.isObject(message)) {
+                    message.id = parseInt(Math.random() * 10000);
+                    if (typeof callback === 'function') {
+                        callbacks[message.id] = callback;
+                    }
+                    ws.send(JSON.stringify(message));
+                }
             }
 
         };

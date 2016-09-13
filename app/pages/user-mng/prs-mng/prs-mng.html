@@ -12,48 +12,74 @@
                 <div class="panel panel-warning bootstrap-panel">
                     <div class="panel-heading">لیست دسترسی ها</div>
                     <div id="listusers" class="panel-body">
-                        <div class="button-wrapper"><button type="button" ng-click="getlistuser()" class="btn btn-default"><i class="ion-refresh"></i></button></div>
-                        <div class="form-group select-page-size-wrap ">
-                            <label>Rows on page
-                                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                                        ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-                                </select>
-                            </label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="button-wrapper">
+                                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                                            style="float: right;"
+                                            ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')"><i
+                                            class="ion-plus"></i>
+                                        دسترسی جدید
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="button-wrapper" style="text-align: left;">
+                                    <button type="button" ng-click="getlistuser()" class="btn btn-default"><i
+                                            class="ion-refresh"></i></button>
+                                </div>
+                            </div>
+
                         </div>
-                        <table id="data" class="table table-bordered table-hover table-condensed" st-table="smartTableData">
-                <thead>
-                <tr>
-                    <th class="table-id">#</th>
-                    <th>نام</th>
-                    <th>عنوان</th>
-                    <th>توضیحات</th>
-                    <th>دستور والد</th>
-                    <th>----</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="x in myData">
-                    <td>{{ x.permissionID }}</td>
-                    <td>{{ x.name }}</td>
-                    <td>{{ x.title }}</td>
-                    <td>{{ x.description }}</td>
-                    <td>{{ x.parentID }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID)" ng-disabled="true">ویرایش</button>
-                        <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn' ng-disabled="true">حذف</button></td>
-                </tr>
-                </tbody>
-                            <tfoot>
-                            <tr>
-                                <td colspan="6" class="text-center">
-                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-                                </td>
-                            </tr>
-                            </tfoot>
-            </table>
-            <div class="button-wrapper"><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')">دسترسی جدید</button></div>
+
+
+                        <div class="table-responsive">
+                            <table id="data" class="table table-bordered table-hover table-condensed"
+                                   st-table="myData">
+                                <thead>
+                                <tr>
+                                    <th class="table-id">#</th>
+                                    <th>نام</th>
+                                    <th>عنوان</th>
+                                    <th>توضیحات</th>
+                                    <th>دستور والد</th>
+                                    <th>عملیات</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="x in myData">
+                                    <td>{{ x.permissionID }}</td>
+                                    <td>{{ x.name }}</td>
+                                    <td>{{ x.title }}</td>
+                                    <td>{{ x.description }}</td>
+                                    <td>{{ x.parentID }}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                                ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID)"
+                                                ng-disabled="true">ویرایش
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)"
+                                                id='remove-btn'
+                                                ng-disabled="true">حذف
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage"
+                                             st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
-                </div>
-                </div>
         </div>
     </div>
 </div>
