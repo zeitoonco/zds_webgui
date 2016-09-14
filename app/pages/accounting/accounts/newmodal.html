@@ -1,9 +1,9 @@
-<div class="modal-content" ng-app="ZDSGUI.pages.accounting.accounts" ng-controller="editaccount">
+<div class="modal-content" ng-app="ZDSGUI.pages.accounting.accounts" ng-controller="newaccount">
   <div class="modal-header">
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
     </button>
-    <h4 class="modal-title" id="myModalLabel">ویرایش حساب</h4>
+    <h4 class="modal-title" id="myModalLabel">حساب جدید</h4>
   </div>
   <div class="modal-body">
     <div class="form-group">
@@ -16,22 +16,22 @@
 
     <div class="form-group">
       <label for="usr">حساب سرشاخه:</label>
-      <input type="number" class="form-control" id="parentid" ng-model="pid" ng-bind="pid">
+      <input type="number" class="form-control" id="parentid" ng-model="pid">
     </div>
 
     <div class="form-group">
       <label for="usr">کد:</label>
-      <input type="number" min="1" max="3" class="form-control" id="code" ng-model="code" ng-bind="code">
+      <input type="number" min="1" max="3" class="form-control" id="code" ng-model="code">
     </div>
 
     <div class="form-group">
       <label for="usr">عنوان حساب:</label>
-      <input type="text" class="form-control" id="title2" ng-model="title" ng-bind="title">
+      <input type="text" class="form-control" id="title2" ng-model="title">
     </div>
 
     <div class="form-group">
       <label for="isactive">وضعیت:</label>
-      <input id="isactive" type="checkbox" value="" ng-model="en">فعال
+      <input id="isactive" type="checkbox" ng-model="en">فعال
     </div>
 
     <div class="form-group">
@@ -51,20 +51,20 @@
 
     <div id="extrainfo" class="form-group">
       <label for="HasBalanceTypeCheck">کنترلر ماهیت دوره ای:</label>
-        <input id="HasBalanceTypeCheck" type="checkbox" ng-model="hbtc" ng-true-value="1" ng-false-value="0">
-        <label for="HasDL">تفضیلی پذیر:</label>
-        <input id="HasDL" type="checkbox" ng-model="hsdl" ng-true-value="1" ng-false-value="0">
-        <label for="HasCurrency">ارزی:</label>
-        <input id="HasCurrency" type="checkbox" ng-model="hc"ng-true-value="1" ng-false-value="0">
-        <label for="HasCurrencyConversion">تسعیر پذیر:</label>
-        <input id="HasCurrencyConversion" type="checkbox" ng-model="hcc" ng-true-value="1" ng-false-value="0">
-        <label for="HasTracking">پیگیری:</label>
-        <input id="HasTracking" type="checkbox" ng-model="ht" ng-true-value="1" ng-false-value="0">
+      <input id="HasBalanceTypeCheck" type="checkbox" ng-model="hbtc" ng-true-value="1" ng-false-value="0">
+      <label for="HasDL">تفضیلی پذیر:</label>
+      <input id="HasDL" type="checkbox" ng-model="hsdl" ng-true-value="1" ng-false-value="0">
+      <label for="HasCurrency">ارزی:</label>
+      <input id="HasCurrency" type="checkbox" ng-model="hc"ng-true-value="1" ng-false-value="0">
+      <label for="HasCurrencyConversion">تسعیر پذیر:</label>
+      <input id="HasCurrencyConversion" type="checkbox" ng-model="hcc" ng-true-value="1" ng-false-value="0">
+      <label for="HasTracking">پیگیری:</label>
+      <input id="HasTracking" type="checkbox" ng-model="ht" ng-true-value="1" ng-false-value="0">
     </div>
 
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="modifyaccount()">تایید</button>
+    <button type="button" class="btn btn-primary" ng-click="addaccount()">تایید</button>
   </div>
 </div>
