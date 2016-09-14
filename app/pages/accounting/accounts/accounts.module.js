@@ -13,6 +13,11 @@ var aid;
     var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
         .config(routeConfig);
     account.controller('newaccount',function ($scope,zdsSocket,toastr){
+        $scope.hbtc = 0;
+        $scope.hsdl = 0;
+        $scope.hc = 0;
+        $scope.hcc = 0;
+        $scope.ht = 0;
         $scope.accounttypes = [
             { label: "کل" , value: 1 },
             { label: "گروه", value: 2 },
@@ -20,7 +25,7 @@ var aid;
         ];
 
         $scope.refreshmodal = function () {
-            if ($scope.selectedtype.value==3 || $scope.selectedtype.value==2){
+            if ($scope.type.value==3 || $scope.type.value==2){
                 //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
@@ -37,11 +42,12 @@ var aid;
             var msg = {
                 type: "call",
                 node: "AccountingRelay.newAccount",
-                data:{userID: uid,parent: $scope.pid,type: $scope.type,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
+                data:{userid: uid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
                     openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: ht,hastrackingcheck:'0'}
+                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
             };
             if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('حساب جدید اضافه شد!');
@@ -60,6 +66,11 @@ var aid;
 
 
     account.controller('editaccount',function ($scope,zdsSocket,toastr) {
+        $scope.hbtc = 0;
+        $scope.hsdl = 0;
+        $scope.hc = 0;
+        $scope.hcc = 0;
+        $scope.ht = 0;
         $scope.accounttypes = [
             { label: "کل" , value: 1 },
             { label: "گروه", value: 2 },
@@ -72,7 +83,7 @@ var aid;
         }
 
         $scope.refreshmodal = function () {
-            if ($scope.selectedtype.value==3 || $scope.selectedtype.value==2){
+            if ($scope.type.value==3 || $scope.type.value==2){
                 //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
@@ -95,10 +106,12 @@ var aid;
                 }
             };
             if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
                         $scope.id = $scope.myData[0];
+
 
                     } else {
                         toastr.error('!', 'خطا!');
@@ -113,11 +126,12 @@ var aid;
             var msg = {
                 type: "call",
                 node: "AccountingRelay.modifyAccount",
-                data:{userID: uid,id: aid,parent: $scope.pid,type: $scope.type,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
+                data:{userid: uid,id: aid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
                     openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: ht,hastrackingcheck:'0'}
+                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
             };
             if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('تغییرات با موفقیت اعمال شد!');
@@ -158,7 +172,9 @@ var aid;
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive']
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive'],
+                    'where': [['del', '=', '0']]
+
                 }
             };
             if (zdsSocket.status() == 1) {
@@ -181,7 +197,8 @@ var aid;
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeAccount",
-                    data: {userID: uid,id: id}
+                    data: {userid: uid,id: id}
+
                 };
                 if (zdsSocket.status() == 1) {
                     zdsSocket.send(msg, function (data) {
@@ -208,7 +225,7 @@ var aid;
 
     });
 
-    account.controller('accounttree', function () {
+    account.controller('accounttree', function ($scope,zdsSocket, toastr) {
 
     });
 

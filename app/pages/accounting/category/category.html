@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>طبقه بندی حساب ها</title>
+</head>
+<body ng-app='ZDSGUI.pages.accounting.category'>
+<div class="col-md-6" ng-controller="category">
+    <div id="account-table" ba-panel ba-panel-title="جدول طبقه حسابها" ba-panel-class="with-scroll tree-panel">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="button-wrapper">
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                            style="float: right;"
+                            ng-click="openmodal('app/pages/accounting/accounts/newmodal.html', 'md')"><i
+                            class="ion-plus"></i>
+                        طبقه جدید
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="button-wrapper" style="text-align: left;">
+                    <button type="button" ng-click="getaccounts()" class="btn btn-default"><i
+                            class="ion-refresh"></i></button>
+                </div>
+            </div>
+            <table id="data" class="table table-bordered table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th class="table-id">#</th>
+                    <th>نوع</th>
+                    <th>عنوان</th>
+                    <th>---</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="x in myData">
+                    <td>{{ x[0] }}</td>
+                    <td>{{ x[1] }}</td>
+                    <td>{{ x[2] }}</td>
+                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0])">ویرایش</button>
+                        <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
+                </tr>
+            </table>
+            <div class="button-wrapper"></div>
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>
