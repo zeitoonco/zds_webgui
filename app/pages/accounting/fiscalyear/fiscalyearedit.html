@@ -9,27 +9,28 @@
 
         <div class="form-group">
             <label for="title">عنوان:</label>
-            <input type="text" class="form-control" id="title" value="{{row[1]}}">
+            <input type="text" class="form-control" id="title" value="{{row[1]}}" ng-model="row[1]">
         </div>
+        <div ng-if="new == 1">
+            <div class="form-group">
+                <label for="pstartdate">شروع:</label>
+                <input type="text" class="form-control" id="pstartdate" value="{{row[2]}}"
+                       ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
+                       gregorian-formatted-picked-date="row[7]" gregorian-picked-date="startgdate"
+                       ng-model="pstartdate">
+            </div>
 
-        <div class="form-group">
-            <label for="pstartdate">شروع:</label>
-            <input type="text" class="form-control" id="pstartdate" value="{{row[2]}}"
-                   ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
-                   gregorian-formatted-picked-date="startdate" gregorian-picked-date="startgdate" ng-model="startdate">
+            <div class="form-group">
+                <label for="penddate">پایان:</label>
+                <input type="text" class="form-control" id="penddate" value="{{row[3]}}" ng-jalali-flat-datepicker
+                       datepicker-config="datepickerConfig"
+                       gregorian-formatted-picked-date="row[8]" gregorian-picked-date="endgdate" ng-model="penddate">
+            </div>
+
         </div>
-
-        <div class="form-group">
-            <label for="penddate">پایان:</label>
-            <input type="text" class="form-control" id="penddate" value="{{row[3]}}" ng-jalali-flat-datepicker
-                   datepicker-config="datepickerConfig"
-                   gregorian-formatted-picked-date="enddate" gregorian-picked-date="endgdate" ng-model="enddate">
-        </div>
-
-
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="doedit()">تایید</button>
+        <button type="button" class="btn btn-primary" ng-click="doedit();$dismiss()">تایید</button>
     </div>
 </div>

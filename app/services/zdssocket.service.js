@@ -3,6 +3,9 @@
  */
 
 angular.module('ZDSGUI.websocket', ['ngWebSocket'])
+    .controller('error', function ($scope) {
+
+    })
     .factory('zdsSocket', function ($websocket, $rootScope, $location, toastr) {
         var ws = $websocket('ws://138.201.152.83:5455/');
         //var ws = $websocket('ws://192.168.1.44:5455/');
@@ -57,6 +60,18 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
                     }
                     ws.send(JSON.stringify(message));
                 }
+            },
+            raiseError: function (msg) {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/services/error.zds.html',
+                    size: 'md',
+                    resolve: {
+                        msg: function () {
+                            return msg;
+                        }
+                    }
+                });
             },
             call: function (node, data, callback) {
                 var message = {
