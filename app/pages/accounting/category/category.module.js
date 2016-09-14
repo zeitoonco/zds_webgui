@@ -50,7 +50,7 @@
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        toastr.success('طبقه ی جدید اضافه شد!');
+                        toastr.success('اطلاعات اعمال شد!');
 
                     } else {
                         toastr.error('!', 'خطا!');
@@ -65,8 +65,10 @@
 
 
     category.controller('category',function ($scope,zdsSocket,toastr,$uibModal) {
-        $scope.openmodal = function (page, size, id) {
+        $scope.openmodal = function (page, size, id,type,title) {
             cid = id;
+            $scope.type = type;
+            $scope.title = title;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,

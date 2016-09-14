@@ -105,7 +105,9 @@ var aid;
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
-                        $scope.id = $scope.myData[0];
+                        $scope.pid = $scope.myData[1];
+                        $scope.title = $scope.myData[5];
+                        $scope.code = $scope.myData[4];
 
 
                     } else {
