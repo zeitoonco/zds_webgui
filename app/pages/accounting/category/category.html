@@ -5,14 +5,14 @@
     <title>طبقه بندی حساب ها</title>
 </head>
 <body ng-app='ZDSGUI.pages.accounting.category'>
-<div class="col-md-6" ng-controller="category">
+<div class="col-md-12" ng-controller="category">
     <div id="account-table" ba-panel ba-panel-title="جدول طبقه حسابها" ba-panel-class="with-scroll tree-panel">
         <div class="row">
             <div class="col-sm-6">
                 <div class="button-wrapper">
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
                             style="float: right;"
-                            ng-click="openmodal('app/pages/accounting/accounts/newmodal.html', 'md')"><i
+                            ng-click="openmodal('app/pages/accounting/category/newmodal.html', 'md')"><i
                             class="ion-plus"></i>
                         طبقه جدید
                     </button>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="button-wrapper" style="text-align: left;">
-                    <button type="button" ng-click="getaccounts()" class="btn btn-default"><i
+                    <button type="button" ng-click="getcategory()" class="btn btn-default"><i
                             class="ion-refresh"></i></button>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
                     <td>{{ x[2] }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0])">ویرایش</button>
+                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0])">ویرایش</button>
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>

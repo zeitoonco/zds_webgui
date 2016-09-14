@@ -1,0 +1,28 @@
+<div class="modal-content" ng-app="ZDSGUI.pages.accounting.category" ng-controller="newcategory">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">ویرایش حساب</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="type">نوع:</label>
+      <select class="form-control selectpicker" selectpicker title="نوع"
+              ng-model="type" ng-change="refreshmodal()"
+              ng-options="item as item.label for item in types">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="usr">عنوان:</label>
+      <input type="text" class="form-control" id="title2" ng-model="title">
+    </div>
+
+
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="addcategory()">تایید</button>
+  </div>
+</div>

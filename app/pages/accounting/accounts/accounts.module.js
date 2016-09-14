@@ -77,11 +77,6 @@ var aid;
             { label: "معین", value: 3 }
         ];
 
-
-        $scope.indentity = {
-
-        }
-
         $scope.refreshmodal = function () {
             if ($scope.type.value==3 || $scope.type.value==2){
                 //alert("گروه یا معین");
