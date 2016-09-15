@@ -137,7 +137,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('accounting.document', {
-                url: '/category',
+                url: '/document',
                 templateUrl: 'app/pages/accounting/document/document.html',
                 title: 'سند مالی',
                 sidebarMeta: {
