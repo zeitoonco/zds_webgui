@@ -9,9 +9,11 @@ angular.module('ZDSGUI.boolean', []).filter('persianboolean', function () {
         } else {
             switch (item) {
                 case 'true':
+                case 't':
                 case true:
                     return "بله";
                 case 'false':
+                case 'f':
                 case false:
                     return "خیر";
                 default:
