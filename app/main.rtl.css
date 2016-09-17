@@ -1073,3 +1073,9 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
     direction: rtl;
 }
+#newvoucher .modal-body{width:;background-color:;overflow:auto;}
+#newvoucher .form-group{background-color:;width:45%;float:right;
+    padding:10px;border-radius:5px;border:1px solid #ccc;margin-left:5px}
+#newvoucher .form-group input,label{float:right;}
+#newvoucher .form-group label {padding:10px;}
+#newvoucher .form-group input{width:40%;}

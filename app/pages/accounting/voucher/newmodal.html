@@ -1,0 +1,67 @@
+<div id="newvoucher" class="modal-content" ng-app="ZDSGUI.pages.accounting.category" ng-controller="newvoucher">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">سند جدید</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="vid">شماره سند:</label>
+      <input type="number" class="form-control" id="vid" ng-model="vid">
+    </div>
+    <div class="form-group">
+      <label id="type">نوع سند: عمومی</label>
+      <label id="state">وضعیت: موقت</label>
+      <label id="sys">سیستم صادرکننده: حسابداری</label>
+    </div>
+    <div class="form-group">
+      <label for="vdate">تاریخ:</label>
+      <input type="text" class="form-control" id="vdate" ng-model="vdate"
+             ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
+             gregorian-formatted-picked-date="fvdate" gregorian-picked-date="vdate">
+    </div>
+    <div class="form-group">
+      <label for="refnumber">شماره فرعی:</label>
+      <input type="number" class="form-control" id="refnumber" ng-model="refnumber">
+    </div>
+    <div class="form-group">
+      <label for="dec">توضیحات:</label>
+      <input type="text" class="form-control" id="dec" ng-model="dec">
+    </div>
+    <div id="toolbar"></div>
+    <table id="data" class="table table-bordered table-hover table-condensed">
+      <thead>
+      <tr>
+        <th class="table-id">#</th>
+        <th>کد معین</th>
+        <th>کد تفضیلی</th>
+        <th>شرح</th>
+        <th>بدهکار</th>
+        <th>بستانکار</th>
+        <th>شماره پیگیری</th>
+        <th>تاریخ پیگیری</th>
+        <th>---</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="x in myData">
+        <td>{{ x[1] }}</td>
+        <td>{{ x[4] }}</td>
+        <td>{{ x[3] }}</td>
+        <td>{{ x[2] }}</td>
+        <td>{{ x[9] }}</td>
+        <td>{{ x[6] }}</td>
+        <td>{{ x[5] }}</td>
+        <td></td>
+        <td>{{ x[8] }}</td>
+        <td>{{ x[10] }}</td>
+        <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
+          <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="addcategory()">تایید</button>
+  </div>
+</div>

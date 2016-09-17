@@ -4,18 +4,30 @@
 (function () {
     var cid;
     'use strict';
-    var category = angular.module('ZDSGUI.pages.accounting.document',[])
+    var voucher = angular.module('ZDSGUI.pages.accounting.voucher',['ngJalaliFlatDatepicker'])
         .config(routeConfig);
-    category.controller('newdocument',function ($scope,zdsSocket,toastr) {
-        $scope.types = [
-            { label: "ترازنامه ای" , value: 1 },
-            { label: "سود و زیانی", value: 2 }
-        ];
+    voucher.controller('newvoucher',function ($scope,zdsSocket,toastr) {
 
+        $scope.datepickerConfig = {
+            dateFormat: 'jYYYY/jMM/jDD',
+            gregorianDateFormat: 'YYYY-DD-MM',
+            minDate: moment.utc('2014', 'YYYY'),
+            allowFuture: true
+        };
+
+        $scope.items = [];
+        $scope.additem = function () {
+            $scope.items.push({accountid:'' ,dlid:'' ,debit:'' ,credit:'' ,trackingnumber:'' ,trackingdate:'' ,description:''});
+
+        }
+        
+        
+        
+        
         $scope.addcategory = function () {
             var msg = {
                 type: "call",
-                node: "AccountingRelay.newCategory",
+                node: "AccountingRelay.newvoucher",
                 data:{userid: uid,title: $scope.title,type: $scope.type.value}
             };
             if (zdsSocket.status() == 1) {
@@ -34,7 +46,7 @@
             }
         }
     });
-    category.controller('editcategory',function ($scope,zdsSocket,toastr) {
+    voucher.controller('editvoucher',function ($scope,zdsSocket,toastr) {
         $scope.types = [
             { label: "ترازنامه ای" , value: 1 },
             { label: "سود و زیانی", value: 2 }
@@ -43,7 +55,7 @@
         $scope.modifycategory = function () {
             var msg = {
                 type: "call",
-                node: "AccountingRelay.modifyCategory",
+                node: "AccountingRelay.modifyvoucher",
                 data:{userid: uid,id: cid,title: $scope.title,type: $scope.type.value}
             };
             if (zdsSocket.status() == 1) {
@@ -64,7 +76,7 @@
     });
 
 
-    category.controller('document',function ($scope,zdsSocket,toastr,$uibModal) {
+    voucher.controller('voucher',function ($scope,zdsSocket,toastr,$uibModal) {
         $scope.openmodal = function (page, size, id,type,title) {
             cid = id;
             $scope.type = type;
@@ -83,17 +95,18 @@
             //$modalInstance.$scope.username = 'ali';
 
         }
-        $scope.getcategory = function () {
+        $scope.getvoucher = function () {
             var msg = {
                 type: "call",
                 node: "AccountingRelay.query",
-                data: {'table': 'Category'}
+                data: {'table': 'voucher'}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
+
                         toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
@@ -110,7 +123,7 @@
             if (alert == true){
                 var msg = {
                     type: "call",
-                    node: "AccountingRelay.removeCategory",
+                    node: "AccountingRelay.removevoucher",
                     data: {userid: uid,id: id}
                 };
                 if (zdsSocket.status() == 1) {
@@ -131,14 +144,25 @@
             }
 
         }
-        //$scope.getcategory();
+        $scope.getvoucher();
     });
+
+
+    voucher.filter('jalaliDate', function () {
+        return function (inputDate, format) {
+            var date = moment(inputDate);
+            return date.format(format);
+        }
+    });
+
+
+
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('accounting.document', {
-                url: '/document',
-                templateUrl: 'app/pages/accounting/document/document.html',
+            .state('accounting.voucher', {
+                url: '/voucher',
+                templateUrl: 'app/pages/accounting/voucher/voucher.html',
                 title: 'سند مالی',
                 sidebarMeta: {
                     order: 900

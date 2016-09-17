@@ -5,7 +5,7 @@
     'use strict';
     angular.module('ZDSGUI.pages.accounting', ['ZDSGUI.pages.accounting.accounts',
         'ZDSGUI.pages.accounting.fiscalyear','ZDSGUI.pages.accounting.category',
-        'ZDSGUI.pages.accounting.document'])
+        'ZDSGUI.pages.accounting.voucher'])
         .config(routeConfig);
 
 

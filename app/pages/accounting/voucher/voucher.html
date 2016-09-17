@@ -4,39 +4,53 @@
     <meta charset="UTF-8">
     <title>سند مالی</title>
 </head>
-<body ng-app="ZDSGUI.pages.accounting.document">
-<div class="col-md-12" ng-controller="">
+<body ng-app="ZDSGUI.pages.accounting.voucher">
+<div class="col-md-12" ng-controller="voucher">
     <div id="account-table" ba-panel ba-panel-title="اسناد مالی" ba-panel-class="with-scroll tree-panel">
         <div class="row">
             <div class="col-sm-6">
                 <div class="button-wrapper">
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
                             style="float: right;"
-                            ng-click="openmodal('app/pages/accounting/category/newmodal.html', 'md')"><i
+                            ng-click="openmodal('app/pages/accounting/voucher/newmodal.html', 'lg')"><i
                             class="ion-plus"></i>
-                        طبقه جدید
+                        سند جدید
                     </button>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="button-wrapper" style="text-align: left;">
-                    <button type="button" ng-click="getcategory()" class="btn btn-default"><i
+                    <button type="button" ng-click="getdocuments()" class="btn btn-default"><i
                             class="ion-refresh"></i></button>
                 </div>
             </div>
             <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
-                    <th class="table-id">#</th>
-                    <th>نوع</th>
-                    <th>عنوان</th>
+                    <th class="table-id">شماره سند</th>
+                    <th>شماره عطف</th>
+                    <th>شماره فرعی</th>
+                    <th>تاریخ</th>
+                    <th>شماره روزانه</th>
+                    <th>نوع سند</th>
+                    <th>وضعیت سند</th>
+                    <th>جمع کل</th>
+                    <th>توضیحات</th>
+                    <th>سیستم صادر کننده</th>
                     <th>---</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="x in myData">
-                    <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
+                    <td>{{ x[4] }}</td>
+                    <td>{{ x[3] }}</td>
                     <td>{{ x[2] }}</td>
+                    <td>{{ x[9] }}</td>
+                    <td>{{ x[6] }}</td>
+                    <td>{{ x[5] }}</td>
+                    <td></td>
+                    <td>{{ x[8] }}</td>
+                    <td>{{ x[10] }}</td>
                     <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
                 </tr>
