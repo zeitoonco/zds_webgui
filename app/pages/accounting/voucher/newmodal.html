@@ -29,7 +29,7 @@
       <label for="dec">توضیحات:</label>
       <input type="text" class="form-control" id="dec" ng-model="dec">
     </div>
-    <div id="toolbar"></div>
+    <div id="toolbar"><button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button></div>
     <table id="data" class="table table-bordered table-hover table-condensed">
       <thead>
       <tr>
@@ -40,21 +40,21 @@
         <th>بدهکار</th>
         <th>بستانکار</th>
         <th>شماره پیگیری</th>
-        <th>تاریخ پیگیری</th>
         <th>---</th>
       </tr>
       </thead>
-      <tr ng-repeat="x in myData">
-        <td>{{ x[1] }}</td>
-        <td>{{ x[4] }}</td>
-        <td>{{ x[3] }}</td>
-        <td>{{ x[2] }}</td>
-        <td>{{ x[9] }}</td>
-        <td>{{ x[6] }}</td>
-        <td>{{ x[5] }}</td>
-        <td></td>
-        <td>{{ x[8] }}</td>
-        <td>{{ x[10] }}</td>
+      <tr ng-repeat="x in items" class="editable-row">
+        <td>
+          <span editable-text="x.accountid" e-name="کد معین" e-form="rowform" e-required>
+          {{ x.accountid }}
+        </span>
+          {{ x.accountid }}</td>
+        <td>{{ x.dlid }}</td>
+        <td>{{ x.debit }}</td>
+        <td>{{ x.credit }}</td>
+        <td>{{ x.trackingnumber }}</td>
+        <td>{{ x.trackingdate }}</td>
+        <td>{{ x.description }}</td>
         <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
           <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
       </tr>
