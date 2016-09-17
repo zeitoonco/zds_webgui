@@ -45,13 +45,17 @@
 
         $scope.datepickerConfig = {
             dateFormat: 'jYYYY/jMM/jDD',
-            gregorianDateFormat: 'YYYY-DD-MM',
+            gregorianDateFormat: 'YYYY-MM-DD',
             minDate: moment.utc('2014', 'YYYY'),
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id) {
-            $scope.row = id;
+        $scope.openmodal = function (page, size, id = 0) {
+            if (id == 0)
+                $scope.row = [];
+            else
+                $scope.row = id;
+            $scope.new = id == 0;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -94,6 +98,50 @@
         $scope.getfiscalyears();
 
 
+        $scope.doedit = function () {
+
+            if ($scope.new)
+                var msg = {
+                    type: "call",
+                    node: "AccountingRelay.newFiscalYear",
+                    data: {userid: uid, title: $scope.row[1], start: $scope.row[7], end: $scope.row[8]}
+                };
+            else
+                var msg = {
+                    type: "call",
+                    node: "AccountingRelay.modifyFiscalYear",
+                    data: {userid: uid, id: $scope.row[0], title: $scope.row['1']}
+                };
+            zdsSocket.send(msg, function (data) {
+                if (data["data"]["success"] == true) {
+                    toastr.success($scope.new ? 'سال مالی ایجاد شد!' : 'سال مالی با موفقیت ویرایش شد!');
+                    $scope.getfiscalyears();
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+
+        }
+
+        $scope.doremove = function (id) {
+
+            var alert = confirm("آیا از حذف این سال مالی مطمئن هستید؟");
+            if (alert == true) {
+                var msg = {
+                    type: "call",
+                    node: "AccountingRelay.removeFiscalYear",
+                    data: {userid: uid, id: id}
+                };
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('سال مالی حذف گردید!')
+                    } else {
+                        zdsSocket.raiseError("خطایی رخ داده است");
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            }
+        }
     });
 
 

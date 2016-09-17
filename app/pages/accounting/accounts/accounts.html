@@ -1,35 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>مدیریت حساب ها</title>
-</head>
 <div class="row" ng-app='ZDSGUI.pages.accounting.accounts'>
     <div class="col-md-6" ng-controller="accounttree">
-<div id="account-tree"  ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="control-side text-center">
-                <div>
-                    <button class="btn btn-primary" ng-click="addNewNode()">Add</button>
+        <div id="account-tree" ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="control-side text-center">
+                        <div>
+                            <button class="btn btn-primary" ng-click="addNewNode()">Add</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" ng-click="collapse()">Collapse All</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" ng-click="expand()">Expand All</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" ng-click="refresh()">Refresh</button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-primary" ng-click="collapse()">Collapse All</button>
-                </div>
-                <div>
-                    <button class="btn btn-primary" ng-click="expand()">Expand All</button>
-                </div>
-                <div>
-                    <button class="btn btn-primary" ng-click="refresh()">Refresh</button>
+                <div class="col-sm-8">
+                    <div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree"
+                         tree-events="ready:readyCB"></div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
-            <div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events="ready:readyCB"></div>
-        </div>
     </div>
-</div>
-</div>
 
     <div class="col-md-6" ng-controller="accounttable">
         <div id="account-table" ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
@@ -50,6 +45,8 @@
                                 class="ion-refresh"></i></button>
                     </div>
                 </div>
+            </div>
+            <div class="table-responsive">
                 <table id="data" class="table table-bordered table-hover table-condensed">
                     <thead>
                     <tr>
@@ -60,29 +57,32 @@
                         <th>ارزی</th>
                         <th>پیگیری</th>
                         <th>فعال</th>
-                        <th>---</th>
+                        <th>عملیات</th>
                     </tr>
                     </thead>
                     <tr ng-repeat="x in myData">
                         <td>{{ x[0] }}</td>
                         <td>{{ x[1] }}</td>
-                        <td>{{ x[2] }}</td>
-                        <td>{{ x[3] }}</td>
-                        <td>{{ x[4] }}</td>
-                        <td>{{ x[5] }}</td>
-                        <td>{{ x[6] }}</td>
-                        <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0])">ویرایش</button>
-                            <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
+                        <td>{{ x[2]  | persianboolean}}</td>
+                        <td>{{ x[3]  | persianboolean}}</td>
+                        <td>{{ x[4]  | persianboolean}}</td>
+                        <td>{{ x[5]  | persianboolean}}</td>
+                        <td>{{ x[6]  | persianboolean}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                    ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0])">
+                                ویرایش
+                            </button>
+                            <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف
+                            </button>
+                        </td>
                     </tr>
                 </table>
-                <div class="button-wrapper"></div>
-
-            </div>
-
             </div>
         </div>
-    </div>
 
     </div>
-</body>
-</html>
+
+</div>
+
+
