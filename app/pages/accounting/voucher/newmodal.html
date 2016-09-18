@@ -73,10 +73,11 @@
         <td><span editable-text="x.trackingnumber" e-name="شماره پیگیری" e-form="rowform" e-required>
             {{ x.trackingnumber }}
           </span></td>
-        <td><span editable-text="x.trackingdate" e-name="تاریخ پیگیری" e-form="rowform" e-required
+        <td>
+            <!--<span  editable-text="x.trackingdate" e-name="تاریخ پیگیری" e-form="rowform" e-required
         >
             {{ x.trackingdate }}
-          </span></td>
+          </span></td>-->
         <td>
           <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
                 shown="inserted == user">
@@ -93,10 +94,17 @@
           </div>
         </td>
       </tr>
+
+
     </table>
+
   </div>
 
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" ng-click="addcategory()">تایید</button>
+      <div id="info">
+          <span>اختلاف : {{d}}</span>
+
+      </div>
   </div>
 </div>

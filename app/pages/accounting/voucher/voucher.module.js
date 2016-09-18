@@ -8,15 +8,6 @@
         .config(routeConfig);
     voucher.controller('newvoucher',function ($scope,zdsSocket,toastr) {
 
-        $scope.datepickerConfig = {
-            dateFormat: 'jYYYY/jMM/jDD',
-            gregorianDateFormat: 'YYYY-DD-MM',
-            minDate: moment.utc('2014', 'YYYY'),
-            allowFuture: true
-        };
-
-
-
         $scope.items = []; //voucher items
 
         //add empty object as row in items
@@ -33,8 +24,17 @@
         //remove a row in items by index
         $scope.removeitem = function (index) {
             $scope.items.splice(index, 1);
+            $scope.diffrence();
         }
-        
+
+        $scope.diffrence = function () {
+            var sd = 0,sc = 0;
+            for (var i in $scope.items){
+                sd = sd + $scope.items[i].debit;
+                sc = sc + $scope.items[i].credit;
+            }
+            $scope.d = sd - sc;
+        }
         
         $scope.addvoucher = function () {
             var msg = {
@@ -57,6 +57,13 @@
 
             }
         }
+
+        $scope.datepickerConfig = {
+            dateFormat: 'jYYYY/jMM/jDD',
+            gregorianDateFormat: 'YYYY-DD-MM',
+            minDate: moment.utc('2014', 'YYYY'),
+            allowFuture: true
+        };
     });
 
 

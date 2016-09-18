@@ -1081,3 +1081,5 @@ h1, h2, h3, h4, h5, h6 {
 #newvoucher .form-group input,label{float:right;}
 #newvoucher .form-group label {padding:10px;}
 #newvoucher .form-group input{width:40%;}
+#newvoucher #info {width:50%;float:left;background-color:#eee;padding:10px;font-size:18px}
+#newvoucher #info span {float:left;min-width:150px;margin-left:5px}
