@@ -57,6 +57,31 @@
 
             }
         }
+        
+        $scope.getaccountid = function () {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['accountid'],
+                    'where': [['type', '=', '3']]
+
+                }
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        $scope.acid = data.data.result.rows;
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
 
         $scope.datepickerConfig = {
             dateFormat: 'jYYYY/jMM/jDD',
