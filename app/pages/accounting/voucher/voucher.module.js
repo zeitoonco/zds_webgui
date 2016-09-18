@@ -15,16 +15,28 @@
             allowFuture: true
         };
 
-        $scope.items = [];
+
+
+        $scope.items = []; //voucher items
+
+        //add empty object as row in items
         $scope.additem = function () {
             $scope.items.push({accountid:'' ,dlid:'' ,debit:'' ,credit:'' ,trackingnumber:'' ,trackingdate:'' ,description:''});
 
         }
+
+        //print log of items content as object for test
+        $scope.itemlog = function () {
+            console.log(JSON.stringify($scope.items));
+        }
+
+        //remove a row in items by index
+        $scope.removeitem = function (index) {
+            $scope.items.splice(index, 1);
+        }
         
         
-        
-        
-        $scope.addcategory = function () {
+        $scope.addvoucher = function () {
             var msg = {
                 type: "call",
                 node: "AccountingRelay.newvoucher",
@@ -46,6 +58,11 @@
             }
         }
     });
+
+
+
+
+
     voucher.controller('editvoucher',function ($scope,zdsSocket,toastr) {
         $scope.types = [
             { label: "ترازنامه ای" , value: 1 },
