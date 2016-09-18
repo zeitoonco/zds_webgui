@@ -1073,6 +1073,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
     direction: rtl;
 }
+.vouchermodal .modal-dialog{width:1200px}
 #newvoucher .modal-body{width:;background-color:;overflow:auto;}
 #newvoucher #toolbar {width:100%;float:right;background-color:#eee;padding:5px}
 #newvoucher .form-group{background-color:;width:45%;float:right;
