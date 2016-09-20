@@ -73,6 +73,7 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.acid = data.data.result.rows;
+                        console.log(JSON.stringify($scope.acid));
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -82,6 +83,8 @@
 
             }
         }
+
+        $scope.getaccountid();
 
         $scope.datepickerConfig = {
             dateFormat: 'jYYYY/jMM/jDD',
