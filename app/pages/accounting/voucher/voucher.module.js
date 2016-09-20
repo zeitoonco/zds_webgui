@@ -64,7 +64,7 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid'],
+                    'columns': ['accountid', 'hasdl'],
                     'where': [['type', '=', '3']]
 
                 }

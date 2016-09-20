@@ -50,9 +50,9 @@
           {{$index}}
         </td>
         <td>
-          <span editable-select="x.accountid" e-name="کد معین" e-form="rowform" e-selectpicker
-                e-ng-options="i in acid">
-          {{ x.accountid }}
+          <span editable-select="x.accountid" e-name="کد معین" e-form="rowform"
+                e-ng-options="i as i.id for i in acid">
+
         </span>
         </td>
         <td>
