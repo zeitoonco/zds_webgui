@@ -12,7 +12,7 @@
 
         //add empty object as row in items
         $scope.additem = function () {
-            $scope.items.push({accountid:'' ,dlid:'' ,debit:'' ,credit:'' ,trackingnumber:'' ,trackingdate:'' ,description:''});
+            $scope.items.push({accountid:'' ,dlid:'' ,debit:'' ,credit:'' ,trackingnumber:'' ,trackingdate:'2016-08-22' ,description:''});
 
         }
 
@@ -39,8 +39,9 @@
         $scope.addvoucher = function () {
             var msg = {
                 type: "call",
-                node: "AccountingRelay.newvoucher",
-                data:{userid: uid,title: $scope.title,type: $scope.type.value}
+                node: "AccountingRelay.createNewVocher",
+                data:{userid: uid,number: $scope.vid,date: $scope.fvdate,referencenumber: $scope.refnumber,secondarynumber: 0,
+                state: 1,type: 1,description: $scope.dec,items: $scope.items}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -57,7 +58,18 @@
 
             }
         }
-        
+        $scope.test = function () {
+            alert($scope.selectedid);
+        }
+        $scope.check = function (id) {
+            alert(id);
+            if (id[1]=='f'){
+                return true;
+            } else if (id[1]=='t'){
+                return false;
+            }
+        }
+
         $scope.getaccountid = function () {
             var msg = {
                 type: "call",
@@ -82,13 +94,15 @@
                 toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
             }
+
+
         }
 
         $scope.getaccountid();
 
         $scope.datepickerConfig = {
             dateFormat: 'jYYYY/jMM/jDD',
-            gregorianDateFormat: 'YYYY-DD-MM',
+            gregorianDateFormat: 'YYYY-MM-DD',
             minDate: moment.utc('2014', 'YYYY'),
             allowFuture: true
         };
@@ -107,7 +121,7 @@
         $scope.modifycategory = function () {
             var msg = {
                 type: "call",
-                node: "AccountingRelay.modifyvoucher",
+                node: "AccountingRelay.modifyVoucher",
                 data:{userid: uid,id: cid,title: $scope.title,type: $scope.type.value}
             };
             if (zdsSocket.status() == 1) {
@@ -151,7 +165,7 @@
             var msg = {
                 type: "call",
                 node: "AccountingRelay.query",
-                data: {'table': 'voucher'}
+                data: {'table': 'voucher', 'where': [['del', '=', '0']]}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -175,7 +189,7 @@
             if (alert == true){
                 var msg = {
                     type: "call",
-                    node: "AccountingRelay.removevoucher",
+                    node: "AccountingRelay.removeVoucher",
                     data: {userid: uid,id: id}
                 };
                 if (zdsSocket.status() == 1) {
