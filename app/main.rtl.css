@@ -1073,6 +1073,9 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
     direction: rtl;
 }
+#profilepic {float:left;width:50%;background-color:;padding:15px;border-radius:5px;border:1px solid #ddd;direction:rtl}
+#profileinfo {float:right;width:40%;direction:rtl}
+
 .vouchermodal .modal-dialog{width:1200px}
 #newvoucher .modal-body{width:;background-color:;overflow:auto;}
 #newvoucher #toolbar {width:100%;float:right;background-color:#eee;padding:5px}

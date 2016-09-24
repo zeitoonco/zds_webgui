@@ -20,7 +20,7 @@
                 title: 'مدیریت کاربران',
                 sidebarMeta: {
                     icon: 'ion-person-stalker',
-                    order: 100,
+                    order: 2,
                 },
             });
     }

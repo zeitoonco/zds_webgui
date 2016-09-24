@@ -4,34 +4,33 @@
     <meta charset="UTF-8">
     <title>طبقه بندی حساب ها</title>
 </head>
-<body>
-<div class="row" ng-app='ZDSGUI.pages.accounting.category'>
-<div class="col-md-12" ng-controller="category">
-    <div id="account-table" ba-panel ba-panel-title="جدول طبقه حسابها" ba-panel-class="with-scroll tree-panel">
+<body ng-app='ZDSGUI.pages.accounting.dl'>
+<div class="col-md-12" ng-controller="dl">
+    <div id="account-table" ba-panel ba-panel-title="حساب های تفضیلی" ba-panel-class="with-scroll tree-panel">
         <div class="row">
             <div class="col-sm-6">
                 <div class="button-wrapper">
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
                             style="float: right;"
-                            ng-click="openmodal('app/pages/accounting/category/newmodal.html', 'md')"><i
+                            ng-click="openmodal('app/pages/accounting/dl/newmodal.html', 'md')"><i
                             class="ion-plus"></i>
-                        طبقه جدید
+                        حساب جدید
                     </button>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="button-wrapper" style="text-align: left;">
-                    <button type="button" ng-click="getcategory()" class="btn btn-default"><i
+                    <button type="button" ng-click="getdl()" class="btn btn-default"><i
                             class="ion-refresh"></i></button>
                 </div>
             </div>
-
             <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
                     <th class="table-id">#</th>
-                    <th>نوع</th>
+                    <th>کد تفضیلی</th>
                     <th>عنوان</th>
+                    <th>فعال</th>
                     <th>---</th>
                 </tr>
                 </thead>
@@ -39,11 +38,11 @@
                     <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
                     <td>{{ x[2] }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
+                    <td>{{ x[5] | persianboolean }}</td>
+                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/dl/editmodal.html', 'md',x[0],x[1],x[2],x[5])">ویرایش</button>
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>
-
             <div class="button-wrapper"></div>
 
         </div>

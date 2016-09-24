@@ -146,6 +146,11 @@ var aid;
     });
 
     account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.tableconfig = {
+            itemsPerPage: 2,
+            fillLastPage: true
+        }
+
 
         $scope.openmodal = function (page, size, id) {
             aid = id;

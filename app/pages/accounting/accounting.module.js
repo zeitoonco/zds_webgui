@@ -5,7 +5,7 @@
     'use strict';
     angular.module('ZDSGUI.pages.accounting', ['ZDSGUI.pages.accounting.accounts',
         'ZDSGUI.pages.accounting.fiscalyear','ZDSGUI.pages.accounting.category',
-        'ZDSGUI.pages.accounting.voucher'])
+        'ZDSGUI.pages.accounting.voucher','ZDSGUI.pages.accounting.dl'])
         .config(routeConfig);
 
 
@@ -20,7 +20,7 @@
                 title: 'حسابداری',
                 sidebarMeta: {
                     icon: 'ion-ios-bookmarks',
-                    order: 99
+                    order: 3
                 }
             });
     }

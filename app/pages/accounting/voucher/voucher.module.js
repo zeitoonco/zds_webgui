@@ -12,7 +12,7 @@
 
         //add empty object as row in items
         $scope.additem = function () {
-            $scope.items.push({accountid:'' ,dlid:'' ,debit:'' ,credit:'' ,trackingnumber:'' ,trackingdate:'2016-08-22' ,description:''});
+            $scope.items.push({accountid:'0' ,dlid:'0' ,debit:'0' ,credit:'0' ,trackingnumber:'0' ,trackingdate:'0000-00-00' ,description:'--'});
 
         }
 
@@ -58,8 +58,41 @@
 
             }
         }
-        $scope.test = function () {
-            alert($scope.selectedid);
+        $scope.enable = function () {
+
+
+
+        }
+        $scope.checkdl = function (d) {
+            console.log(d);
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['hasdl'],
+                    'where': [['accountid', '=', d]]
+
+                }
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        $scope.hasdl = data.data.result.rows;
+                        if ($scope.hasdl=='f'){
+                            return true;
+                        } else if ($scope.hasdl=='t') {
+                            return false;
+                        }
+                        console.log(JSON.stringify($scope.acid));
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
         }
         $scope.check = function (id) {
             alert(id);
@@ -76,7 +109,7 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'hasdl'],
+                    'columns': ['accountid', 'hasdl','title2'],
                     'where': [['type', '=', '3']]
 
                 }
@@ -113,10 +146,35 @@
 
 
     voucher.controller('editvoucher',function ($scope,zdsSocket,toastr) {
-        $scope.types = [
-            { label: "ترازنامه ای" , value: 1 },
-            { label: "سود و زیانی", value: 2 }
-        ];
+        $scope.get = function (id) {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {'table': 'voucher', 'where': [['id', '=', id]]}
+            };
+            if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        $scope.myData = data.data.result.rows;
+                        $scope.accountid = $scope.myData[1];
+                        $scope.referencenumber = $scope.myData[2];
+                        $scope.accountid = $scope.myData[1];
+                        $scope.accountid = $scope.myData[1];
+                        $scope.accountid = $scope.myData[1];
+                        toastr.success('اطلاعات با موفقیت دریافت شد!');
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
+
+
+
 
         $scope.modifycategory = function () {
             var msg = {
@@ -139,6 +197,9 @@
 
             }
         }
+
+
+
     });
 
 

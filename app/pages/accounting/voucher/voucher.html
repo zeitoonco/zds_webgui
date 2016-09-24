@@ -24,6 +24,7 @@
                             class="ion-refresh"></i></button>
                 </div>
             </div>
+
             <table id="data" class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
@@ -51,7 +52,7 @@
                     <td></td>
                     <td>{{ x[8] }}</td>
                     <td>{{ x[10] }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
+                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/voucher/editmodal.html', 'lg',x[0])">ویرایش</button>
                         <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>
