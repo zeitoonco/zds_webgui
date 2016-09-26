@@ -2,24 +2,8 @@
     <div class="col-md-6" ng-controller="accounttree">
         <div id="account-tree" ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="control-side text-center">
-                        <div>
-                            <button class="btn btn-primary" ng-click="addNewNode()">Add</button>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" ng-click="collapse()">Collapse All</button>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" ng-click="expand()">Expand All</button>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" ng-click="refresh()">Refresh</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-sm-8">
-                    <div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree"
+                    <div js-tree="basicConfig" ng-model="actree" tree="basicTree"
                          tree-events="ready:readyCB"></div>
                 </div>
             </div>
@@ -70,7 +54,7 @@
                         <td>{{ x[6]  | persianboolean}}</td>
                         <td>
                             <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                    ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0])">
+                                    ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0],x[1],x[2],x[7],x[8])">
                                 ویرایش
                             </button>
                             <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف

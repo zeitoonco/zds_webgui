@@ -79,12 +79,10 @@ var aid;
 
         $scope.refreshmodal = function () {
             if ($scope.type.value==3 || $scope.type.value==2){
-                //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
             } else {
-                //alert("معین");
                 $scope.i1 = 'ترازنامه ای';
                 $scope.i2 = 'سود و زیانی';
                 $scope.i3 = 'انتظامی';
@@ -142,7 +140,7 @@ var aid;
 
             }
         }
-        $scope.getinfo();
+        //$scope.getinfo();
     });
 
     account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
@@ -152,8 +150,22 @@ var aid;
         }
 
 
-        $scope.openmodal = function (page, size, id) {
+        $scope.openmodal = function (page, size, id,t,title,c,pid) {
             aid = id;
+            switch (t){
+                case '1':
+                    $scope.type = 'گروه';
+                    break;
+                case '2':
+                    $scope.type = 'کل';
+                    break;
+                case '3':
+                    $scope.type = 'معین';
+                    break;
+            }
+            $scope.title = title;
+            $scope.code = parseInt(c);
+            $scope.pid = parseInt(pid);
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -165,7 +177,6 @@ var aid;
                     }
                 }
             });
-            //$modalInstance.$scope.username = 'ali';
 
         }
         $scope.getaccounts = function () {
@@ -174,7 +185,7 @@ var aid;
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive'],
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive','code','parentid'],
                     'where': [['del', '=', '0']]
 
                 }
@@ -228,7 +239,214 @@ var aid;
     });
 
     account.controller('accounttree', function ($scope,zdsSocket, toastr) {
+        $scope.ignoreChanges = false;
+        var newId = 0;
+        $scope.ignoreChanges = false;
+        $scope.newNode = {};
+        $scope.basicConfig = {
+            core: {
+                multiple: false,
+                check_callback: true,
+                worker: true
+            },
+            'types': {
+                'folder': {
+                    'icon': 'ion-ios-folder'
+                },
+                'default': {
+                    'icon': 'ion-document-text'
+                }
+            },
+            'plugins': ['types'],
+            'version': 1
+        };
 
+        $scope.refresh = function () {
+            $scope.ignoreChanges = true;
+            newId = 0;
+            $scope.treeData = getDefaultData();
+            $scope.basicConfig.version++;
+        };
+
+        $scope.expand = function () {
+            $scope.ignoreChanges = true;
+            $scope.treeData.forEach(function (n) {
+                n.state.opened = true;
+            });
+            $scope.basicConfig.version++;
+        };
+        $scope.actree = getDefaultData();
+        function getDefaultData() {
+            return [
+                {
+                    "id": "n1",
+                    "parent": "#",
+                    "type": "folder",
+                    "text": "Node 1",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n2",
+                    "parent": "#",
+                    "type": "folder",
+                    "text": "Node 2",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n3",
+                    "parent": "#",
+                    "type": "folder",
+                    "text": "Node 3",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n5",
+                    "parent": "n1",
+                    "text": "Node 1.1",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n6",
+                    "parent": "n1",
+                    "text": "Node 1.2",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n7",
+                    "parent": "n1",
+                    "text": "Node 1.3",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n8",
+                    "parent": "n1",
+                    "text": "Node 1.4",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n9",
+                    "parent": "n2",
+                    "text": "Node 2.1",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n10",
+                    "parent": "n2",
+                    "text": "Node 2.2 (Custom icon)",
+                    "icon": "ion-help-buoy",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n12",
+                    "parent": "n3",
+                    "text": "Node 3.1",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n13",
+                    "parent": "n3",
+                    "type": "folder",
+                    "text": "Node 3.2",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n14",
+                    "parent": "n13",
+                    "text": "Node 3.2.1",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n15",
+                    "parent": "n13",
+                    "text": "Node 3.2.2",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n16",
+                    "parent": "n3",
+                    "text": "Node 3.3",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n17",
+                    "parent": "n3",
+                    "text": "Node 3.4",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n18",
+                    "parent": "n3",
+                    "text": "Node 3.5",
+                    "state": {
+                        "opened": true
+                    }
+                },
+                {
+                    "id": "n19",
+                    "parent": "n3",
+                    "text": "Node 3.6",
+                    "state": {
+                        "opened": true
+                    }
+                }
+            ]
+        }
+        $scope.getaccounts = function () {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['accountid', 'parentid', 'title2'],
+                    'where': [['del', '=', '0']]
+
+                }
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        $scope.myData = data.data.result.rows;
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+
+        }
+        $scope.getaccounts();
     });
 
     /** @ngInject */

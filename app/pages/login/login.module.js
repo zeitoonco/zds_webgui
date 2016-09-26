@@ -1,4 +1,4 @@
-var uid,myname,myun;
+var uid,myname,myun,mypic;
 (function () {
     'use strict';
 
@@ -25,6 +25,7 @@ var uid,myname,myun;
                         myun = data.data.userInfo['username'];
                         //mypwd = data.data.userInfo['password'];
                         $rootScope.$logedin = true;
+                        $scope.mypic();
                         $location.path("/dashboard");
 
                     } else {
@@ -39,6 +40,31 @@ var uid,myname,myun;
             }
             console.log("Hello! " + $scope.username)
 
+        }
+        $scope.mypic = function () {
+            var msg = {
+                type: "call",
+                node: "userman.getUserAvatar",
+                data: {userID: uid}
+            };
+            if (zdsSocket.status() == 1) {
+                console.log(JSON.stringify(msg));
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('اطلاعات با موفقیت اعمال شد');
+
+                        mypic = data.data.image;
+                        mypic = mypic.replace(/\\/g, "");
+                        mypic = "data:image/png;base64," + mypic;
+                        document.getElementById('mypic').setAttribute('src', mypic);
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
         }
     });
 

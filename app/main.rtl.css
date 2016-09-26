@@ -1076,6 +1076,13 @@ h1, h2, h3, h4, h5, h6 {
 #profilepic {float:left;width:50%;background-color:;padding:15px;border-radius:5px;border:1px solid #ddd;direction:rtl}
 #profileinfo {float:right;width:40%;direction:rtl}
 
+#editaccount .form-group {margin-bottom:10px;width:100%;float:right;padding:5px;border:1px solid #ccc;border-radius:5px;}
+#editaccount #isactive {float:right;margin-right:5px;margin-left:5px;}
+#editaccount form{float:right;direction:rtl;width:100%;padding:5px;border:1px solid #ccc;border-radius:5px;margin-bottom:5px;}
+#editaccount form label{margin-left:5px;margin-right:5px;padding:5px;font-size:16px;}
+#editaccount #extrainfo {padding:5px;width:100%;border:1px solid #ccc;overflow:auto;margin-top:5px;border-radius:5px;padding:10px}
+#editaccount #extrainfo label,input {float:right;margin-left:5px;margin-right:5px;padding:3px;font-size:16px}
+
 .vouchermodal .modal-dialog{width:1200px}
 #newvoucher .modal-body{width:;background-color:;overflow:auto;}
 #newvoucher #toolbar {width:100%;float:right;background-color:#eee;padding:5px}

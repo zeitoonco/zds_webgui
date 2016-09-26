@@ -31,10 +31,11 @@
                     if (data["success"] == true) {
                         toastr.success('اطلاعات با موفقیت اعمال شد');
 
-                        var mypic = data.data.image;
+                        mypic = data.data.image;
                         mypic = mypic.replace(/\\/g, "");
                         mypic = "data:image/png;base64," + mypic;
                         document.getElementById('mypic').setAttribute('src', mypic);
+                        document.getElementById('ppic').setAttribute('src', mypic);
                     } else {
                         toastr.error('!', 'خطا!');
 
