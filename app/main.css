@@ -4376,8 +4376,7 @@ a {
 }
 
 .table-id {
-    text-align: left !important;
-    width: 40px;
+    text-align: center !important;
 }
 
 .table-arr {
