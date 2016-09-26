@@ -264,7 +264,7 @@ var aid;
         $scope.refresh = function () {
             $scope.ignoreChanges = true;
             newId = 0;
-            $scope.treeData = getDefaultData();
+            $scope.treeData = $scope.actree;
             $scope.basicConfig.version++;
         };
 
@@ -275,7 +275,12 @@ var aid;
             });
             $scope.basicConfig.version++;
         };
-        $scope.actree = getDefaultData();
+        $scope.readyCB = function() {
+            $timeout(function() {
+                $scope.ignoreChanges = false;
+            });
+        };
+
         function getDefaultData() {
             return [
                 {
@@ -436,6 +441,7 @@ var aid;
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
+                        $scope.treemaker($scope.myData);
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -445,6 +451,22 @@ var aid;
 
             }
 
+        }
+        $scope.treemaker = function (data) {
+            var tree = [];
+            for (var i = 0 ; i < data.length; i++){
+                var id = data[i][0];
+                var parent = data[i][1];
+                if (parent == null) {
+                    parent = "#";
+                }
+                var text = data[i][2];
+                tree.push({'id':id,'parent':parent,'text':text,'state':{'opened':true}});
+
+            }
+            console.log(JSON.stringify(tree));
+            $scope.actree = tree;
+            $scope.refresh();
         }
         $scope.getaccounts();
     });

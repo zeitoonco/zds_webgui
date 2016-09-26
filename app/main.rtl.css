@@ -1035,8 +1035,9 @@
     }
 }
 
+
 table {
-    direction: rtl;
+    direction:rtl;
 }
 
 table thead th, tbody {
@@ -1072,128 +1073,25 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
     direction: rtl;
 }
+.modal-body {margin-bottom:20px}
 
-.modal-body {
-    margin-bottom: 20px
-}
+#profilepic {float:left;width:50%;background-color:;padding:15px;border-radius:5px;border:1px solid #ddd;direction:rtl}
+#profileinfo {float:right;width:40%;direction:rtl}
 
-#profilepic {
-    float: left;
-    width: 50%;
-    background-color:;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    direction: rtl
-}
+#accountmodal .form-group {margin-bottom:10px;width:100%;float:right;padding:5px;border:1px solid #ccc;border-radius:5px;}
+#accountmodal #isactive {float:right;margin-right:5px;margin-left:5px;}
+#accountmodal form{float:right;direction:rtl;width:100%;padding:5px;border:1px solid #ccc;border-radius:5px;margin-bottom:5px;}
+#accountmodal form label{margin-left:5px;margin-right:5px;padding:5px;font-size:16px;}
+#accountmodal #extrainfo {padding:5px;width:100%;border:1px solid #ccc;overflow:auto;margin-top:5px;border-radius:5px;padding:10px}
+#accountmodal #extrainfo label,input {float:right;margin-left:5px;margin-right:5px;padding:3px;font-size:16px}
 
-#profileinfo {
-    float: right;
-    width: 40%;
-    direction: rtl
-}
-
-#editaccount .form-group {
-    margin-bottom: 10px;
-    width: 100%;
-    float: right;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#editaccount #isactive {
-    float: right;
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-#editaccount form {
-    float: right;
-    direction: rtl;
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-#editaccount form label {
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 5px;
-    font-size: 16px;
-}
-
-#editaccount #extrainfo {
-    padding: 5px;
-    width: 100%;
-    border: 1px solid #ccc;
-    overflow: auto;
-    margin-top: 5px;
-    border-radius: 5px;
-    padding: 10px
-}
-
-#editaccount #extrainfo label, input {
-    float: right;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 3px;
-    font-size: 16px
-}
-
-@media (min-width: 992px) {
-    .vouchermodal .modal-dialog {
-        width: 900px
-    }
-}
-
-#newvoucher .modal-body {
-    width:;
-    background-color:;
-    overflow: auto;
-}
-
-#newvoucher #toolbar {
-    width: 100%;
-    float: right;
-    background-color: #eee;
-    padding: 5px
-}
-
-/*#newvoucher .form-group {*/
-    /*background-color:;*/
-    /*width: 45%;*/
-    /*float: right;*/
-    /*padding: 10px;*/
-    /*border-radius: 5px;*/
-    /*border: 1px solid #ccc;*/
-    /*margin-left: 5px*/
-/*}*/
-
-/*#newvoucher .form-group input, #newvoucher .form-group label {*/
-    /*float: right;*/
-/*}*/
-
-/*#newvoucher .form-group label {*/
-    /*padding: 10px;*/
-/*}*/
-
-/*#newvoucher .form-group input {*/
-    /*width: 40%;*/
-/*}*/
-
-#newvoucher #info {
-    width: 50%;
-    float: left;
-    background-color: #eee;
-    padding: 10px;
-    font-size: 18px
-}
-
-#newvoucher #info span {
-    float: left;
-    min-width: 150px;
-    margin-left: 5px
-}
+.vouchermodal .modal-dialog{width:1200px}
+#newvoucher .modal-body{width:;background-color:;overflow:auto;}
+#newvoucher #toolbar {width:100%;float:right;background-color:#eee;padding:5px}
+#newvoucher .form-group{background-color:;width:45%;float:right;
+    padding:10px;border-radius:5px;border:1px solid #ccc;margin-left:5px}
+#newvoucher .form-group input,#newvoucher .form-group label{float:right;}
+#newvoucher .form-group label {padding:10px;}
+#newvoucher .form-group input{width:40%;}
+#newvoucher #info {width:50%;float:left;background-color:#eee;padding:10px;font-size:18px}
+#newvoucher #info span {float:left;min-width:150px;margin-left:5px}
