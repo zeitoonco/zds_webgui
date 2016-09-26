@@ -24,41 +24,51 @@
                             class="ion-refresh"></i></button>
                 </div>
             </div>
-
-            <table id="data" class="table table-bordered table-hover table-condensed">
-                <thead>
-                <tr>
-                    <th class="table-id">شماره سند</th>
-                    <th>شماره عطف</th>
-                    <th>شماره فرعی</th>
-                    <th>تاریخ</th>
-                    <th>شماره روزانه</th>
-                    <th>نوع سند</th>
-                    <th>وضعیت سند</th>
-                    <th>جمع کل</th>
-                    <th>توضیحات</th>
-                    <th>سیستم صادر کننده</th>
-                    <th>---</th>
-                </tr>
-                </thead>
-                <tr ng-repeat="x in myData">
-                    <td>{{ x[1] }}</td>
-                    <td>{{ x[4] }}</td>
-                    <td>{{ x[3] }}</td>
-                    <td>{{ x[2] }}</td>
-                    <td>{{ x[9] }}</td>
-                    <td>{{ x[6] }}</td>
-                    <td>{{ x[5] }}</td>
-                    <td></td>
-                    <td>{{ x[8] }}</td>
-                    <td>{{ x[10] }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/voucher/editmodal.html', 'lg',x[0])">ویرایش</button>
-                        <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف</button></td>
-                </tr>
-            </table>
-            <div class="button-wrapper"></div>
-
         </div>
+        <div class="row">
+            <div class="table-responsive">
+
+                <table id="data" class="table table-bordered table-hover table-condensed">
+                    <thead>
+                    <tr>
+                        <th class="table-id">شماره سند</th>
+                        <th>شماره عطف</th>
+                        <th>شماره فرعی</th>
+                        <th>تاریخ</th>
+                        <th>شماره روزانه</th>
+                        <th>نوع سند</th>
+                        <th>وضعیت سند</th>
+                        <th>جمع کل</th>
+                        <th>توضیحات</th>
+                        <th>سیستم صادر کننده</th>
+                        <th>عملیات</th>
+                    </tr>
+                    </thead>
+                    <tr ng-repeat="x in myData">
+                        <td>{{ x[1] }}</td>
+                        <td>{{ x[4] }}</td>
+                        <td>{{ x[3] }}</td>
+                        <td>{{ x[2] | jalaliDate:'jYYYY/jMM/jDD'  }}</td>
+                        <td>{{ x[9] }}</td>
+                        <td>{{ x[6] }}</td>
+                        <td>{{ x[5] }}</td>
+                        <td></td>
+                        <td>{{ x[8] }}</td>
+                        <td>{{ x[10] }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                    ng-click="openmodal('app/pages/accounting/voucher/editmodal.html', 'lg',x[0])">
+                                ویرایش
+                            </button>
+                            <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="button-wrapper"></div>
+
     </div>
 </div>
 
