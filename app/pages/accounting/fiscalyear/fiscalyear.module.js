@@ -50,7 +50,7 @@
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id = 0) {
+        $scope.openmodal = function (page, size, id=0) {
             if (id == 0)
                 $scope.row = [];
             else
