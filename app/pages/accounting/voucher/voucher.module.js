@@ -211,7 +211,7 @@
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
-                windowClass: 'vouchermodal',
+                windowClass: 'bigmodal',
                 scope: $scope,
                 resolve: {
                     items: function () {

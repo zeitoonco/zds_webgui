@@ -31,8 +31,6 @@
             <label for="dec">توضیحات:</label>
             <input type="text" class="form-control" id="dec" ng-model="dec">
         </div>
-        <div class="form-group col-xs-6 col-md-6">
-        </div>
         <div id="toolbar">
             <button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
             <button type="button" class="btn btn-primary" ng-click="itemlog()">تست</button>
@@ -109,14 +107,14 @@
 
 
         </table>
+        <div id="extrainfo" class="form-group">
+            <span>اختلاف : {{d}}</span>
+
+        </div>
 
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="addvoucher()">تایید</button>
-        <div id="info">
-            <span>اختلاف : {{d}}</span>
-
-        </div>
     </div>
 </div>
