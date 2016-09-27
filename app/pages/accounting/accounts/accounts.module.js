@@ -12,20 +12,20 @@
     var aid;
     var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
         .config(routeConfig);
-    account.controller('newaccount', function ($scope, zdsSocket, toastr) {
+    account.controller('newaccount',function ($scope,zdsSocket,toastr){
         $scope.hbtc = 0;
         $scope.hsdl = 0;
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
         $scope.accounttypes = [
-            {label: "کل", value: 1},
-            {label: "گروه", value: 2},
-            {label: "معین", value: 3}
+            { label: "کل" , value: 1 },
+            { label: "گروه", value: 2 },
+            { label: "معین", value: 3 }
         ];
 
         $scope.refreshmodal = function () {
-            if ($scope.type.value == 3 || $scope.type.value == 2) {
+            if ($scope.type.value==3 || $scope.type.value==2){
                 //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
@@ -42,24 +42,9 @@
             var msg = {
                 type: "call",
                 node: "AccountingRelay.newAccount",
-                data: {
-                    userid: uid,
-                    parent: $scope.pid,
-                    type: $scope.type.value,
-                    code: $scope.code,
-                    title: $scope.title,
-                    title2: $scope.title,
-                    isactive: $scope.en,
-                    cashflowcategory: '0',
-                    openingbalance: '0',
-                    balancetype: $scope.btype,
-                    hasbalancetypecheck: $scope.hbtc,
-                    hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,
-                    hascurrencyconversion: $scope.hcc,
-                    hastracking: $scope.ht,
-                    hastrackingcheck: '0'
-                }
+                data:{userid: uid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
+                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -78,20 +63,22 @@
         }
     });
 
-    account.controller('editaccount', function ($scope, zdsSocket, toastr) {
+
+
+    account.controller('editaccount',function ($scope,zdsSocket,toastr) {
         $scope.hbtc = 0;
         $scope.hsdl = 0;
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
         $scope.accounttypes = [
-            {label: "کل", value: 1},
-            {label: "گروه", value: 2},
-            {label: "معین", value: 3}
+            { label: "کل" , value: 1 },
+            { label: "گروه", value: 2 },
+            { label: "معین", value: 3 }
         ];
 
         $scope.refreshmodal = function () {
-            if ($scope.type.value == 3 || $scope.type.value == 2) {
+            if ($scope.type.value==3 || $scope.type.value==2){
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
@@ -169,7 +156,6 @@
 
             }
         }
-        //$scope.getinfo();
     });
 
     account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
@@ -179,9 +165,9 @@
         }
 
 
-        $scope.openmodal = function (page, size, id, t, title, c, pid) {
-            aid = id;
-            switch (t) {
+        $scope.openmodal = function (page, size, id,t,title,c,pid) {
+            $scope.id = id;
+            switch (t){
                 case '1':
                     $scope.type = 'گروه';
                     break;
@@ -214,7 +200,7 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive', 'code', 'parentid'],
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive','code','parentid'],
                     'where': [['del', '=', '0']]
 
                 }
@@ -233,19 +219,27 @@
             }
 
         }
-        $scope.doremove = function (id) {
-            var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
-            if (alert == true) {
+
+
+        $scope.getaccounts();
+    });
+
+    account.controller('removeaccount', function ($scope,zdsSocket,toastr,$uibModal) {
+
+        $scope.doremove = function () {
+            //var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
+
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeAccount",
-                    data: {userid: uid, id: id}
+                    data: {userid: uid,id: $scope.id}
 
                 };
                 if (zdsSocket.status() == 1) {
                     zdsSocket.send(msg, function (data) {
                         if (data["success"] == true) {
-                            toastr.success('حساب حذف گردید!')
+                            toastr.success('حساب حذف گردید!');
+                            $uibModal.close();
                         } else {
                             toastr.error('!', 'خطا!');
                         }
@@ -258,6 +252,8 @@
 
             }
         }
+
+
 
 
         $scope.getaccounts();

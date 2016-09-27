@@ -7,33 +7,30 @@
     </div>
     <div class="modal-body">
 
-        <form>
-            <div class="form-group col-xs-6 col-md-6">
-                <label for="vid">شماره سند:</label>
-                <input type="number" class=" form-control" id="vid" ng-model="vid">
-            </div>
-            <div class="form-group col-xs-6 col-md-6">
-                <label id="type">نوع سند: عمومی<br>
-                    وضعیت: موقت<br>
-                    سیستم صادرکننده: حسابداری</label>
-            </div>
-            <div class="form-group col-xs-6 col-md-6">
-                <label for="vdate">تاریخ:</label>
-                <input type="text" class="form-control" id="vdate" ng-model="vdate"
-                       ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
-                       gregorian-formatted-picked-date="fvdate" gregorian-picked-date="vdate">
-            </div>
-            <div class="form-group col-xs-6 col-md-6">
-                <label for="refnumber">شماره فرعی:</label>
-                <input type="number" class="form-control" id="refnumber" ng-model="refnumber">
-            </div>
-            <div class="form-group col-xs-6 col-md-6">
-                <label for="dec">توضیحات:</label>
-                <input type="text" class="form-control" id="dec" ng-model="dec">
-            </div>
-            <div class="form-group col-xs-6 col-md-6">
-            </div>
-        </form>
+
+        <div class="form-group col-xs-6 col-md-6">
+            <label for="vid">شماره سند:</label>
+            <input type="number" class=" form-control" id="vid" ng-model="vid">
+        </div>
+        <div class="form-group col-xs-6 col-md-6">
+            <label id="type">نوع سند: عمومی<br>
+                وضعیت: موقت<br>
+                سیستم صادرکننده: حسابداری</label>
+        </div>
+        <div class="form-group col-xs-6 col-md-6">
+            <label for="vdate">تاریخ:</label>
+            <input type="text" class="form-control" id="vdate" ng-model="vdate"
+                   ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
+                   gregorian-formatted-picked-date="fvdate" gregorian-picked-date="vdate">
+        </div>
+        <div class="form-group col-xs-6 col-md-6">
+            <label for="refnumber">شماره فرعی:</label>
+            <input type="number" class="form-control" id="refnumber" ng-model="refnumber">
+        </div>
+        <div class="form-group col-xs-6 col-md-6">
+            <label for="dec">توضیحات:</label>
+            <input type="text" class="form-control" id="dec" ng-model="dec">
+        </div>
         <div id="toolbar">
             <button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
             <button type="button" class="btn btn-primary" ng-click="itemlog()">تست</button>
@@ -83,33 +80,41 @@
                 <td><a editable-text="x.credit" e-name="بستانکار" buttons="no">
                     {{ x.credit }}
                 </a></td>
-                <td><span>
-            ---
+                <td><span editable-text="x.trackingnumber" e-name="شماره پیگیری" buttons="no">
+            {{ x.trackingnumber }}
           </span></td>
-                <td>
-                    <span>
-                                   ---
-                  </span>
-                </td>
-                <
-                <td>
-                    <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeitem($index)">حذف
-                        </button>
-                    </div>
-                </td>
+                <!--<td>
+                    <span  editable-text="x.trackingdate" e-name="تاریخ پیگیری" e-form="rowform" e-required
+                >
+                    {{ x.trackingdate }}
+                  </span></td>-->
+                <!-- <td>
+                   <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
+                         shown="inserted == user">
+                     <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+                       ذخیره
+                     </button>
+                     <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
+                       لغو
+                     </button>
+                   </form>
+                   <div class="buttons" ng-show="!rowform.$visible">
+                     <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">ویرایش</button>
+                     <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeitem($index)">حذف</button>
+                   </div>
+                 </td>-->
             </tr>
 
 
         </table>
+        <div id="extrainfo" class="form-group">
+            <span>اختلاف : {{d}}</span>
+
+        </div>
 
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="addvoucher()">تایید</button>
-        <div id="info">
-            <span>اختلاف : {{d}}</span>
-
-        </div>
     </div>
 </div>
