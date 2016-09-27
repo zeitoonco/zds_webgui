@@ -33,7 +33,7 @@
         </div>
         <div id="toolbar">
             <button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
-            <button type="button" class="btn btn-primary" ng-click="itemlog()">تست</button>
+            <button type="button" class="btn btn-auth" ng-click="itemlog()">تست</button>
         </div>
 
         <table id="data" class="table table-hover" st-table="myData">
@@ -55,19 +55,17 @@
                     {{$index + 1}}
                 </td>
                 <td>
-          <span editable-select="x.accountid" buttons="no" e-ng-options="i[0] as i[0] + '-' + i[2] for i in acid"
-                onbeforesave="checkdl($data,$index)">
-            {{ x.accountid }}
-          </span>
-                    <!--<span editable-select="" e-name="کد معین" e-form="rowform"
-                          e-ng-options="i[0] as i[0] for i in acid" data-e-ng-model="selectedid" e-ng-change="test(selectedid)" ng-click="">
-                      {{x.accountid}}
-                  </span>-->
+                  <span editable-select="x.accountid" buttons="no"
+                        e-ng-options="i[0] as i[0] + '-' + i[2] for i in acid"
+                        onbeforesave="checkdl($data,$index)">
+                    {{ x.accountid }}
+                  </span>
                 </td>
                 <td>
-          <span editable-text="x.dlid" e-name="کد تفضیلی" edit-disabled="enable()" buttons="no">
-            {{ x.dlid }}
-          </span>
+                  <span editable-text="x.dlid" e-name="کد تفضیلی"
+                        edit-disabled="dlEnabledFunction($index)" buttons="no">
+                    {{ x.dlid }}
+                  </span>
                 </td>
                 <td><span editable-text="x.description" e-name="شرح" buttons="no">
             {{ x.description }}
