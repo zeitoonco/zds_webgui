@@ -332,7 +332,7 @@ var aid;
                 templateUrl: 'app/pages/accounting/accounts/accounts.html',
                 title: 'حساب ها',
                 sidebarMeta: {
-                    order: 800
+                    order: 101
                 }
             });
     }

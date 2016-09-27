@@ -292,7 +292,7 @@
                 templateUrl: 'app/pages/accounting/voucher/voucher.html',
                 title: 'سند مالی',
                 sidebarMeta: {
-                    order: 900
+                    order: 100
                 }
             });
     }
