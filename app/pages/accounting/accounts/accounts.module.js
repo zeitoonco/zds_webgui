@@ -227,8 +227,6 @@
     account.controller('removeaccount', function ($scope,zdsSocket,toastr,$uibModal) {
 
         $scope.doremove = function () {
-            //var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
-
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeAccount",
@@ -239,7 +237,6 @@
                     zdsSocket.send(msg, function (data) {
                         if (data["success"] == true) {
                             toastr.success('حساب حذف گردید!');
-                            $uibModal.close();
                         } else {
                             toastr.error('!', 'خطا!');
                         }
@@ -248,9 +245,7 @@
                     toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
                 }
-            } else {
 
-            }
         }
 
 
