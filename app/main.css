@@ -4184,6 +4184,7 @@ a {
 }
 
 #preloader {
+    direction: ltr;
     position: fixed;
     top: 0;
     left: 0;

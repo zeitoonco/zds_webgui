@@ -2,8 +2,52 @@
     <div class="col-md-6" ng-controller="accounttree">
         <div id="account-tree" ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
             <div class="row">
-                <div class="col-sm-8">
-                    <div js-tree="basicConfig" tree-events="activate_node:clicknode" ng-model="actree"></div>
+                <div class="col-sm-6">
+                    <div style="direction: rtl;" js-tree="basicConfig" tree-events="activate_node:clicknode"
+                         ng-model="actree"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="container-fluid">
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        کد حساب:
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{myData[activeId][0]}}
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        نام حساب:
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{myData[activeId][2]}}
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        نوع:
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{myData[activeId][3]}}
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary">
+                                            ویرایش
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,10 +91,10 @@
                         <td>{{ x[0] }}</td>
                         <td>{{ x[1] }}</td>
                         <td>{{ x[2] }}</td>
-                        <td>{{ x[3]  | persianboolean}}</td>
-                        <td>{{ x[4]  | persianboolean}}</td>
-                        <td>{{ x[5]  | persianboolean}}</td>
-                        <td>{{ x[6]  | persianboolean}}</td>
+                        <td>{{ x[3] | persianboolean}}</td>
+                        <td>{{ x[4] | persianboolean}}</td>
+                        <td>{{ x[5] | persianboolean}}</td>
+                        <td>{{ x[6] | persianboolean}}</td>
                         <td>
                             <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                     ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x[0],x[1],x[2],x[7],x[8])">
@@ -61,7 +105,6 @@
                         </td>
                     </tr>
                 </table>
-
 
 
             </div>

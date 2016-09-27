@@ -127,9 +127,9 @@
             .state('accounting.dl', {
                 url: '/dl',
                 templateUrl: 'app/pages/accounting/dl/dl.html',
-                title: 'تفضیلی سایر',
+                title: 'حساب های تفضیلی',
                 sidebarMeta: {
-                    order: 900
+                    order: 102
                 }
             });
     }

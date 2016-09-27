@@ -9,23 +9,23 @@
 
 (function () {
     'use strict';
-var aid;
+    var aid;
     var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
         .config(routeConfig);
-    account.controller('newaccount',function ($scope,zdsSocket,toastr){
+    account.controller('newaccount', function ($scope, zdsSocket, toastr) {
         $scope.hbtc = 0;
         $scope.hsdl = 0;
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
         $scope.accounttypes = [
-            { label: "کل" , value: 1 },
-            { label: "گروه", value: 2 },
-            { label: "معین", value: 3 }
+            {label: "کل", value: 1},
+            {label: "گروه", value: 2},
+            {label: "معین", value: 3}
         ];
 
         $scope.refreshmodal = function () {
-            if ($scope.type.value==3 || $scope.type.value==2){
+            if ($scope.type.value == 3 || $scope.type.value == 2) {
                 //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
@@ -42,9 +42,24 @@ var aid;
             var msg = {
                 type: "call",
                 node: "AccountingRelay.newAccount",
-                data:{userid: uid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
-                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
+                data: {
+                    userid: uid,
+                    parent: $scope.pid,
+                    type: $scope.type.value,
+                    code: $scope.code,
+                    title: $scope.title,
+                    title2: $scope.title,
+                    isactive: $scope.en,
+                    cashflowcategory: '0',
+                    openingbalance: '0',
+                    balancetype: $scope.btype,
+                    hasbalancetypecheck: $scope.hbtc,
+                    hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,
+                    hascurrencyconversion: $scope.hcc,
+                    hastracking: $scope.ht,
+                    hastrackingcheck: '0'
+                }
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -63,22 +78,20 @@ var aid;
         }
     });
 
-
-
-    account.controller('editaccount',function ($scope,zdsSocket,toastr) {
+    account.controller('editaccount', function ($scope, zdsSocket, toastr) {
         $scope.hbtc = 0;
         $scope.hsdl = 0;
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
         $scope.accounttypes = [
-            { label: "کل" , value: 1 },
-            { label: "گروه", value: 2 },
-            { label: "معین", value: 3 }
+            {label: "کل", value: 1},
+            {label: "گروه", value: 2},
+            {label: "معین", value: 3}
         ];
 
         $scope.refreshmodal = function () {
-            if ($scope.type.value==3 || $scope.type.value==2){
+            if ($scope.type.value == 3 || $scope.type.value == 2) {
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
@@ -121,9 +134,25 @@ var aid;
             var msg = {
                 type: "call",
                 node: "AccountingRelay.modifyAccount",
-                data:{userid: uid,id: aid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
-                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
+                data: {
+                    userid: uid,
+                    id: aid,
+                    parent: $scope.pid,
+                    type: $scope.type.value,
+                    code: $scope.code,
+                    title: $scope.title,
+                    title2: $scope.title,
+                    isactive: $scope.en,
+                    cashflowcategory: '0',
+                    openingbalance: '0',
+                    balancetype: $scope.btype,
+                    hasbalancetypecheck: $scope.hbtc,
+                    hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,
+                    hascurrencyconversion: $scope.hcc,
+                    hastracking: $scope.ht,
+                    hastrackingcheck: '0'
+                }
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -150,9 +179,9 @@ var aid;
         }
 
 
-        $scope.openmodal = function (page, size, id,t,title,c,pid) {
+        $scope.openmodal = function (page, size, id, t, title, c, pid) {
             aid = id;
-            switch (t){
+            switch (t) {
                 case '1':
                     $scope.type = 'گروه';
                     break;
@@ -185,7 +214,7 @@ var aid;
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive','code','parentid'],
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive', 'code', 'parentid'],
                     'where': [['del', '=', '0']]
 
                 }
@@ -206,11 +235,11 @@ var aid;
         }
         $scope.doremove = function (id) {
             var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
-            if (alert == true){
+            if (alert == true) {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeAccount",
-                    data: {userid: uid,id: id}
+                    data: {userid: uid, id: id}
 
                 };
                 if (zdsSocket.status() == 1) {
@@ -231,23 +260,23 @@ var aid;
         }
 
 
-
-
         $scope.getaccounts();
 
 
     });
 
-    account.controller('accounttree', function ($scope,zdsSocket, toastr) {
+    account.controller('accounttree', function ($scope, zdsSocket, toastr) {
         $scope.ignoreChanges = false;
         var newId = 0;
         $scope.ignoreChanges = false;
         $scope.newNode = {};
+        $scope.activeId = 0;
         $scope.basicConfig = {
             core: {
                 multiple: false,
                 check_callback: true,
-                worker: true
+                worker: true,
+                "rtl": true
             },
             'types': {
                 'folder': {
@@ -275,8 +304,14 @@ var aid;
             });
             $scope.basicConfig.version++;
         };
-        $scope.clicknode = function() {
-            alert('ssss');
+        $scope.clicknode = function (node, event) {
+            for (var i = 0; i < $scope.myData.length; i++) {
+                if ($scope.myData[i][0] === event.node.id) {
+                    $scope.activeId = i;
+                    $scope.$apply();
+                    return
+                }
+            }
         };
 
         $scope.getaccounts = function () {
@@ -285,7 +320,7 @@ var aid;
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'parentid', 'title2'],
+                    'columns': ['accountid', 'parentid', 'title2','Type'],
                     'where': [['del', '=', '0']]
 
                 }
@@ -307,14 +342,14 @@ var aid;
         }
         $scope.treemaker = function (data) {
             var tree = [];
-            for (var i = 0 ; i < data.length; i++){
+            for (var i = 0; i < data.length; i++) {
                 var id = data[i][0];
                 var parent = data[i][1];
                 if (parent == null) {
                     parent = "#";
                 }
                 var text = data[i][2];
-                tree.push({'id':id,'parent':parent,'text':text,'state':{'opened':true}});
+                tree.push({'id': id, 'parent': parent, 'text': text, 'state': {'opened': true}});
 
             }
             console.log(JSON.stringify(tree));
