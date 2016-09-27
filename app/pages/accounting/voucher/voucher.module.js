@@ -59,7 +59,7 @@
             }
         }
         $scope.enable = function () {
-
+            alert("ssss");
 
 
         }

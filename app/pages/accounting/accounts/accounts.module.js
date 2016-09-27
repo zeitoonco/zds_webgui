@@ -165,22 +165,41 @@
         }
 
 
-        $scope.openmodal = function (page, size, id,t,title,c,pid) {
+        $scope.openmodal = function (page, size, id,t,title,c,pid,en,btype,hbtc) {
             $scope.id = id;
             switch (t){
                 case '1':
                     $scope.type = 'گروه';
+                    $scope.i1 = 'ترازنامه ای';
+                    $scope.i2 = 'سود و زیانی';
+                    $scope.i3 = 'انتظامی';
                     break;
                 case '2':
                     $scope.type = 'کل';
+                    $scope.i1 = 'بدهکار';
+                    $scope.i2 = 'بستانکار';
+                    $scope.i3 = 'مهم نیست';
                     break;
                 case '3':
                     $scope.type = 'معین';
+                    $scope.i1 = 'بدهکار';
+                    $scope.i2 = 'بستانکار';
+                    $scope.i3 = 'مهم نیست';
                     break;
             }
             $scope.title = title;
             $scope.code = parseInt(c);
             $scope.pid = parseInt(pid);
+            if (en=='t'){
+                $scope.en = true;
+            }else {
+                $scope.en = false;
+            }
+            $scope.btype = parseInt(btype);
+            $scope.hbtc = true;
+
+
+
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -200,7 +219,8 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency', 'HasTracking', 'IsActive','code','parentid'],
+                    'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency',
+                        'HasTracking', 'IsActive','code','parentid','balancetype','hasbalancetypecheck'],
                     'where': [['del', '=', '0']]
 
                 }
@@ -247,18 +267,12 @@
                 }
 
         }
-
-
-
-
         $scope.getaccounts();
-
-
     });
 
-    account.controller('accounttree', function ($scope, zdsSocket, toastr) {
+    account.controller('accounttree', function ($scope, zdsSocket, toastr,$uibModal) {
         $scope.ignoreChanges = false;
-        var newId = 0;
+        //var newId = 0;
         $scope.ignoreChanges = false;
         $scope.newNode = {};
         $scope.activeId = 0;
@@ -283,7 +297,7 @@
 
         $scope.refresh = function () {
             $scope.ignoreChanges = true;
-            newId = 0;
+            //newId = 0;
             $scope.treeData = $scope.actree;
             $scope.basicConfig.version++;
         };

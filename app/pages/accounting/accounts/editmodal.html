@@ -10,7 +10,7 @@
       <label for="type">نوع:</label>
       <select class="form-control selectpicker" selectpicker title="نوع حساب"
               ng-model="type" ng-change="refreshmodal()"
-              ng-options="item as item.label for item in accounttypes">
+              ng-options="item as item.label for item in accounttypes">انتخاب
       </select>
     </div>
 
@@ -51,7 +51,7 @@
 
     <div id="extrainfo" class="form-group">
       <label for="HasBalanceTypeCheck">کنترلر ماهیت دوره ای:</label>
-        <input id="HasBalanceTypeCheck" type="checkbox" ng-model="hbtc" ng-true-value="1" ng-false-value="0">
+        <input id="HasBalanceTypeCheck" type="checkbox" ng-model="hbtc" ng-true-value="1" ng-false-value="0" value="">
         <label for="HasDL">تفضیلی پذیر:</label>
         <input id="HasDL" type="checkbox" ng-model="hsdl" ng-true-value="1" ng-false-value="0">
         <label for="HasCurrency">ارزی:</label>
