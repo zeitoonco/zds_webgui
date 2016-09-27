@@ -33,16 +33,21 @@
         //remove a row in items by index
         $scope.removeitem = function (index) {
             $scope.items.splice(index, 1);
-            $scope.diffrence();
+            $scope.difference();
         };
 
-        $scope.diffrence = function () {
+        $scope.difference = function () {
             var sd = 0, sc = 0;
             for (var i in $scope.items) {
-                sd = sd + $scope.items[i].debit;
-                sc = sc + $scope.items[i].credit;
+                sd = sd + parseInt($scope.items[i].debit);
+                sc = sc + parseInt($scope.items[i].credit);
             }
-            $scope.d = sd - sc;
+            $scope.d = parseInt(sd - sc);
+            if ($scope.d > 0 || $scope.d < 0){
+                $scope.dcolor = 'red';
+            } else {
+                $scope.dcolor = 'grey';
+            }
         };
 
         $scope.addvoucher = function () {
@@ -72,12 +77,10 @@
             });
 
         };
-        $scope.dlEnabledFunction = function (row) {
+        /*$scope.dlEnabledFunction = function (row) {
             console.log("yay" + row);
             return (row in $scope.dlEnabled);
-
-
-        };
+        };*/
         $scope.checkdl = function (d, index) {
 
             $scope.dlIndexId[d] = index;
