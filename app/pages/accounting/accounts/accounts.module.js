@@ -198,8 +198,6 @@
             $scope.btype = parseInt(btype);
             $scope.hbtc = true;
 
-
-
             $uibModal.open({
                 animation: true,
                 templateUrl: page,

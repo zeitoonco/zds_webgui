@@ -79,7 +79,7 @@
 
         };
         $scope.checkdl = function (d, index) {
-            console.log(d);
+
             $scope.dlIndexId[d] = index;
             var msg = {
                 type: "call",
@@ -96,8 +96,13 @@
                     $scope.hasdl = data.data.result.rows[0][0];
 
                     if ($scope.hasdl == 't') {
-                        $scope.dlEnabled[$scope.dlIndexId[parseInt(data.data.result.rows[0][1])]] = true;
-                        $scope.$apply();
+                          //$scope.dlEnabled[$scope.dlIndexId[parseInt(data.data.result.rows[0][1])]] = true;
+
+                        var c = 'dl' + $scope.dlIndexId[parseInt(data.data.result.rows[0][1])];
+                        document.getElementById(c).className = "";
+                    } else {
+                        var c = 'dl' + $scope.dlIndexId[parseInt(data.data.result.rows[0][1])];
+                        document.getElementById(c).className = "dldisabled";
                     }
                     console.log(JSON.stringify($scope.acid));
                 } else {
