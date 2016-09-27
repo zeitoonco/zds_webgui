@@ -1,25 +1,25 @@
 <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
-  <a href="#/dashboard" class="al-logo clearfix"><span>مدیریت</span>زیتون</a>
+    <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+    <a href="#/dashboard" class="al-logo clearfix"><span>مدیریت</span>زیتون</a>
 
 
-  <div class="search">
-    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
-    <input id="searchInput" type="text" placeholder="جستجو...">
-  </div>
-
-  <div class="user-profile clearfix">
-    <div class="al-user-profile" uib-dropdown>
-      <a uib-dropdown-toggle class="profile-toggle-link">
-        <img id="mypic">
-      </a>
-      <ul  class="top-dropdown-menu profile-dropdown " uib-dropdown-menu>
-        <li><i class="dropdown-arr"></i></li>
-        <li><a href="#/profile"><i class="fa fa-user"></i>تنظیمات پروفایل</a></li>
-        <li><a href><i class="fa fa-cog"></i>تنظیمات رابط کاربری</a></li>
-        <li><a href="#/logout" class="signout"><i class="fa fa-power-off"></i>خروج</a></li>
-      </ul>
+    <div class="search">
+        <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+        <input id="searchInput" type="text" placeholder="جستجو...">
     </div>
-    <msg-center></msg-center>
-  </div>
+
+    <div class="user-profile clearfix">
+        <div class="al-user-profile" uib-dropdown>
+            <a uib-dropdown-toggle class="profile-toggle-link">
+                <img id="mypic">
+            </a>
+            <ul class="top-dropdown-menu profile-dropdown " uib-dropdown-menu>
+                <li><i class="dropdown-arr"></i></li>
+                <li><a href="#/profile"><i class="fa fa-user"></i>تنظیمات پروفایل</a></li>
+                <li><a href><i class="fa fa-cog"></i>تنظیمات رابط کاربری</a></li>
+                <li><a href="javascript:location.reload();" class="signout"><i class="fa fa-power-off"></i>خروج</a></li>
+            </ul>
+        </div>
+        <msg-center></msg-center>
+    </div>
 </div>
