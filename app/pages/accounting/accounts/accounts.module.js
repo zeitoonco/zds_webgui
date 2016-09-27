@@ -121,9 +121,25 @@ var aid;
             var msg = {
                 type: "call",
                 node: "AccountingRelay.modifyAccount",
-                data:{userid: uid,id: aid,parent: $scope.pid,type: $scope.type.value,code: $scope.code,title: $scope.title,title2: $scope.title,isactive : $scope.en,cashflowcategory: '0',
-                    openingbalance: '0',balancetype: $scope.btype,hasbalancetypecheck: $scope.hbtc,hasdl: $scope.hsdl,
-                    hascurrency: $scope.hc,hascurrencyconversion: $scope.hcc,hastracking: $scope.ht,hastrackingcheck:'0'}
+                data: {
+                    userid: uid,
+                    id: aid,
+                    parent: $scope.pid,
+                    type: $scope.type.value,
+                    code: $scope.code,
+                    title: $scope.title,
+                    title2: $scope.title,
+                    isactive: $scope.en,
+                    cashflowcategory: '0',
+                    openingbalance: '0',
+                    balancetype: $scope.btype,
+                    hasbalancetypecheck: $scope.hbtc,
+                    hasdl: $scope.hsdl,
+                    hascurrency: $scope.hc,
+                    hascurrencyconversion: $scope.hcc,
+                    hastracking: $scope.ht,
+                    hastrackingcheck: '0'
+                }
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -140,7 +156,6 @@ var aid;
 
             }
         }
-        //$scope.getinfo();
     });
 
     account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
@@ -151,7 +166,7 @@ var aid;
 
 
         $scope.openmodal = function (page, size, id,t,title,c,pid) {
-            aid = id;
+            $scope.id = id;
             switch (t){
                 case '1':
                     $scope.type = 'گروه';
@@ -204,19 +219,27 @@ var aid;
             }
 
         }
-        $scope.doremove = function (id) {
-            var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
-            if (alert == true){
+
+
+        $scope.getaccounts();
+    });
+
+    account.controller('removeaccount', function ($scope,zdsSocket,toastr,$uibModal) {
+
+        $scope.doremove = function () {
+            //var alert = confirm("آیا از حذف این حساب مطمئن هستید؟");
+
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeAccount",
-                    data: {userid: uid,id: id}
+                    data: {userid: uid,id: $scope.id}
 
                 };
                 if (zdsSocket.status() == 1) {
                     zdsSocket.send(msg, function (data) {
                         if (data["success"] == true) {
-                            toastr.success('حساب حذف گردید!')
+                            toastr.success('حساب حذف گردید!');
+                            $uibModal.close();
                         } else {
                             toastr.error('!', 'خطا!');
                         }
@@ -225,17 +248,7 @@ var aid;
                     toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
                 }
-            } else {
-
-            }
         }
-
-
-
-
-        $scope.getaccounts();
-
-
     });
 
     account.controller('accounttree', function ($scope,zdsSocket, toastr) {
