@@ -55,15 +55,13 @@
                                         ng-click="openmodal('app/pages/accounting/voucher/editmodal.html', 'lg',x[0])">
                                     ویرایش
                                 </button>
-                                <button class="btn btn-danger btn-xs" ng-click="doremove(x[0])" id='remove-btn'>حذف
+                                <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/voucher/removemodal.html', 'sm',x[1])" id='remove-btn'>حذف
                                 </button>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="button-wrapper"></div>
-
         </div>
     </div>
 </div>

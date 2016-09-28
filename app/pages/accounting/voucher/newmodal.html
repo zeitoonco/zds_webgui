@@ -62,8 +62,8 @@
                   </span>
                 </td>
                 <td>
-                  <span editable-text="x.dlid" e-name="کد تفضیلی"
-                        id='dl{{$index}}' buttons="no">
+                  <span editable-select="x.dlid" e-name="کد تفضیلی"
+                        id='dl{{$index}}' buttons="no" e-ng-options="j[0] as j[1] + '-' + j[2] for j in dlid">
                     {{ x.dlid }}
                   </span>
                 </td>
