@@ -235,6 +235,10 @@
     });
 
     account.controller('removeaccount', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getaccounts();
+        });
+
 
         $scope.doremove = function () {
             var msg = {
