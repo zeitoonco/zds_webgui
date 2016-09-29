@@ -166,9 +166,6 @@
         };
     });
 
-
-
-
     voucher.controller('editvoucher', function ($scope, zdsSocket, toastr) {
         $scope.dlEnabled = [true];
         $scope.dlIndexId = [];
@@ -307,9 +304,8 @@
                         $scope.dnumber = $scope.myData[10];
                         $scope.dec = $scope.myData[8];
                         $scope.type = $scope.myData[6];
-                        $scope.type = $scope.myData[6];
-                        $scope.type = $scope.myData[6];
-                        toastr.success('اطلاعات با موفقیت دریافت شد!');
+
+                        //toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -330,7 +326,7 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.items = data.data.result.rows;
-                        toastr.success('اطلاعات با موفقیت دریافت شد!');
+                        //toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -374,7 +370,7 @@
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
-                    toastr.success('طبقه ی جدید اضافه شد!');
+                    toastr.success('اطلاعات با موفقیت اعمال شد!');
 
                 } else {
                     toastr.error('!', 'خطا!');
@@ -420,8 +416,7 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
-
-                        toastr.success('اطلاعات با موفقیت دریافت شد!');
+                        //toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -449,7 +444,7 @@
                     console.log(JSON.stringify(msg));
                     zdsSocket.send(msg, function (data) {
                         if (data["success"] == true) {
-                            toastr.success('طبقه با موفقیت حذف شد!');
+                            toastr.success('سند با موفقیت حذف شد!');
                         } else {
                             toastr.error('!', 'خطا!');
                         }
