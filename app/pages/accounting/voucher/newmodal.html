@@ -33,7 +33,6 @@
         </div>
         <div id="toolbar">
             <button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
-            <button type="button" class="btn btn-auth" ng-click="itemlog()">تست</button>
         </div>
 
         <table id="data" class="table table-hover" st-table="myData">
@@ -62,8 +61,8 @@
                   </span>
                 </td>
                 <td>
-                  <span editable-text="x.dlid" e-name="کد تفضیلی"
-                        id='dl{{$index}}' buttons="no">
+                  <span editable-select="x.dlid" e-name="کد تفضیلی"
+                        id='dl{{$index}}' buttons="no" e-ng-options="j[0] as j[1] + '-' + j[2] for j in dlid">
                     {{ x.dlid }}
                   </span>
                 </td>

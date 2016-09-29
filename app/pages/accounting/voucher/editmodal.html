@@ -1,37 +1,41 @@
-<div id="newvoucher" class="modal-content" ng-app="ZDSGUI.pages.accounting.category" ng-controller="newvoucher">
+<div id="newvoucher" class="modal-content" ng-app="ZDSGUI.pages.accounting.voucher" ng-controller="editvoucher">
   <div class="modal-header">
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
     </button>
-    <h4 class="modal-title" id="myModalLabel">سند جدید</h4>
+    <h4 class="modal-title" id="myModalLabel">ویرایش سند</h4>
   </div>
   <div class="modal-body">
-    <div class="form-group">
+
+
+    <div class="form-group col-xs-6 col-md-6">
       <label for="vid">شماره سند:</label>
-      <input type="number" class="form-control" id="vid" ng-model="vid">
+      <input type="number" class=" form-control" id="vid" ng-model="number">
     </div>
-    <div class="form-group">
-      <label id="type">نوع سند: عمومی</label>
-      <label id="state">وضعیت: موقت</label>
-      <label id="sys">سیستم صادرکننده: حسابداری</label>
+    <div class="form-group col-xs-6 col-md-6">
+      <label id="type">نوع سند: عمومی<br>
+        وضعیت: موقت<br>
+        سیستم صادرکننده: حسابداری</label>
     </div>
-    <div class="form-group">
+    <div class="form-group col-xs-6 col-md-6">
       <label for="vdate">تاریخ:</label>
       <input type="text" class="form-control" id="vdate" ng-model="vdate"
              ng-jalali-flat-datepicker datepicker-config="datepickerConfig"
              gregorian-formatted-picked-date="fvdate" gregorian-picked-date="vdate">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xs-6 col-md-6">
       <label for="refnumber">شماره فرعی:</label>
       <input type="number" class="form-control" id="refnumber" ng-model="refnumber">
     </div>
-    <div class="form-group">
+    <div class="form-group col-xs-6 col-md-6">
       <label for="dec">توضیحات:</label>
       <input type="text" class="form-control" id="dec" ng-model="dec">
     </div>
-    <div id="toolbar"><button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
-      <button type="button" class="btn btn-primary" ng-click="itemlog()">تست</button></div>
-    <table id="data" class="table table-bordered table-hover table-condensed">
+    <div id="toolbar">
+      <button type="button" class="btn btn-primary" ng-click="additem()">ایجاد تراکنش</button>
+    </div>
+
+    <table id="data" class="table table-hover" st-table="myData">
       <thead>
       <tr>
         <th class="table-id">#</th>
@@ -42,70 +46,61 @@
         <th>بستانکار</th>
         <th>شماره پیگیری</th>
         <th>تاریخ پیگیری</th>
-        <th>---</th>
+        <th>عملیات</th>
       </tr>
       </thead>
-      <tr ng-repeat="x in items" class="editable-row">
+      <tr ng-repeat="x in items" class="editable-tr-wrap">
         <td>
-          {{$index}}
-        </td>
-        <td>
-          <span editable-select="x.accountid" e-name="کد معین" e-form="rowform"
-                e-ng-options="i[0] as i[0] for i in acid" ng-model="selectedid" e-ng-change="test()">
-            {{x.accountid}}
-        </span>
+          {{$index + 1}}
         </td>
         <td>
-          <span editable-text="x.dlid" e-name="کد تفضیلی" edit-disabled="false" e-form="rowform" e-required>
-            {{ x.dlid }}
+                  <span editable-select="x[0]" buttons="no"
+                        e-ng-options="i[0] as i[0] + '-' + i[2] for i in acid"
+                        onbeforesave="checkdl($data,$index)">
+                    {{ x[0] }}
+                  </span>
+        </td>
+        <td>
+                  <span editable-select="x[1]" e-name="کد تفضیلی"
+                        id='dl{{$index}}' buttons="no" e-ng-options="j[0] as j[1] + '-' + j[2] for j in dlid">
+                    {{ x[1] }}
+                  </span>
+        </td>
+        <td><span editable-text="x[2]" e-name="شرح" buttons="no">
+            {{ x[2] }}
           </span>
         </td>
-        <td><span editable-text="x.description" e-name="شرح" e-form="rowform" e-required>
-            {{ x.description }}
+        <td><span editable-text="x[3]" e-name="بدهکار" buttons="no" onaftersave="difference()">
+            {{ x[3] }}
           </span>
         </td>
-        <td><span editable-text="x.debit" e-name="بدهکار" e-form="rowform" e-required>
-            {{ x.debit }}
-          </span>
-        </td>
-        <td><span editable-text="x.credit" e-name="بستانکار" e-form="rowform" e-required>
-            {{ x.credit }}
-          </span></td>
-        <td><span editable-text="x.trackingnumber" e-name="شماره پیگیری" e-form="rowform" e-required>
-            {{ x.trackingnumber }}
+        <td><span editable-text="x[4]" e-name="بستانکار" buttons="no" onaftersave="difference()">
+                    {{ x[4] }}
+                </span></td>
+        <td><span editable-text="x[5]" e-name="شماره پیگیری" buttons="no">
+            {{ x[5] }}
           </span></td>
         <td>
           <!--<span  editable-text="x.trackingdate" e-name="تاریخ پیگیری" e-form="rowform" e-required
       >
           {{ x.trackingdate }}
-        </span></td>-->
+        </span>--></td>
         <td>
-          <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
-                shown="inserted == user">
-            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
-              ذخیره
-            </button>
-            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
-              لغو
-            </button>
-          </form>
-          <div class="buttons" ng-show="!rowform.$visible">
-            <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">ویرایش</button>
-            <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeitem($index)">حذف</button>
-          </div>
+          <button class="btn btn-danger btn-xs" ng-click="removeitem()">حذف
+          </button>
         </td>
       </tr>
 
 
     </table>
+    <div id="extrainfo" class="form-group">
+      <span style="color:{{dcolor}}">اختلاف : {{d}}</span>
+
+    </div>
 
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="addvoucher()">تایید</button>
-    <div id="info">
-      <span>اختلاف : {{d}}</span>
-
-    </div>
+    <button type="button" class="btn btn-primary" ng-click="modifyvoucher()">تایید</button>
   </div>
 </div>
