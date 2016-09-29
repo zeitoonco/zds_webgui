@@ -8,9 +8,9 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="type">نوع:</label>
-            <select class="form-control selectpicker" selectpicker title="نوع حساب"
-                    ng-model="type" ng-change="refreshmodal()"
-                    ng-options="item as item.label for item in accounttypes">انتخاب
+            <select id="type" class="form-control selectpicker" selectpicker title="نوع حساب"
+                    ng-model="type" ng-change="refreshmodal()" ng-init="type=type"
+                    ng-options="k as v for (k,v)  in accounttypes">انتخاب
             </select>
         </div>
 
@@ -31,13 +31,13 @@
 
         <div class="form-group">
             <label for="isactive">وضعیت: فعال</label>
-            <input id="isactive" type="checkbox" value="" ng-model="en">
+            <input id="isactive" type="checkbox" ng-model="en">
         </div>
 
         <div class="form-group">
             <form>
                 <label>ماهیت:</label>
-                <div class="radio1">f
+                <div class="radio1">
                     <label><input id="btype1" type="radio" ng-model="btype" name="btype" ng-value="1">{{i1}}</label>
                 </div>
                 <div class="radio2">
