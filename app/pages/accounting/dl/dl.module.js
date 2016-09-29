@@ -105,7 +105,7 @@
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeDL",
-                    data: {userid: uid, dlid: $scope.dlid}
+                    data: {userid: uid, id: $scope.dlid}
                 };
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
