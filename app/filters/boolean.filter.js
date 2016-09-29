@@ -34,4 +34,27 @@ angular.module('ZDSGUI.boolean', []).filter('persianboolean', function () {
             }
         }
     }
+}).filter('accounttype', function () {
+    return function (item) {
+        if (!item) {
+            return null
+        } else {
+            switch (item) {
+                case '0':
+                case 0:
+                    return "سرشاخه";
+                case '1':
+                case 1:
+                    return "گروه";
+                case '2':
+                case 2:
+                    return "کل";
+                case '3':
+                case 3:
+                    return "معین";
+                default:
+                    return item;
+            }
+        }
+    }
 });
