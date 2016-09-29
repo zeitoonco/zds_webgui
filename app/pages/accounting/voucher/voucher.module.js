@@ -199,8 +199,8 @@
         $scope.difference = function () {
             var sd = 0, sc = 0;
             for (var i in $scope.items) {
-                sd = sd + parseInt($scope.items[i].debit);
-                sc = sc + parseInt($scope.items[i].credit);
+                sd = sd + parseInt($scope.items[i][4]);
+                sc = sc + parseInt($scope.items[i][5]);
             }
             $scope.d = parseInt(sd - sc);
             if ($scope.d > 0 || $scope.d < 0){
