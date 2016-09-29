@@ -47,15 +47,15 @@
                             <td>{{ x[9] }}</td>
                             <td>{{ x[6] }}</td>
                             <td>{{ x[5] }}</td>
-                            <td></td>
+                            <td>{{ x[13] }}</td>
                             <td>{{ x[8] }}</td>
-                            <td>{{ x[10] }}</td>
+                            <td>حسابداری</td>
                             <td>
                                 <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                         ng-click="openmodal('app/pages/accounting/voucher/editmodal.html', 'lg',x[0],'bigmodal')">
                                     ویرایش
                                 </button>
-                                <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/voucher/removemodal.html', 'sm',x[1])" id='remove-btn'>حذف
+                                <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/voucher/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف
                                 </button>
                             </td>
                         </tr>
