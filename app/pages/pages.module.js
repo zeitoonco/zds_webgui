@@ -20,6 +20,7 @@
         'ZDSGUI.pages.user-mng',
         'ZDSGUI.pages.core',
         'ZDSGUI.pages.accounting',
+        'ZDSGUI.pages.bms',
     ])
         .config(routeConfig);
 

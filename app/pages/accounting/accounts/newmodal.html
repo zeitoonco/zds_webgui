@@ -10,7 +10,7 @@
       <label for="type">نوع:</label>
       <select class="form-control selectpicker" selectpicker title="نوع حساب"
               ng-model="type" ng-change="refreshmodal()"
-              ng-options="item as item.label for item in accounttypes">
+              ng-options="k as v for (k,v)  in accounttypes">
       </select>
     </div>
 

@@ -18,14 +18,11 @@
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
-        $scope.accounttypes = [
-            {label: "کل", value: 1},
-            {label: "گروه", value: 2},
-            {label: "معین", value: 3}
-        ];
 
+
+        $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
         $scope.refreshmodal = function () {
-            if ($scope.type.value == 3 || $scope.type.value == 2) {
+            if ($scope.type == 3 || $scope.type == 2) {
                 //alert("گروه یا معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
@@ -45,7 +42,7 @@
                 data: {
                     userid: uid,
                     parent: $scope.pid,
-                    type: $scope.type.value,
+                    type: $scope.type,
                     code: $scope.code,
                     title: $scope.title,
                     title2: $scope.title,
@@ -77,14 +74,11 @@
 
     account.controller('editaccount', function ($scope, zdsSocket, toastr) {
 
-        $scope.accounttypes = [
-            {label: "کل", value: 1},
-            {label: "گروه", value: 2},
-            {label: "معین", value: 3}
-        ];
+        $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
+
 
         $scope.refreshmodal = function () {
-            if ($scope.type.value == 3 || $scope.type.value == 2) {
+            if ($scope.type == 3 || $scope.type == 2) {
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
@@ -127,7 +121,7 @@
                     userid: uid,
                     id: $scope.id,
                     parent: $scope.pid,
-                    type: $scope.type.value,
+                    type: $scope.type,
                     code: $scope.code,
                     title: $scope.title,
                     title2: $scope.title,
@@ -165,29 +159,27 @@
 
         $scope.openmodal = function (page, size, x) {
             $scope.id = x[0];
+            $scope.type = x[1];
             switch (x[1]) {
                 case '1':
-                    $scope.type = 'گروه';
                     $scope.i1 = 'ترازنامه ای';
                     $scope.i2 = 'سود و زیانی';
                     $scope.i3 = 'انتظامی';
                     break;
                 case '2':
-                    $scope.type = 'کل';
                     $scope.i1 = 'بدهکار';
                     $scope.i2 = 'بستانکار';
                     $scope.i3 = 'مهم نیست';
                     break;
                 case '3':
-                    $scope.type = 'معین';
                     $scope.i1 = 'بدهکار';
                     $scope.i2 = 'بستانکار';
                     $scope.i3 = 'مهم نیست';
                     break;
             }
             $scope.title = x[2];
-            $scope.code = x[0];
-            $scope.pid = x[8];
+            $scope.code = parseInt(x[0]);
+            $scope.pid = parseInt(x[8]);
             $scope.en = x[6] == 't';
             $scope.btype = parseInt(x[9]);
             $scope.hbtc = x[10] == 't';
@@ -286,7 +278,49 @@
             'plugins': ['types'],
             'version': 1
         };
+        $scope.openmodal = function (page, size, x) {
+            $scope.id = x[0 + 4];
+            switch (x[2 + 4]) {
+                case '1':
+                    $scope.i1 = 'ترازنامه ای';
+                    $scope.i2 = 'سود و زیانی';
+                    $scope.i3 = 'انتظامی';
+                    break;
+                case '2':
+                    $scope.i1 = 'بدهکار';
+                    $scope.i2 = 'بستانکار';
+                    $scope.i3 = 'مهم نیست';
+                    break;
+                case '3':
+                    $scope.i1 = 'بدهکار';
+                    $scope.i2 = 'بستانکار';
+                    $scope.i3 = 'مهم نیست';
+                    break;
+            }
+            $scope.title = x[5 + 4];
+            $scope.code = parseInt(x[3 + 4]);
+            $scope.pid = parseInt(x[1 + 4]);
+            $scope.en = x[6 + 4] == 't';
+            $scope.btype = parseInt(x[9 + 4]);
+            $scope.hbtc = x[10 + 4] == 't';
+            $scope.hsdl = x[11 + 4] == 't';
+            $scope.hc = x[12 + 4] == 't';
+            $scope.hcc = x[13 + 4] == 't';
+            $scope.ht = x[14 + 4] == 't';
 
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+        }
         $scope.refresh = function () {
             $scope.ignoreChanges = true;
             //newId = 0;
@@ -317,7 +351,7 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid', 'parentid', 'title2', 'Type'],
+                    'columns': ['accountid', 'parentid', 'title2', 'Type', '*'],
                     'where': [['del', '=', '0']]
 
                 }

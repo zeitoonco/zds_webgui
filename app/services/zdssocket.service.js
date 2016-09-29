@@ -32,8 +32,8 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
         });
 
         ws.onClose(function (event) {
-            $rootScope.$logedin = true;
-            $location.path("/dashboard");
+            $rootScope.$logedin = false;
+            $location.path("/login");
             console.log('connection closed', event);
         });
 
@@ -48,6 +48,8 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket'])
             send: function (message, callback) {
                 if (ws.readyState != 1) {
                     toastr.error('اتصال با وبسوکت برقرار نیست.', 'خطا!');
+                    $rootScope.$logedin = false;
+                    $location.path("/login");
                     return;
                 }
                 if (angular.isString(message)) {
