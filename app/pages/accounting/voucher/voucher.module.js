@@ -70,7 +70,7 @@
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
-                    toastr.success('طبقه ی جدید اضافه شد!');
+                    toastr.success('سند مالی جدید اضافه شد!');
 
                 } else {
                     toastr.error('!', 'خطا!');
@@ -393,12 +393,13 @@
 
 
     voucher.controller('voucher', function ($scope, zdsSocket, toastr, $uibModal) {
-        $scope.openmodal = function (page, size, id) {
+        $scope.openmodal = function (page, size, id,classname) {
             $scope.vid = id;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
-                windowClass: 'bigmodal',
+                windowClass: classname,
+                size: size,
                 scope: $scope,
                 resolve: {
                     items: function () {
@@ -406,7 +407,6 @@
                     }
                 }
             });
-            //$modalInstance.$scope.username = 'ali';
 
         }
         $scope.getvoucher = function () {
