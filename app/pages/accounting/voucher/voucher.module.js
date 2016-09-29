@@ -303,7 +303,7 @@
                         $scope.myData = data.data.result.rows[0];
                         $scope.number = parseInt($scope.myData[1]);
                         $scope.refnumber = parseInt($scope.myData[3]);
-                        $scope.date = moment($scope.myData[2]).format('jYYYY/jMM/jDD');
+                        $scope.vdate = moment($scope.myData[2]).format('jYYYY/jMM/jDD');
                         $scope.dnumber = $scope.myData[10];
                         $scope.dec = $scope.myData[8];
                         $scope.type = $scope.myData[6];
@@ -343,6 +343,18 @@
 
 
         $scope.modifyvoucher = function () {
+            $scope.finalitems = [];
+            for (var i=0; i<$scope.items.length; i++){
+                $scope.finalitems.push({
+                    id: i+1,
+                    accountid: $scope.items[i][0],
+                    dlid: $scope.items[i][1],
+                        description: $scope.items[i][2],
+                    debit:$scope.items[i][3],
+                    credit:$scope.items[i][4],
+                    trackingnumber: $scope.items[i][5],
+                    trackingdate: moment($scope.items[i][6]).format('YYYY-MM-DD')});
+            }
             var msg = {
                 type: "call",
                 node: "AccountingRelay.modifyNewVocher",
@@ -350,13 +362,13 @@
                     userid: uid,
                     id: $scope.vid,
                     number: $scope.number,
-                    date: $scope.fvdate,
+                    date: moment($scope.fvdate).format('YYYY-MM-DD'),
                     referencenumber: $scope.refnumber,
                     secondarynumber: 0,
                     state: 1,
                     type: 1,
                     description: $scope.dec,
-                    items: $scope.items
+                    items: $scope.finalitems
                 }
             };
             console.log(JSON.stringify(msg));
@@ -370,6 +382,13 @@
             });
         }
         $scope.getinfo();
+
+        $scope.datepickerConfig = {
+            dateFormat: 'jYYYY/jMM/jDD',
+            gregorianDateFormat: 'YYYY-MM-DD',
+            minDate: moment.utc('2014', 'YYYY'),
+            allowFuture: true
+        };
     });
 
 
