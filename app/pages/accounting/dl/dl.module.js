@@ -41,7 +41,7 @@
                 node: "AccountingRelay.modifyDL",
                 data: {
                     userid: uid,
-                    id: dlid,
+                    id: $scope.dlid,
                     code: $scope.code,
                     title: $scope.title,
                     title2: $scope.title,

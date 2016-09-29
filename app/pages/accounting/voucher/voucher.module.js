@@ -8,7 +8,9 @@
         .config(routeConfig);
 
     voucher.controller('newvoucher', function ($scope, zdsSocket, toastr) {
-
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getvoucher();
+        });
         $scope.dlEnabled = [true];
         $scope.dlIndexId = [];
         $scope.items = []; //voucher items
@@ -167,6 +169,10 @@
     });
 
     voucher.controller('editvoucher', function ($scope, zdsSocket, toastr) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getvoucher();
+        });
+
         $scope.dlEnabled = [true];
         $scope.dlIndexId = [];
         $scope.items = []; //voucher items
@@ -432,7 +438,9 @@
     });
 
     voucher.controller('removevoucher',function ($scope,zdsSocket,$uibModal,toastr) {
-
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getvoucher();
+        });
 
         $scope.doremove = function (id) {
                 var msg = {
