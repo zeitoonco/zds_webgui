@@ -62,7 +62,7 @@
 
     dl.controller('dl', function ($scope, zdsSocket, toastr, $uibModal) {
         $scope.openmodal = function (page, size, id, code, title, en) {
-            dlid = id;
+            $scope.dlid = id;
             $scope.code = code;
             $scope.title = title;
             $scope.en = en;
@@ -95,31 +95,27 @@
                         toastr.error('!', 'خطا!');
                     }
                 });
-
         }
-        $scope.doremove = function (id) {
-            var alert = confirm("آیا از حذف این تفضیلی مطمئن هستید؟");
-            if (alert == true) {
+
+        $scope.getdl();
+    });
+
+    dl.controller('removedl', function ($scope,zdsSocket,toastr,$uibModal) {
+        $scope.doremove = function () {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeDL",
-                    data: {userid: uid, id: id}
+                    data: {userid: uid, dlid: $scope.dlid}
                 };
-                    console.log(JSON.stringify(msg));
-                    zdsSocket.send(msg, function (data) {
-                        if (data["success"] == true) {
-                            toastr.success('تفضیلی با موفقیت حذف شد!');
-                        } else {
-                            toastr.error('!', 'خطا!');
-                        }
-                    });
-
-            } else {
-
-            }
-
+                console.log(JSON.stringify(msg));
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('تفضیلی با موفقیت حذف شد!');
+                    } else {
+                        toastr.error('!', 'خطا!');
+                    }
+                });
         }
-        $scope.getdl();
     });
 
     function routeConfig($stateProvider) {
