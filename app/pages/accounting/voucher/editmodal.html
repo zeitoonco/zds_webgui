@@ -51,34 +51,34 @@
       </thead>
       <tr ng-repeat="x in items" class="editable-tr-wrap">
         <td>
-          {{$index + 1}}
+          {{$index}}
         </td>
         <td>
-                  <span editable-select="x[0]" buttons="no"
+                  <span editable-select="x[1]" buttons="no"
                         e-ng-options="i[0] as i[0] + '-' + i[2] for i in acid"
                         onbeforesave="checkdl($data,$index)">
-                    {{ x[0] }}
-                  </span>
-        </td>
-        <td>
-                  <span editable-select="x[1]" e-name="کد تفضیلی"
-                        id='dl{{$index}}' buttons="no" e-ng-options="j[0] as j[1] + '-' + j[2] for j in dlid">
                     {{ x[1] }}
                   </span>
         </td>
-        <td><span editable-text="x[2]" e-name="شرح" buttons="no">
-            {{ x[2] }}
-          </span>
+        <td>
+                  <span editable-select="x[2]" e-name="کد تفضیلی"
+                        id='dl{{$index}}' buttons="no" e-ng-options="j[0] as j[1] + '-' + j[2] for j in dlid" blur="submit">
+                    {{ x[2] }}
+                  </span>
         </td>
-        <td><span editable-text="x[3]" e-name="بدهکار" buttons="no" onaftersave="difference()">
+        <td><span editable-text="x[3]" e-name="شرح" buttons="no" blur="submit">
             {{ x[3] }}
           </span>
         </td>
-        <td><span editable-text="x[4]" e-name="بستانکار" buttons="no" onaftersave="difference()">
-                    {{ x[4] }}
+        <td><span editable-text="x[4]" e-name="بدهکار" buttons="no" onaftersave="difference()" blur="submit">
+            {{ x[4] }}
+          </span>
+        </td>
+        <td><span editable-text="x[5]" e-name="بستانکار" buttons="no" onaftersave="difference()" blur="submit">
+                    {{ x[5] }}
                 </span></td>
-        <td><span editable-text="x[5]" e-name="شماره پیگیری" buttons="no">
-            {{ x[5] }}
+        <td><span editable-text="x[6]" e-name="شماره پیگیری" buttons="no" blur="submit">
+            {{ x[6] }}
           </span></td>
         <td>
           <!--<span  editable-text="x.trackingdate" e-name="تاریخ پیگیری" e-form="rowform" e-required
@@ -86,7 +86,7 @@
           {{ x.trackingdate }}
         </span>--></td>
         <td>
-          <button class="btn btn-danger btn-xs" ng-click="removeitem()">حذف
+          <button class="btn btn-danger btn-xs" ng-click="removeitem($index)">حذف
           </button>
         </td>
       </tr>
