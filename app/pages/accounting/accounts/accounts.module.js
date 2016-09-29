@@ -18,7 +18,9 @@
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
-
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getaccounts();
+        });
 
         $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
         $scope.refreshmodal = function () {
@@ -76,6 +78,10 @@
 
         $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
 
+
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getaccounts();
+        });
 
         $scope.refreshmodal = function () {
             if ($scope.type == 3 || $scope.type == 2) {
@@ -229,6 +235,10 @@
     });
 
     account.controller('removeaccount', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getaccounts();
+        });
+
 
         $scope.doremove = function () {
             var msg = {
@@ -237,18 +247,14 @@
                 data: {userid: uid, id: $scope.id}
 
             };
-            if (zdsSocket.status() == 1) {
-                zdsSocket.send(msg, function (data) {
-                    if (data["success"] == true) {
-                        toastr.success('حساب حذف گردید!');
-                    } else {
-                        toastr.error('!', 'خطا!');
-                    }
-                });
-            } else {
-                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    toastr.success('حساب حذف گردید!');
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
 
-            }
 
         }
         $scope.getaccounts();
