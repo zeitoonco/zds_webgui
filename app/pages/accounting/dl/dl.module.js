@@ -7,11 +7,13 @@
     var dl = angular.module('ZDSGUI.pages.accounting.dl', ['ZDSGUI.boolean'])
         .config(routeConfig);
     dl.controller('newdl', function ($scope, zdsSocket, toastr) {
-
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getdl();
+        });
         $scope.adddl = function () {
             var msg = {
                 type: "call",
-                node: "AccountingRelay.newDl",
+                node: "AccountingRelay.newDL",
                 data: {userid: uid, code: $scope.code, title: $scope.title, title2: $scope.title, type: 1, isactive: 1}
             };
             if (zdsSocket.status() == 1) {
@@ -19,7 +21,6 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('تفضیلی جدید اضافه شد!');
-
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -30,8 +31,10 @@
             }
         }
     });
-    dl.controller('editdl', function ($scope, zdsSocket, toastr) {
-
+    dl.controller('editdl', function ($scope, zdsSocket, toastr,$uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getdl();
+        });
         $scope.modifydl = function () {
             var msg = {
                 type: "call",
@@ -50,7 +53,6 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     toastr.success('اطلاعات اعمال شد!');
-
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -101,6 +103,10 @@
     });
 
     dl.controller('removedl', function ($scope,zdsSocket,toastr,$uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getdl();
+        });
+
         $scope.doremove = function () {
                 var msg = {
                     type: "call",
