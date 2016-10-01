@@ -1,0 +1,15 @@
+<div class="modal-content" ng-app="ZDSGUI.pages.accounting.fiscalyear" ng-controller="removefiscalyear">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">حذف حساب</h4>
+  </div>
+  <div class="modal-body">
+  آیا می خواهید سال مالی شماره {{fyid}} را حذف کنید؟
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="doremove();$dismiss()">تایید</button>
+    <button type="button" class="btn btn-danger" ng-click="$dismiss()" aria-label="Close">لغو</button>
+  </div>
+</div>

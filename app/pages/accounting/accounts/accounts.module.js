@@ -156,12 +156,12 @@
         }
     });
 
-    account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal) {
+    account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal,editableThemes,editableOptions) {
         $scope.tableconfig = {
             itemsPerPage: 2,
             fillLastPage: true
         }
-
+        editableOptions.theme = 'bs3';
 
         $scope.openmodal = function (page, size, x) {
             $scope.id = x[0];

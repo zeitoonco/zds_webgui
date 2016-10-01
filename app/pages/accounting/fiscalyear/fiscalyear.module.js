@@ -7,33 +7,12 @@
  * created on 21.12.2015
  */
 (function () {
+    var fyid;
     'use strict';
 
     var fiscalyear = angular.module('ZDSGUI.pages.accounting.fiscalyear', [
         'ZDSGUI.boolean', 'ngJalaliFlatDatepicker'])
         .config(routeConfig);
-    fiscalyear.filter('jalaliDate', function () {
-        return function (inputDate, format) {
-            var date = moment(inputDate);
-            return date.format(format);
-        }
-    });
-    fiscalyear.filter('pStatus', function () {
-        return function (item) {
-            if (!item) {
-                return null
-            } else {
-                switch (item) {
-                    case '1':
-                        return "فعال";
-                    case '2':
-                        return "بسته شده";
-                    default:
-                        return item;
-                }
-            }
-        }
-    });
 
     fiscalyear.controller('editfiscal', function ($scope) {
         $scope.startdate = moment($scope.row[2]).format('jYYYY/jMM/jDD');
@@ -123,14 +102,16 @@
 
         }
 
-        $scope.doremove = function (id) {
 
-            var alert = confirm("آیا از حذف این سال مالی مطمئن هستید؟");
-            if (alert == true) {
+    });
+
+    fiscalyear.controller('removefiscalyear', function ($scope,zdsSocket,toastr,$uibModal) {
+
+        $scope.doremove = function () {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeFiscalYear",
-                    data: {userid: uid, id: id}
+                    data: {userid: uid, id: fyid}
                 };
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
@@ -140,11 +121,32 @@
                         toastr.error('!', 'خطا!');
                     }
                 });
-            }
         }
     });
 
 
+    fiscalyear.filter('jalaliDate', function () {
+        return function (inputDate, format) {
+            var date = moment(inputDate);
+            return date.format(format);
+        }
+    });
+    fiscalyear.filter('pStatus', function () {
+        return function (item) {
+            if (!item) {
+                return null
+            } else {
+                switch (item) {
+                    case '1':
+                        return "فعال";
+                    case '2':
+                        return "بسته شده";
+                    default:
+                        return item;
+                }
+            }
+        }
+    });
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
