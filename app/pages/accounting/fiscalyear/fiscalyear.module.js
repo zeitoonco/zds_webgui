@@ -56,7 +56,9 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'fiscalyear',
-                    'columns': ['fiscalyearid', 'title', 'startdate', 'enddate', 'status']
+                    'columns': ['fiscalyearid', 'title', 'startdate', 'enddate', 'status'],
+                    'where': [['del', '=', '0']]
+
                 }
             };
             if (zdsSocket.status() == 1) {
