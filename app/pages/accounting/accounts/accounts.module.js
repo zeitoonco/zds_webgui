@@ -239,7 +239,6 @@
             $scope.getaccounts();
         });
 
-
         $scope.doremove = function () {
             var msg = {
                 type: "call",
@@ -250,6 +249,7 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     toastr.success('حساب حذف گردید!');
+                    $dismiss();
                 } else {
                     toastr.error('!', 'خطا!');
                 }
