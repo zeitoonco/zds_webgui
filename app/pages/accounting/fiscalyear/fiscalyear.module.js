@@ -50,7 +50,7 @@
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id=0) {
+        $scope.openmodal = function (page, size, id = 0) {
             if (id == 0)
                 $scope.row = [];
             else
@@ -70,7 +70,7 @@
             //$modalInstance.$scope.username = 'ali';
 
         };
-
+        zdsSocket.error("title", "code", 233);
         $scope.getfiscalyears = function () {
             var msg = {
                 type: "call",

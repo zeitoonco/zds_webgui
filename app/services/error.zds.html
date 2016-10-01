@@ -3,10 +3,10 @@
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
-        <h4 class="modal-title" id="myModalLabel">خطا</h4>
+        <h4 class="modal-title" id="myModalLabel">خطا - {{vm.content.title}}</h4>
     </div>
     <div class="modal-body">
-        <p>{{msg}}</p>
+        <p>{{vm.content.body}}</p>
     </div>
 
     <div class="modal-footer">
