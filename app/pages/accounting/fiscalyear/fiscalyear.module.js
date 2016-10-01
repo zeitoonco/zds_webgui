@@ -29,12 +29,12 @@
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id=0) {
-            if (id == 0)
-                $scope.row = [];
-            else
-                $scope.row = id;
-            $scope.new = id == 0;
+        $scope.openmodal = function (page, size, id) {
+            fyid = id[0];
+            $scope.title = id[1];
+            $scope.startdate = moment(id[2]).format('jYYYY/jMM/jDD');
+            $scope.enddate = moment(id[3]).format('jYYYY/jMM/jDD');
+            //$scope.new = id == 0;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -75,36 +75,45 @@
             }
 
         };
-
         $scope.getfiscalyears();
+    });
+
+    fiscalyear.controller('newfiscalyear', function ($scope,zdsSocket,toastr) {
+       $scope.addfiscalyear = function () {
+           var msg = {
+               type: "call",
+               node: "AccountingRelay.newFiscalYear",
+               data: {userid: uid, title: $scope.title,start: $scope.startdate,end: $scope.end}
+           };
+           zdsSocket.send(msg, function (data) {
+               if (data["data"]["success"] == true) {
+                   toastr.success('اطلاعات با موفقیت اعمال شد!');
+
+               } else {
+                   toastr.error('!', 'خطا!');
+               }
+           });
+       }
+    });
 
 
-        $scope.doedit = function () {
-
-            if ($scope.new)
-                var msg = {
-                    type: "call",
-                    node: "AccountingRelay.newFiscalYear",
-                    data: {userid: uid, title: $scope.row[1], start: $scope.row[7], end: $scope.row[8]}
-                };
-            else
+    fiscalyear.controller('editfiscalyear', function ($scope,zdsSocket,toastr) {
+        $scope.modifyfiscalyear = function () {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.modifyFiscalYear",
-                    data: {userid: uid, id: $scope.row[0], title: $scope.row['1']}
+                    data: {userid: uid, id: fyid, title: $scope.title}
                 };
             zdsSocket.send(msg, function (data) {
                 if (data["data"]["success"] == true) {
-                    toastr.success($scope.new ? 'سال مالی ایجاد شد!' : 'سال مالی با موفقیت ویرایش شد!');
-                    $scope.getfiscalyears();
+                    toastr.success('اطلاعات با موفقیت اعمال شد!');
+
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
 
         }
-
-
     });
 
     fiscalyear.controller('removefiscalyear', function ($scope,zdsSocket,toastr,$uibModal) {

@@ -51,8 +51,6 @@ var uid,myname,myun,mypic;
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        toastr.success('اطلاعات با موفقیت اعمال شد');
-
                         mypic = data.data.image;
                         mypic = mypic.replace(/\\/g, "");
                         mypic = "data:image/png;base64," + mypic;
