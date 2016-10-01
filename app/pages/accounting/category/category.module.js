@@ -7,6 +7,9 @@
     var category = angular.module('ZDSGUI.pages.accounting.category',[])
         .config(routeConfig);
     category.controller('newcategory',function ($scope,zdsSocket,toastr) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getcategory();
+        });
         $scope.types = [
             { label: "ترازنامه ای" , value: 1 },
             { label: "سود و زیانی", value: 2 }
@@ -35,6 +38,9 @@
         }
     });
     category.controller('editcategory',function ($scope,zdsSocket,toastr) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getcategory();
+        });
         $scope.types = [
             { label: "ترازنامه ای" , value: 1 },
             { label: "سود و زیانی", value: 2 }
@@ -94,7 +100,6 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                        $scope.myData = data.data.result.rows;
-                        toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -105,13 +110,19 @@
             }
 
         }
-        $scope.doremove = function (id) {
-            var alert = confirm("آیا از حذف این طبقه مطمئن هستید؟");
-            if (alert == true){
+
+        $scope.getcategory();
+    });
+    category.controller('removecategory',function ($scope,zdsSocket,toastr,$uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getcategory();
+        });
+        $scope.doremove = function () {
+
             var msg = {
                 type: "call",
                 node: "AccountingRelay.removeCategory",
-                data: {userid: uid,id: id}
+                data: {userid: uid,id: cid}
             };
             if (zdsSocket.status() == 1) {
                 console.log(JSON.stringify(msg));
@@ -126,12 +137,7 @@
                 toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
             }
-            } else {
-
-            }
-
         }
-        $scope.getcategory();
     });
 
     function routeConfig($stateProvider) {

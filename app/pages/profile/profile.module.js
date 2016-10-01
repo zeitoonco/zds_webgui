@@ -13,7 +13,7 @@
     $stateProvider
         .state('profile', {
           url: '/profile',
-          title: 'Profile',
+          title: 'پروفایل',
           templateUrl: 'app/pages/profile/profile.html',
           controller: 'ProfilePageCtrl',
         });

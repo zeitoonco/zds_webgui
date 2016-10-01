@@ -1,4 +1,4 @@
-<div class="modal-content" ng-app="ZDSGUI.pages.accounting.fiscalyear" ng-controller="editfiscalyear">
+<div class="modal-content" ng-app="ZDSGUI.pages.accounting.fiscalyear" ng-controller="newfiscalyear">
     <div class="modal-header">
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
@@ -25,11 +25,9 @@
                        datepicker-config="datepickerConfig"
                        gregorian-formatted-picked-date="fenddate" gregorian-picked-date="enddate" ng-model="enddate">
             </div>
-
-
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="modifyfiscalyear();$dismiss()">تایید</button>
+        <button type="button" class="btn btn-primary" ng-click="addfiscalyear();$dismiss()">تایید</button>
     </div>
 </div>

@@ -18,7 +18,7 @@
         if (zdsSocket.status() == 1) {
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
-                    toastr.success('لیست مخاطبین شما دریافت شد!');
+                    //toastr.success('لیست مخاطبین شما دریافت شد!');
                     $scope.mycontacts = data['data']['contactList'];
 
                 } else {
@@ -47,7 +47,7 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        toastr.success('لیست گروه های شما دریافت شد!');
+                        //toastr.success('لیست گروه های شما دریافت شد!');
                         //var myData = data["data"]["groupList"];
                     } else {
                         toastr.error('!', 'خطا!');

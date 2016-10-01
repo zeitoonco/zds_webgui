@@ -5,14 +5,45 @@
 (function () {
     'use strict';
 
-    angular.module('ZDSGUI.pages.profile')
-        .controller('ProfilePageCtrl', ProfilePageCtrl);
+    var profile = angular.module('ZDSGUI.pages.profile');
+
+    profile.controller('userinfo', function ($scope,zdsSocket,toastr) {
+        $scope.un = myun;
+        $scope.name = myname;
+        $scope.updateinfo = function () {
+            var msg = {
+                type: "call",
+                node: "userman.modifyUser",
+                data: {userID: uid,username: $scope.un,name: $scope.name,password: $scope.pwd}
+            };
+
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    toastr.success('اطلاعات کاربری بروز شد!');
+                } else {
+                    toastr.danger('خطا!');
+                }
+            });
+        };
+    });
+
+
+
+
+
+
+
+    profile.controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, zdsSocket, $filter, $uibModal, toastr) {
         //$scope.picture = $filter('profilePicture')('Nasta');
-        $scope.un = myun;
-        $scope.name = myname;
+
+
+
+
+
 
         $scope.removePicture = function () {
             $scope.picture = $filter('appImage')('theme/no-photo.png');
@@ -29,8 +60,7 @@
                 console.log(JSON.stringify(msg));
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        toastr.success('اطلاعات با موفقیت اعمال شد');
-
+                        //toastr.success('اطلاعات با موفقیت اعمال شد');
                         mypic = data.data.image;
                         mypic = mypic.replace(/\\/g, "");
                         mypic = "data:image/png;base64," + mypic;

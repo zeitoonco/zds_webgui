@@ -7,33 +7,12 @@
  * created on 21.12.2015
  */
 (function () {
+    var fyid;
     'use strict';
 
     var fiscalyear = angular.module('ZDSGUI.pages.accounting.fiscalyear', [
         'ZDSGUI.boolean', 'ngJalaliFlatDatepicker'])
         .config(routeConfig);
-    fiscalyear.filter('jalaliDate', function () {
-        return function (inputDate, format) {
-            var date = moment(inputDate);
-            return date.format(format);
-        }
-    });
-    fiscalyear.filter('pStatus', function () {
-        return function (item) {
-            if (!item) {
-                return null
-            } else {
-                switch (item) {
-                    case '1':
-                        return "فعال";
-                    case '2':
-                        return "بسته شده";
-                    default:
-                        return item;
-                }
-            }
-        }
-    });
 
     fiscalyear.controller('editfiscal', function ($scope) {
         $scope.startdate = moment($scope.row[2]).format('jYYYY/jMM/jDD');
@@ -50,12 +29,12 @@
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id = 0) {
-            if (id == 0)
-                $scope.row = [];
-            else
-                $scope.row = id;
-            $scope.new = id == 0;
+        $scope.openmodal = function (page, size, id) {
+            fyid = id[0];
+            $scope.title = id[1];
+            $scope.startdate = moment(id[2]).format('jYYYY/jMM/jDD');
+            $scope.enddate = moment(id[3]).format('jYYYY/jMM/jDD');
+            //$scope.new = id == 0;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -70,7 +49,7 @@
             //$modalInstance.$scope.username = 'ali';
 
         };
-        zdsSocket.error("title", "code", 233);
+
         $scope.getfiscalyears = function () {
             var msg = {
                 type: "call",
@@ -96,43 +75,54 @@
             }
 
         };
-
         $scope.getfiscalyears();
+    });
+
+    fiscalyear.controller('newfiscalyear', function ($scope,zdsSocket,toastr) {
+       $scope.addfiscalyear = function () {
+           var msg = {
+               type: "call",
+               node: "AccountingRelay.newFiscalYear",
+               data: {userid: uid, title: $scope.title,start: $scope.startdate,end: $scope.end}
+           };
+           zdsSocket.send(msg, function (data) {
+               if (data["data"]["success"] == true) {
+                   toastr.success('اطلاعات با موفقیت اعمال شد!');
+
+               } else {
+                   toastr.error('!', 'خطا!');
+               }
+           });
+       }
+    });
 
 
-        $scope.doedit = function () {
-
-            if ($scope.new)
-                var msg = {
-                    type: "call",
-                    node: "AccountingRelay.newFiscalYear",
-                    data: {userid: uid, title: $scope.row[1], start: $scope.row[7], end: $scope.row[8]}
-                };
-            else
+    fiscalyear.controller('editfiscalyear', function ($scope,zdsSocket,toastr) {
+        $scope.modifyfiscalyear = function () {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.modifyFiscalYear",
-                    data: {userid: uid, id: $scope.row[0], title: $scope.row['1']}
+                    data: {userid: uid, id: fyid, title: $scope.title}
                 };
             zdsSocket.send(msg, function (data) {
                 if (data["data"]["success"] == true) {
-                    toastr.success($scope.new ? 'سال مالی ایجاد شد!' : 'سال مالی با موفقیت ویرایش شد!');
-                    $scope.getfiscalyears();
+                    toastr.success('اطلاعات با موفقیت اعمال شد!');
+
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
 
         }
+    });
 
-        $scope.doremove = function (id) {
+    fiscalyear.controller('removefiscalyear', function ($scope,zdsSocket,toastr,$uibModal) {
 
-            var alert = confirm("آیا از حذف این سال مالی مطمئن هستید؟");
-            if (alert == true) {
+        $scope.doremove = function () {
                 var msg = {
                     type: "call",
                     node: "AccountingRelay.removeFiscalYear",
-                    data: {userid: uid, id: id}
+                    data: {userid: uid, id: fyid}
                 };
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
@@ -142,11 +132,32 @@
                         toastr.error('!', 'خطا!');
                     }
                 });
-            }
         }
     });
 
 
+    fiscalyear.filter('jalaliDate', function () {
+        return function (inputDate, format) {
+            var date = moment(inputDate);
+            return date.format(format);
+        }
+    });
+    fiscalyear.filter('pStatus', function () {
+        return function (item) {
+            if (!item) {
+                return null
+            } else {
+                switch (item) {
+                    case '1':
+                        return "فعال";
+                    case '2':
+                        return "بسته شده";
+                    default:
+                        return item;
+                }
+            }
+        }
+    });
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
