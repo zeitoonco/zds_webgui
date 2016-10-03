@@ -92,7 +92,7 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.myData = data.data.result.rows;
-                        toastr.success('اطلاعات با موفقیت دریافت شد!');
+                        //toastr.success('اطلاعات با موفقیت دریافت شد!');
                     } else {
                         toastr.error('!', 'خطا!');
                     }

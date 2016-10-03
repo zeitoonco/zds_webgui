@@ -20,7 +20,9 @@
     });
 
     fiscalyear.controller('fiscaltable', function ($scope, zdsSocket, toastr, $uibModal) {
-
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getfiscalyears();
+        });
 
         $scope.datepickerConfig = {
             dateFormat: 'jYYYY/jMM/jDD',
@@ -29,11 +31,11 @@
             allowFuture: true
         };
 
-        $scope.openmodal = function (page, size, id) {
-            fyid = id[0];
-            $scope.title = id[1];
-            $scope.startdate = moment(id[2]).format('jYYYY/jMM/jDD');
-            $scope.enddate = moment(id[3]).format('jYYYY/jMM/jDD');
+        $scope.openmodal = function (page, size, id,t,sd,ed) {
+            fyid = id;
+            $scope.title = t;
+            $scope.startdate = moment(sd).format('jYYYY/jMM/jDD');
+            $scope.enddate = moment(ed).format('jYYYY/jMM/jDD');
             //$scope.new = id == 0;
             $uibModal.open({
                 animation: true,
@@ -79,12 +81,16 @@
     });
 
     fiscalyear.controller('newfiscalyear', function ($scope,zdsSocket,toastr) {
-       $scope.addfiscalyear = function () {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getfiscalyears();
+        });
+        $scope.addfiscalyear = function () {
            var msg = {
                type: "call",
                node: "AccountingRelay.newFiscalYear",
-               data: {userid: uid, title: $scope.title,start: $scope.startdate,end: $scope.end}
+               data: {userid: uid, title: $scope.title,start: $scope.fstartdate,end: $scope.fenddate}
            };
+           console.log(JSON.stringify(msg));
            zdsSocket.send(msg, function (data) {
                if (data["data"]["success"] == true) {
                    toastr.success('اطلاعات با موفقیت اعمال شد!');
@@ -98,6 +104,9 @@
 
 
     fiscalyear.controller('editfiscalyear', function ($scope,zdsSocket,toastr) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getfiscalyears();
+        });
         $scope.modifyfiscalyear = function () {
                 var msg = {
                     type: "call",

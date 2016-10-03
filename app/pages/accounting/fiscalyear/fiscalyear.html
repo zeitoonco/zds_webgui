@@ -6,7 +6,7 @@
                     <div class="button-wrapper">
                         <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
                                 style="float: right;"
-                                ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearedit.html', 'md')"><i
+                                ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearnew.html', 'md')"><i
                                 class="ion-plus"></i>
                             سال مالی جدید
                         </button>
@@ -40,10 +40,10 @@
                         <td>{{ x[4] | pStatus }}</td>
                         <td>
                             <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                    ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearnew.html', 'md',x)">
+                                    ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearedit.html', 'md',x[0],x[1],x[2],x[3])">
                                 ویرایش
                             </button>
-                            <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/fiscalyear/removemodal.html', 'sm',x)" id='remove-btn'>حذف</button>
+                            <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/fiscalyear/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف</button>
                         </td>
                     </tr>
                 </table>
