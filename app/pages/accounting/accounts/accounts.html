@@ -87,7 +87,7 @@
                         <th>عملیات</th>
                     </tr>
                     </thead>
-                    <tr ng-repeat="x in myData">
+                    <tr ng-repeat="x in myData | stPagination">
                         <td>{{ x[0] }}</td>
                         <td>{{ x[1] | accounttype}}</td>
                         <td>{{ x[2] }}</td>
@@ -106,15 +106,10 @@
                             </button>
                         </td>
                     </tr>
-                    <tfoot>
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            <div st-pagination="" st-items-by-page="3" st-displayed-pages="5"></div>
-                        </td>
-                    </tr>
-                    </tfoot>
-                </table>
 
+                </table>
+                <st-pagination collection="myData" css-config="bootstrap3"></st-pagination>
+                <st-pagination-limit collection="commits" limits="[5,10,20,50,100]" ></st-pagination-limit>
 
             </div>
         </div>

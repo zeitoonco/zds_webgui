@@ -10,7 +10,7 @@
 (function () {
     'use strict';
     var aid;
-    var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean'])
+    var account = angular.module('ZDSGUI.pages.accounting.accounts', ['ZDSGUI.pages.components.tree', 'ZDSGUI.boolean', 'stPagination'])
         .config(routeConfig);
     account.controller('newaccount', function ($scope, zdsSocket, toastr) {
         $scope.hbtc = 0;

@@ -94,10 +94,11 @@
                 if (zdsSocket.status() == 1) {
                     console.log(JSON.stringify(msg));
                     var temp = "data:image/png;base64," + encoded;
-                    document.getElementById('mypic').setAttribute('src', temp);
+
                     zdsSocket.send(msg, function (data) {
                         if (data["success"] == true) {
                             toastr.success('اطلاعات با موفقیت اعمال شد');
+                            document.getElementById('ppic').setAttribute('src', temp);
                             document.getElementById('mypic').setAttribute('src', temp);
                         } else {
                             toastr.error('!', 'خطا!');
