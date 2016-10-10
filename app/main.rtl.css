@@ -1124,6 +1124,10 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 5px;
 }
 
+.modal .form-group #pid {
+    display:block;padding:10px;overflow:auto;color:orange;
+}
+
 .modal .form-group input {
     margin: 0;
 }

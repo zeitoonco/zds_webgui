@@ -9,12 +9,12 @@
 
 (function () {
     'use strict';
-    var aid;
-    var account = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean'])
+    //var aid;
+    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean'])
         .config(routeConfig);
 
 
-    account.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
+    list.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
         $scope.ignoreChanges = false;
 
     });

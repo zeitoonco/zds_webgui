@@ -15,17 +15,22 @@
     </div>
 
     <div class="form-group">
-      <label for="usr">حساب سرشاخه:</label>
-      <input type="number" class="form-control" id="parentid" ng-model="pid">
+      <label for="pid">حساب سرشاخه:</label>
+      <!--<input type="number" class="form-control" id="parentid" ng-model="pid">-->
+      <select class="form-control selectpicker" selectpicker title="نوع حساب"
+              ng-model="pid"
+              ng-options="i[0] as i[0] for i in pids">
+      </select>
     </div>
 
     <div class="form-group">
       <label for="code">کد:</label>
-      <input type="number"  class="form-control" id="code" ng-model="code">
+      <input type="number" min="10"  max="99" class="form-control" id="code" ng-model="code">
+      <span id="pid">کد نهایی: {{pid + code}}</span>
     </div>
 
     <div class="form-group">
-      <label for="usr">عنوان حساب:</label>
+      <label for="title2">عنوان حساب:</label>
       <input type="text" class="form-control" id="title2" ng-model="title">
     </div>
 

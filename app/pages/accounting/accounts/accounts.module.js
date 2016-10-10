@@ -18,23 +18,54 @@
         $scope.hc = 0;
         $scope.hcc = 0;
         $scope.ht = 0;
+        $scope.code = 0;
+        $scope.pid = 0;
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getaccounts();
         });
 
         $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
         $scope.refreshmodal = function () {
-            if ($scope.type == 3 || $scope.type == 2) {
-                //alert("گروه یا معین");
+            if ($scope.type == 3) {
+                //alert("معین");
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
+                $scope.refreshpid('2');
+            } else if ($scope.type == 2){
+                $scope.i1 = 'بدهکار';
+                $scope.i2 = 'بستانکار';
+                $scope.i3 = 'مهم نیست';
+                $scope.refreshpid('1');
             } else {
                 //alert("معین");
                 $scope.i1 = 'ترازنامه ای';
                 $scope.i2 = 'سود و زیانی';
                 $scope.i3 = 'انتظامی';
+                $scope.refreshpid('0');
             }
+
+        }
+
+        $scope.refreshpid = function (type) {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['accountid'],
+                    'where': [['del', '=', '0','AND'],['type','=',type]]
+
+                }
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.pids = data.data.result.rows;
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
         }
 
         $scope.addaccount = function () {
@@ -45,7 +76,7 @@
                     userid: uid,
                     parent: $scope.pid,
                     type: $scope.type,
-                    code: $scope.code,
+                    code: $scope.pid + $scope.code,
                     title: $scope.title,
                     title2: $scope.title,
                     isactive: $scope.en,
@@ -222,6 +253,13 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     $scope.myData = data.data.result.rows;
+                    $scope.temp = [];
+                    for (var i=0;i<$scope.myData.length;i++){
+                        $scope.temp.push({accountid: $scope.myData[i][0],type: $scope.myData[i][1],title: $scope.myData[i][2],
+                            hasdl: $scope.myData[i][3],hasc: $scope.myData[i][4],hast: $scope.myData[i][5],en: $scope.myData[i][6]});
+
+                    }
+
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -232,6 +270,7 @@
 
 
         $scope.getaccounts();
+
     });
 
     account.controller('removeaccount', function ($scope, zdsSocket, toastr, $uibModal) {
