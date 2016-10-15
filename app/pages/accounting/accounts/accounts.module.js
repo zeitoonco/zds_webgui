@@ -1,7 +1,6 @@
 /**
  * Created by Pedram2 on 8/30/2016.
  */
-
 /**
  * @author v.lugovsky
  * created on 21.12.2015
@@ -53,7 +52,7 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid'],
+                    'columns': ['accountid','title'],
                     'where': [['del', '=', '0','AND'],['type','=',type]]
 
                 }
@@ -108,23 +107,53 @@
     account.controller('editaccount', function ($scope, zdsSocket, toastr) {
 
         $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
+        $scope.refreshmodal = function () {
+            if ($scope.type == 3) {
+                //alert("معین");
+                $scope.i1 = 'بدهکار';
+                $scope.i2 = 'بستانکار';
+                $scope.i3 = 'مهم نیست';
+                $scope.refreshpid('2');
+            } else if ($scope.type == 2){
+                $scope.i1 = 'بدهکار';
+                $scope.i2 = 'بستانکار';
+                $scope.i3 = 'مهم نیست';
+                $scope.refreshpid('1');
+            } else {
+                //alert("معین");
+                $scope.i1 = 'ترازنامه ای';
+                $scope.i2 = 'سود و زیانی';
+                $scope.i3 = 'انتظامی';
+                $scope.refreshpid('0');
+            }
 
+        }
+
+        $scope.refreshpid = function (type) {
+            var msg = {
+                type: "call",
+                node: "AccountingRelay.query",
+                data: {
+                    'table': 'Account',
+                    'columns': ['accountid','title'],
+                    'where': [['del', '=', '0','AND'],['type','=',type]]
+
+                }
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.pids = data.data.result.rows;
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
 
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getaccounts();
         });
-
-        $scope.refreshmodal = function () {
-            if ($scope.type == 3 || $scope.type == 2) {
-                $scope.i1 = 'بدهکار';
-                $scope.i2 = 'بستانکار';
-                $scope.i3 = 'مهم نیست';
-            } else {
-                $scope.i1 = 'ترازنامه ای';
-                $scope.i2 = 'سود و زیانی';
-                $scope.i3 = 'انتظامی';
-            }
-        }
+        
 
         $scope.getinfo = function () {
             var msg = {
@@ -171,7 +200,8 @@
                     hascurrency: $scope.hc,
                     hascurrencyconversion: $scope.hcc,
                     hastracking: $scope.ht,
-                    hastrackingcheck: '0'
+                    hastrackingcheck: '0',
+
                 }
             };
             console.log(JSON.stringify(msg));
