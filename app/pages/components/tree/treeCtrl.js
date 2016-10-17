@@ -30,7 +30,7 @@
           'icon': 'ion-document-text'
         }
       },
-      'plugins': ['types'],
+      'plugins': ['types','checkbox'],
       'version': 1
     };
 

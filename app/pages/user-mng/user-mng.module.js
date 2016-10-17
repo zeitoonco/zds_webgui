@@ -7,6 +7,7 @@
     angular.module('ZDSGUI.pages.user-mng', [
         'ZDSGUI.pages.user-mng.prs-mng',
         'ZDSGUI.pages.user-mng.user',
+        'ZDSGUI.pages.user-mng.group-mng'
     ])
         .config(routeConfig);
 
