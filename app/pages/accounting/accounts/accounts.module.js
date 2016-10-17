@@ -153,7 +153,7 @@
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getaccounts();
         });
-        
+
 
         $scope.getinfo = function () {
             var msg = {
@@ -336,6 +336,7 @@
         $scope.newNode = {};
         $scope.activeId = 0;
         $scope.basicConfig = {
+
             core: {
                 multiple: false,
                 check_callback: true,
