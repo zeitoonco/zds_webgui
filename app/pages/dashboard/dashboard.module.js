@@ -3,40 +3,40 @@
  * created on 16.12.2015
  */
 (function () {
-  'use strict';
+    'use strict';
 
-   var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
+    var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
 
-    dash.controller('contact',function ($scope,zdsSocket, toastr, $uibModal) {
-    $scope.listcontacts = function () {
-        var msg = {
-            type: "call",
-            node: "userman.listContacts",
-            id: "1234568",
-            data: {value: uid}
-        };
-        if (zdsSocket.status() == 1) {
-            zdsSocket.send(msg, function (data) {
-                if (data["success"] == true) {
-                    //toastr.success('لیست مخاطبین شما دریافت شد!');
-                    $scope.mycontacts = data['data']['contactList'];
+    dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.listcontacts = function () {
+            var msg = {
+                type: "call",
+                node: "userman.listContacts",
+                id: "1234568",
+                data: {value: uid}
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        //toastr.success('لیست مخاطبین شما دریافت شد!');
+                        $scope.mycontacts = data['data']['contactList'];
 
-                } else {
-                    toastr.error('!', 'خطا!');
+                    } else {
+                        toastr.error('!', 'خطا!');
 
-                    //$scope.LoginDisabled = false;
+                        //$scope.LoginDisabled = false;
 
-                }
-            });
-        } else {
-            toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
+            }
         }
-    }
         $scope.listcontacts();
     });
 
-    dash.controller('group',function ($scope,zdsSocket, toastr, $uibModal) {
+    dash.controller('group', function ($scope, zdsSocket, toastr, $uibModal) {
         function listgroup() {
             var msg = {
                 type: "call",
@@ -61,24 +61,25 @@
 
             }
         }
+
         listgroup();
 
     });
 
 
-
-  /** @ngInject */
-  function routeConfig($stateProvider) {
-    $stateProvider
-        .state('dashboard', {
-          url: '/dashboard',
-          templateUrl: 'app/pages/dashboard/dashboard.html',
-          title: 'داشبورد',
-          sidebarMeta: {
-            icon: 'ion-android-home',
-            order: 0,
-          },
-        });
-  }
+    /** @ngInject */
+    function routeConfig($stateProvider) {
+        $stateProvider
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'app/pages/dashboard/dashboard.html',
+                title: 'داشبورد',
+                permission: '_masterPermission',
+                sidebarMeta: {
+                    icon: 'ion-android-home',
+                    order: 0,
+                },
+            });
+    }
 
 })();

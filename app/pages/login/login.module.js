@@ -1,10 +1,10 @@
-var uid,myname,myun,mypic;
+var uid, myname, myun, mypic;
 (function () {
     'use strict';
 
     var login = angular.module('ZDSGUI.pages.login', [])
         .config(routeConfig);
-    login.controller('loginAction', function ($scope, $location, $rootScope, zdsSocket, toastr) {
+    login.controller('loginAction', function ($scope, $location, $rootScope, zdsSocket, toastr, baSidebarService) {
         $scope.LoginDisabled = false;
         $scope.username = "admin";
         $scope.password = "admin";
@@ -24,6 +24,12 @@ var uid,myname,myun,mypic;
                         myname = data.data.userInfo['name'];
                         myun = data.data.userInfo['username'];
                         //mypwd = data.data.userInfo['password'];
+                        $rootScope.$permissions = [];
+                        var index;
+                        for (index = 0; index < data.data.permissions.length; ++index) {
+                            $rootScope.$permissions.push(data.data.permissions[index].name);
+                        }
+                        baSidebarService.setPermissions($rootScope.$permissions);
                         $rootScope.$logedin = true;
                         $scope.mypic();
                         $location.path("/dashboard");

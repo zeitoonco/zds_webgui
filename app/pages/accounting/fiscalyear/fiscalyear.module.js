@@ -174,6 +174,7 @@
                 url: '/fiscalyear',
                 templateUrl: 'app/pages/accounting/fiscalyear/fiscalyear.html',
                 title: 'سال مالی',
+                permission: 'AccountingRelay.newFiscalYear',
                 sidebarMeta: {
                     order: 800
                 }
