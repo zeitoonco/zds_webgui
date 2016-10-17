@@ -146,6 +146,7 @@
                 url: '/category',
                 templateUrl: 'app/pages/accounting/category/category.html',
                 title: 'طبقه بندی',
+                permission:'AccountingRelay.newCategory',
                 sidebarMeta: {
                     order: 900
                 }

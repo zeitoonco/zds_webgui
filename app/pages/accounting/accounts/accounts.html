@@ -58,7 +58,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="button-wrapper">
-                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                        <button type="button" zdsperm="AccountingRelay.newAccount" class="btn btn-default btn-lg" data-toggle="modal"
                                 style="float: right;"
                                 ng-click="openmodal('app/pages/accounting/accounts/newmodal.html', 'md',[])"><i
                                 class="ion-plus"></i>
@@ -96,11 +96,11 @@
                         <td>{{ x[5] | persianboolean}}</td>
                         <td>{{ x[6] | persianboolean}}</td>
                         <td>
-                            <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                            <button zdsperm="AccountingRelay.modifyAccount" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                     ng-click="openmodal('app/pages/accounting/accounts/editmodal.html', 'md',x)">
                                 ویرایش
                             </button>
-                            <button class="btn btn-danger btn-xs"
+                            <button zdsperm="AccountingRelay.removeAccount" class="btn btn-danger btn-xs"
                                     ng-click="openmodal('app/pages/accounting/accounts/removemodal.html', 'sm',x)"
                                     id='remove-btn'>حذف
                             </button>

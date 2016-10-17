@@ -130,6 +130,7 @@
                 url: '/dl',
                 templateUrl: 'app/pages/accounting/dl/dl.html',
                 title: 'حساب های تفضیلی',
+                permission: 'AccountingRelay.newDL',
                 sidebarMeta: {
                     order: 102
                 }

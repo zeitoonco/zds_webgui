@@ -18,6 +18,7 @@
                 template : '<ui-view></ui-view>',
                 abstract: true,
                 title: 'مدیریت کاربران',
+                permission: 'UserManagement',
                 sidebarMeta: {
                     icon: 'ion-person-stalker',
                     order: 2,

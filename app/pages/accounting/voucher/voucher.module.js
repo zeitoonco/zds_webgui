@@ -478,6 +478,7 @@
                 url: '/voucher',
                 templateUrl: 'app/pages/accounting/voucher/voucher.html',
                 title: 'سند مالی',
+                permission: 'AccountingRelay.newVoucher',
                 sidebarMeta: {
                     order: 100
                 }

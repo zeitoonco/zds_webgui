@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="button-wrapper">
-                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                    <button type="button" zdsperm="AccountingRelay.newDL" class="btn btn-default btn-lg" data-toggle="modal"
                             style="float: right;"
                             ng-click="openmodal('app/pages/accounting/dl/newmodal.html', 'md')"><i
                             class="ion-plus"></i>
@@ -38,11 +38,11 @@
                         <td>{{ x[2] }}</td>
                         <td>{{ x[5] | persianboolean }}</td>
                         <td>
-                            <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                            <button zdsperm="AccountingRelay.modifyDL" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                     ng-click="openmodal('app/pages/accounting/dl/editmodal.html', 'md',x[0],x[1],x[2],x[5])">
                                 ویرایش
                             </button>
-                            <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/dl/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف</button>
+                            <button zdsperm="AccountingRelay.removeDL" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/dl/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف</button>
                         </td>
                     </tr>
                 </table>
