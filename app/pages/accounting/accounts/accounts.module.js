@@ -472,6 +472,7 @@
                 url: '/accounts',
                 templateUrl: 'app/pages/accounting/accounts/accounts.html',
                 title: 'حساب ها',
+                permission:'AccountingRelay.newAccount',
                 sidebarMeta: {
                     order: 101
                 }

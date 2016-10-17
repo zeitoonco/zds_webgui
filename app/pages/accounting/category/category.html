@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="button-wrapper">
-                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                    <button type="button" zdsperm="AccountingRelay.newCategory" class="btn btn-default btn-lg" data-toggle="modal"
                             style="float: right;"
                             ng-click="openmodal('app/pages/accounting/category/newmodal.html', 'md')"><i
                             class="ion-plus"></i>
@@ -39,8 +39,8 @@
                     <td>{{ x[0] }}</td>
                     <td>{{ x[1] }}</td>
                     <td>{{ x[2] }}</td>
-                    <td><button class="btn btn-primary btn-xs"  id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
-                        <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/accounting/category/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف</button></td>
+                    <td><button class="btn btn-primary btn-xs" zdsperm="AccountingRelay.modifyCategory" id='edit-btn' data-toggle="modal" ng-click="openmodal('app/pages/accounting/category/editmodal.html', 'md',x[0],x[1],x[2])">ویرایش</button>
+                        <button class="btn btn-danger btn-xs" zdsper="AccountingRelay.removeCategory" ng-click="openmodal('app/pages/accounting/category/removemodal.html', 'sm',x[0])" id='remove-btn'>حذف</button></td>
                 </tr>
             </table>
 

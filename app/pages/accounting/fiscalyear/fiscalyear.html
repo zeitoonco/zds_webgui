@@ -40,11 +40,11 @@
                             <td>{{ x[3] | jalaliDate:'jYYYY/jMM/jDD' }}</td>
                             <td>{{ x[4] | pStatus }}</td>
                             <td>
-                                <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                <button zdsperm="AccountingRelay.modifyFiscalYear" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                         ng-click="openmodal('app/pages/accounting/fiscalyear/fiscalyearedit.html', 'md',x[0],x[1],x[2],x[3])">
                                     ویرایش
                                 </button>
-                                <button class="btn btn-danger btn-xs"
+                                <button zdsperm="AccountingRelay.removeFiscalYear" class="btn btn-danger btn-xs"
                                         ng-click="openmodal('app/pages/accounting/fiscalyear/removemodal.html', 'sm',x[0])"
                                         id='remove-btn'>حذف
                                 </button>

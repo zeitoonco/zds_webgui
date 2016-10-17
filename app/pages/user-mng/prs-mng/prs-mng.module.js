@@ -142,6 +142,7 @@ var editid;
                 url: '/prs-mng',
                 templateUrl: 'app/pages/user-mng/prs-mng/prs-mng.html',
                 title: 'دسترسی ها',
+                permission: 'userman.registerPermission',
                 sidebarMeta: {
                     icon: 'ion-android-home',
                     order: 4,
