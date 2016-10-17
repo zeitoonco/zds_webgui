@@ -27,7 +27,8 @@ var uid, myname, myun, mypic;
                         $rootScope.$permissions = [];
                         var index;
                         for (index = 0; index < data.data.permissions.length; ++index) {
-                            $rootScope.$permissions.push(data.data.permissions[index].name);
+                            if (data.data.permissions[index].state > 0)
+                                $rootScope.$permissions.push(data.data.permissions[index].name);
                         }
                         baSidebarService.setPermissions($rootScope.$permissions);
                         $rootScope.$logedin = true;
