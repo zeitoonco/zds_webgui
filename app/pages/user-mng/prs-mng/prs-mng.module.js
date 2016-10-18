@@ -130,7 +130,6 @@ var editid;
                     }
                 }
             });
-            alert(id);
         }
 
     });
