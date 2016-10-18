@@ -41,10 +41,10 @@
                                 دسترسی ها
                             </button>
                             <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                    ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID,x.title,x.description)">
+                                    ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID,x.title,x.description,x.parentID)">
                                 ویرایش
                             </button>
-                            <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID)" id='remove-btn'>حذف</button>
+                            <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/group-mng/removemodal.html', 'sm',x.usergroupID)" id='remove-btn'>حذف</button>
                         </td>
                     </tr>
                 </table>

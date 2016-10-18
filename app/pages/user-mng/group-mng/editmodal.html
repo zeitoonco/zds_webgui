@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
       <select class="form-control selectpicker" selectpicker title="گروه والد"
-              ng-model="pid" ng-change=""
+              ng-model="pid" ng-init="pid=pid"
               ng-options="x.usergroupID as x.usergroupID + '-' + x.title for x in grouplist">
       </select>
     </div>
