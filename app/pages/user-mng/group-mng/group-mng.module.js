@@ -7,7 +7,6 @@
     var groupmng = angular.module('ZDSGUI.pages.user-mng.group-mng', [])
         .config(routeConfig);
     groupmng.controller('group-mng',function ($scope,zdsSocket,$uibModal) {
-
         $scope.getgroups = function () {
             var msg = {
                 type: "call",
@@ -22,10 +21,6 @@
                 }
             });
         }
-
-
-
-
         $scope.openmodal = function (page, size, id,t,d) {
             $scope.id = id;
             $scope.title = t;
@@ -91,7 +86,25 @@
     });
 
     groupmng.controller('editgroup',function ($scope,zdsSocket,$uibModal) {
+        $scope.$on('modal.closing', function (event, reason, closed) {
+            $scope.getgroups();
+        });
 
+        $scope.modifygroup = function () {
+            var msg = {
+                type: "call",
+                node: "userman.updateUsergroup",
+                data: {GroupID:$scope.gid,title: $scope.title,parentID: $scope.pid,description: $scope.dec}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["data"]["result"] == true) {
+                    toastr.success('اطلاعات با موفقیت اعمال شد!');
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
     });
 
 
