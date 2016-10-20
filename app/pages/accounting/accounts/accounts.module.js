@@ -31,7 +31,7 @@
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
                 $scope.refreshpid('2');
-            } else if ($scope.type == 2){
+            } else if ($scope.type == 2) {
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
@@ -52,8 +52,8 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid','title'],
-                    'where': [['del', '=', '0','AND'],['type','=',type]]
+                    'columns': ['accountid', 'title'],
+                    'where': [['del', '=', '0', 'AND'], ['type', '=', type]]
 
                 }
             };
@@ -114,7 +114,7 @@
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
                 $scope.refreshpid('2');
-            } else if ($scope.type == 2){
+            } else if ($scope.type == 2) {
                 $scope.i1 = 'بدهکار';
                 $scope.i2 = 'بستانکار';
                 $scope.i3 = 'مهم نیست';
@@ -135,8 +135,8 @@
                 node: "AccountingRelay.query",
                 data: {
                     'table': 'Account',
-                    'columns': ['accountid','title'],
-                    'where': [['del', '=', '0','AND'],['type','=',type]]
+                    'columns': ['accountid', 'title'],
+                    'where': [['del', '=', '0', 'AND'], ['type', '=', type]]
 
                 }
             };
@@ -217,7 +217,7 @@
         }
     });
 
-    account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal,editableThemes,editableOptions) {
+    account.controller('accounttable', function ($scope, zdsSocket, toastr, $uibModal, editableThemes, editableOptions) {
         $scope.tableconfig = {
             itemsPerPage: 2,
             fillLastPage: true
@@ -254,6 +254,7 @@
             $scope.hc = x[4] == 't';
             $scope.hcc = x[11] == 't';
             $scope.ht = x[5] == 't';
+            $scope.path = x[12];
 
             $uibModal.open({
                 animation: true,
@@ -273,10 +274,9 @@
                 type: "call",
                 node: "AccountingRelay.query",
                 data: {
-                    'table': 'Account',
+                    'table': 'accountview',
                     'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency',
-                        'HasTracking', 'IsActive', 'code', 'parentid', 'balancetype', 'hasbalancetypecheck', 'HasCurrencyConversion'],
-                    'where': [['del', '=', '0']]
+                        'HasTracking', 'IsActive', 'code', 'parentid', 'balancetype', 'hasbalancetypecheck', 'HasCurrencyConversion', 'path']
 
                 }
             };
@@ -284,9 +284,16 @@
                 if (data["success"] == true) {
                     $scope.myData = data.data.result.rows;
                     $scope.temp = [];
-                    for (var i=0;i<$scope.myData.length;i++){
-                        $scope.temp.push({accountid: $scope.myData[i][0],type: $scope.myData[i][1],title: $scope.myData[i][2],
-                            hasdl: $scope.myData[i][3],hasc: $scope.myData[i][4],hast: $scope.myData[i][5],en: $scope.myData[i][6]});
+                    for (var i = 0; i < $scope.myData.length; i++) {
+                        $scope.temp.push({
+                            accountid: $scope.myData[i][0],
+                            type: $scope.myData[i][1],
+                            title: $scope.myData[i][2],
+                            hasdl: $scope.myData[i][3],
+                            hasc: $scope.myData[i][4],
+                            hast: $scope.myData[i][5],
+                            en: $scope.myData[i][6]
+                        });
 
                     }
 
@@ -426,9 +433,8 @@
                 type: "call",
                 node: "AccountingRelay.query",
                 data: {
-                    'table': 'Account',
-                    'columns': ['accountid', 'parentid', 'title2', 'Type', '*'],
-                    'where': [['del', '=', '0']]
+                    'table': 'accountview',
+                    'columns': ['accountid', 'parentid', 'title2', 'Type', '*']
 
                 }
             };
@@ -473,7 +479,7 @@
                 url: '/accounts',
                 templateUrl: 'app/pages/accounting/accounts/accounts.html',
                 title: 'حساب ها',
-                permission:'AccountingRelay.accountlist',
+                permission: 'AccountingRelay.accountlist',
                 sidebarMeta: {
                     order: 101
                 }

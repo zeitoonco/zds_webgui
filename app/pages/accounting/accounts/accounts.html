@@ -20,6 +20,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        کد کامل:
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{myData[activeId][16]}}
+                                    </div>
+                                </div>
+                                <div class="row">
 
                                     <div class="col-md-6">
                                         نام حساب:
@@ -87,7 +95,7 @@
                         <th>عملیات</th>
                     </tr>
                     </thead>
-                    <tr ng-repeat="x in myData | stPagination">
+                    <tr ng-repeat="x in myData">
                         <td>{{ x[0] }}</td>
                         <td>{{ x[1] | accounttype}}</td>
                         <td>{{ x[2] }}</td>
@@ -108,6 +116,7 @@
                     </tr>
 
                 </table>
+
 
             </div>
 
