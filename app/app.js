@@ -18,5 +18,6 @@ angular.module('ZDSGUI', [
     'ZDSGUI.boolean',
     'ZDSGUI.theme',
     'ZDSGUI.pages',
-    'ngJalaliFlatDatepicker'
+    'ngJalaliFlatDatepicker',
+    'ntt.TreeDnD',
 ]);
