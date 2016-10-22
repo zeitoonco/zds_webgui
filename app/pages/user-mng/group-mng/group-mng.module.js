@@ -146,7 +146,35 @@
         }
     });
 
+    groupmng.controller('editgroupperm',function ($scope,zdsSocket,$uibModal,toastr) {
+        $scope.models = {
+            selected: null,
+            lists: {"yes": [], "no": []}
+        };
 
+        $scope.getperm = function () {
+            var msg = {
+                type: "call",
+                node: "userman.listUsergroupPermissions",
+                data: {value: $scope.gid}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.models.lists.yes = data['data']['listPermissions'];
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
+
+        $scope.$watch('models', function(model) {
+            $scope.modelAsJson = angular.toJson(model, true);
+        }, true);
+
+        $scope.getperm();
+
+    });
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
