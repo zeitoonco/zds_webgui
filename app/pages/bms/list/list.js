@@ -13,12 +13,18 @@
     var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean'])
         .config(routeConfig);
 
-
     list.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
         $scope.ignoreChanges = false;
+        $scope.value = '789';
+        $scope.options = {
+            size: 4,
+            align: 'left'
 
+        };
     });
-
+    list.controller('bms2', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.ignoreChanges = false;
+    });
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
