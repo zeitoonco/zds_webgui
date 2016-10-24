@@ -25,7 +25,8 @@
             .state('bms.list', {
                 url: '/bms/list',
                 templateUrl: 'app/pages/bms/list/list.html',
-                title: 'لیست ساختمان ها',
+                permission: 'AccountingRelay',
+                title: 'مناطق',
                 sidebarMeta: {
                     order: 101
                 }

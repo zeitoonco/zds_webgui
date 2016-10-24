@@ -10,6 +10,7 @@
             .state('bms', {
                 url: '/bms',
                 template: '<ui-view></ui-view>',
+                permission: 'AccountingRelay',
                 abstract: true,
                 title: 'مدیریت ساختمان',
                 sidebarMeta: {
