@@ -24,7 +24,6 @@ var tempname = '', tempun = '', tempid = '';
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-
                         $scope.result = "True";
                         $scope.myData = data['data']['userList'];
                     } else {
@@ -128,10 +127,10 @@ var tempname = '', tempun = '', tempid = '';
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
 
-                if (data["success"] == true && data["data"]["userGroupsList"].length) {
+                if (data["success"] == true && data["data"]["userGroupsList"].length>0) {
                     //toastr.success('گروهی برای این کاربر وجود ندارد');
                     //$scope.getlistuser();
-                    $scope.myData = data['data']['userGroupsList'];
+                    $scope.groups = data['data']['userGroupsList'];
                 } else {
                     toastr.warning('اطلاعاتی موجود نیست');
                 }

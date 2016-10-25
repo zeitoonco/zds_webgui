@@ -10,10 +10,10 @@
 (function () {
     'use strict';
     //var aid;
-    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean'])
+    var list = angular.module('ZDSGUI.pages.bms.area', ['ZDSGUI.boolean'])
         .config(routeConfig);
 
-    list.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
+    list.controller('area', function ($scope, zdsSocket, toastr, $uibModal) {
         $scope.ignoreChanges = false;
         $scope.value = '789';
         $scope.options = {
