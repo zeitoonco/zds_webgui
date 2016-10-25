@@ -3,35 +3,16 @@
         <div id="bms-tree" ba-panel ba-panel-title="لیست ساختمان ها" ba-panel-class="with-scroll tree-panel">
             <div class="row">
                 <div class="col-sm-6">
-                    <div style="direction: rtl;" js-tree="basicConfig" tree-events="activate_node:clicknode"
-                         ng-model="bmstree"></div>
+                    <div style="direction: rtl;" js-tree="basicConfig" ng-model="bmstree"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-6" ng-controller="bms">
-        <div id="account-table" ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="button-wrapper">
-                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
-                                style="float: right;"
-                                ng-click="openmodal('app/pages/accounting/accounts/newmodal.html', 'md',[])"><i
-                                class="ion-plus"></i>
-                            حساب جدید
-                        </button>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="button-wrapper" style="text-align: left;">
-                        <button type="button" ng-click="getaccounts()" class="btn btn-default"><i
-                                class="ion-refresh"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div seg-group data-ng-model="value" seg-options="options"> </div>
+        <div id="account-table" ba-panel ba-panel-title="وسایل" ba-panel-class="with-scroll tree-panel">
 
+            <div seg-group data-ng-model="value" seg-options="options"></div>
 
 
         </div>
