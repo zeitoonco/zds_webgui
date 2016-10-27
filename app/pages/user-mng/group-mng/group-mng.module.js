@@ -204,18 +204,25 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     $scope.matchperm(data['data']['listPermissions']);
-                    console.log(JSON.stringify($scope.tree_data));
+
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
         }
         $scope.matchperm = function (data) {
-
+            $scope.finalperms = [];
             for (var i=0;i<data.length;i++){
-                permns.indexOf(data[i]['id']);
-            }
+                var index = permns.find(data[i][id]);
+                if (index > -1) {
+                    var pname = perms[index]['name'];
+                    $scope.finalperms.push({id: data[i]['id'],name: pname,state: data[i]['state']});
+                } else {
+                    $scope.finalperms.push({id: data[i]['id'],name: '',state: data[i]['state']});
 
+                }
+            }
+            console.log(JSON.stringify($scope.finalperms));
         }
         $scope.treemaker = function (data) {
             var tree = [];

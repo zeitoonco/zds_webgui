@@ -20,6 +20,16 @@ var editid;
                     if (data["success"] == true) {
 
                         $scope.myData = data['data']['listPermissions'];
+                        $scope.totalItems = $scope.myData.length;
+                        $scope.currentPage = 1;
+                        $scope.numPerPage = 3;
+                        $scope.paginate = function(value) {
+                            var begin, end, index;
+                            begin = ($scope.currentPage - 1) * $scope.numPerPage;
+                            end = begin + $scope.numPerPage;
+                            index = $scope.myData.indexOf(value);
+                            return (begin <= index && index < end);
+                        };
                     } else {
                         toastr.error('!', 'خطا!');
 

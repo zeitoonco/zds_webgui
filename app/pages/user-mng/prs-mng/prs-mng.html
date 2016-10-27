@@ -47,7 +47,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="x in myData">
+                                <tr ng-repeat="x in myData | filter: paginate">
                                     <td>{{ x.permissionID }}</td>
                                     <td>{{ x.name }}</td>
                                     <td>{{ x.title }}</td>
@@ -65,15 +65,13 @@
                                     </td>
                                 </tr>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5" class="text-center">
-                                        <div st-pagination="" st-items-by-page="itemsByPage"
-                                             st-displayed-pages="7"></div>
-                                    </td>
-                                </tr>
-                                </tfoot>
                             </table>
+                            <div class="paging">
+                                <pagination total-items="totalItems" ng-model="currentPage"
+                                            max-size="5" boundary-links="true"
+                                            items-per-page="numPerPage" class="pagination-sm">
+                                </pagination>
+                            </div>
                         </div>
 
 
