@@ -3,7 +3,7 @@
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
     </button>
-    <h4 class="modal-title" id="myModalLabel">ویرایش مشخصات کاربر</h4>
+    <h4 class="modal-title" id="myModalLabel">ویرایش گروه های کاربر</h4>
   </div>
   <div class="modal-body">
     <table id="data" class="table table-bordered table-hover table-condensed">
@@ -16,11 +16,11 @@
         <th>-----</th>
       </tr>
       </thead>
-      <tr ng-repeat="x in myData">
+      <tr ng-repeat="x in groups">
         <td>{{ x.usergroupID }}</td>
         <td>{{ x.title }}</td>
         <td>{{ x.parentID }}</td>
-        <td>{{ x.describtion }}</td>
+        <td>{{ x.description }}</td>
         <td>
           <button class="btn btn-danger btn-xs" ng-click="doremove(x.usergroupID)" id='remove-btn'>حذف</button></td>
       </tr>
