@@ -11,6 +11,9 @@ var tempname = '', tempun = '', tempid = '';
     user.controller('useraction', function ($scope, zdsSocket, toastr, $uibModal, $timeout) {
 
         //$scope.gridOptions = { data: 'myData' };
+
+
+
         $scope.username = tempun;
         $scope.name = tempname;
 
@@ -26,6 +29,16 @@ var tempname = '', tempun = '', tempid = '';
                     if (data["success"] == true) {
                         $scope.result = "True";
                         $scope.myData = data['data']['userList'];
+                        $scope.totalItems = $scope.myData.length;
+                        $scope.currentPage = 1;
+                        $scope.numPerPage = 3;
+                        $scope.paginate = function(value) {
+                            var begin, end, index;
+                            begin = ($scope.currentPage - 1) * $scope.numPerPage;
+                            end = begin + $scope.numPerPage;
+                            index = $scope.myData.indexOf(value);
+                            return (begin <= index && index < end);
+                        };
                     } else {
                         toastr.error('!', 'خطا!');
 
