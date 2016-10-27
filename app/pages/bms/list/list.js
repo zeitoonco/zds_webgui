@@ -10,14 +10,18 @@
 (function () {
     'use strict';
     //var aid;
-    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean','ZDSGUI.pages.components.tree'])
+    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean', 'ZDSGUI.pages.components.tree'])
         .config(routeConfig);
 
     list.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
 
-        $scope.value = '°22';
+        $scope.switchPanelVminfo1 = true;
+        $scope.switchPanelVminfo2 = false;
+        $scope.switchPanelVminfo3 = true;
+        $scope.switchPanelVminfo4 = true;
+        $scope.value = '22';
         $scope.options = {
-            size: 4,
+            size: 2,
             align: 'left'
 
         };

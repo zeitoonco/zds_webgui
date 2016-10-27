@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('ZDSGUI.pages.form')
+  angular.module('ZDSGUI.elements',[])
       .directive('switch', switchDirective);
 
   /** @ngInject */

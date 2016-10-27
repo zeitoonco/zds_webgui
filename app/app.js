@@ -21,4 +21,5 @@ angular.module('ZDSGUI', [
     'ngJalaliFlatDatepicker',
     'ntt.TreeDnD',
     'wo.7segments',
+    'ZDSGUI.elements',
 ]);
