@@ -176,41 +176,8 @@
                 displayName: 'Remove',
                 cellTemplate: '<button ng-click="tree.remove_node(node)" class="btn btn-default btn-sm">Remove</button>'
             }];
-        // DataDemo.getDatas() can see in 'Custom Option' -> Tab 'Data Demo'
-
-        // $scope.tree_data = [{"id": "0", "parent": "#", "text": "", "state": {"opened": true}}, {
-        //     "id": "14",
-        //     "parent": "0",
-        //     "text": "گروه تست",
-        //     "state": {"opened": true}
-        // }, {"id": "20", "parent": "0", "text": "گروه تست 2", "state": {"opened": true}}, {
-        //     "id": "23",
-        //     "parent": "14",
-        //     "text": "معین 3",
-        //     "state": {"opened": true}
-        // }, {"id": "31", "parent": "14", "text": "معین 11", "state": {"opened": true}}, {
-        //     "id": "34",
-        //     "parent": "20",
-        //     "text": "معین تفضیلی 1",
-        //     "state": {"opened": true}
-        // }, {"id": "35", "parent": "20", "text": "گروه تستی 33", "state": {"opened": true}}, {
-        //     "id": "37",
-        //     "parent": "20",
-        //     "text": "گروه تستی 66",
-        //     "state": {"opened": true}
-        // }, {"id": "39", "parent": "0", "text": "asdasd", "state": {"opened": true}}, {
-        //     "id": "42",
-        //     "parent": "35",
-        //     "text": "نتهعان",
-        //     "state": {"opened": true}
-        // }, {"id": "43", "parent": "35", "text": "alibaba", "state": {"opened": true}}, {
-        //     "id": "44",
-        //     "parent": "35",
-        //     "text": "ali",
-        //     "state": {"opened": true}
-        // }];
         $scope.s = function () {
-            var temp = {a: 1 , b: 2};
+            var temp = [{a: 1 , b: 2}];
             var msg = {
                 type: "call",
                 node: "userman.addUsergroupPermission",
@@ -236,15 +203,35 @@
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
-                    $scope.tree_data = data['data']['listPermissions'];
+                    $scope.matchperm(data['data']['listPermissions']);
                     console.log(JSON.stringify($scope.tree_data));
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
         }
-        $scope.s();
-        //$scope.getperm();
+        $scope.matchperm = function (data) {
+
+            for (var i=0;i<data.length;i++){
+                permns.indexOf(data[i]['id']);
+            }
+
+        }
+        $scope.treemaker = function (data) {
+            var tree = [];
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i][0];
+                var parent = data[i][2];
+                if (parent == -1) {
+                    parent = "#";
+                }
+                var text = data[i][2];
+                tree.push({'id': id, 'parent': parent, 'text': text, 'state': {'opened': true}});
+
+            }
+        }
+        //$scope.s();
+        $scope.getperm();
 
     });
     /** @ngInject */
