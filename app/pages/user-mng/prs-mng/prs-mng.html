@@ -33,7 +33,7 @@
                         </div>
 
 
-                        <div class="table-responsive">
+                        <tfoot class="table-responsive">
                             <table id="data" class="table table-bordered table-hover table-condensed"
                                    st-table="myData">
                                 <thead>
@@ -66,11 +66,11 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <div class="paging">
-                                <pagination total-items="totalItems" ng-model="currentPage"
-                                            max-size="5" boundary-links="true"
-                                            items-per-page="numPerPage" class="pagination-sm">
-                                </pagination>
+                            <div class="pager">
+                                        <pagination total-items="totalItems" ng-model="currentPage"
+                                                    max-size="5" boundary-links="true"
+                                                    items-per-page="numPerPage" class="pagination-md">
+                                        </pagination>
                             </div>
                         </div>
 

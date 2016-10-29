@@ -45,43 +45,6 @@
                                     <th>عملیات</th>
                                 </tr>
                                 </thead>
-                                <tr ng-repeat="x in myData">
-                                    <td>{{ x.userID }}</td>
-                                    <td>{{ x.username }}</td>
-                                    <td>{{ x.name | persiannull }}</td>
-                                    <td>{{ x.isOnline | persianboolean }}</td>
-                                    <td>{{ x.banned | persianboolean}}</td>
-                                    <td>{{ x.banReason | persiannull }}</td>
-                                    <td>
-                                        <button zdsperm="userman.listUsergroups" class="btn btn-info btn-xs"
-                                                ng-click="openmodal('app/pages/user-mng/user/groupmodal.html', 'md',x.userID)"
-                                                id='usergroup-btn'>گروه ها
-                                        </button>
-                                        <button zdsperm="userman.modifyUser" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                                ng-click="openmodal('app/pages/user-mng/user/editmodal.html', 'md',x.userID,x.username,x.name)">
-                                            ویرایش
-                                        </button>
-                                        <button zdsperm="userman.removeUser" class="btn btn-danger btn-xs" ng-click="doremove(x.userID)"
-                                                id='remove-btn'>حذف
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table id="data" class="table table-bordered table-hover table-condensed">
-                                <thead>
-                                <tr>
-                                    <th class="table-id">#</th>
-                                    <th>نام کاربری</th>
-                                    <th>نام</th>
-                                    <th>وضعیت آنلاین</th>
-                                    <th>وضعیت تعلیق</th>
-                                    <th>علت تعلیق</th>
-                                    <th>عملیات</th>
-                                </tr>
-                                </thead>
                                 <tr ng-repeat="x in myData | filter: paginate">
                                     <td>{{ x.userID }}</td>
                                     <td>{{ x.username }}</td>
@@ -104,10 +67,12 @@
                                     </td>
                                 </tr>
                             </table>
-                            <pagination total-items="totalItems" ng-model="currentPage"
-                                        max-size="5" boundary-links="true"
-                                        items-per-page="numPerPage" class="pagination-sm">
-                            </pagination>
+                            <div class="pager">
+                                <pagination total-items="totalItems" ng-model="currentPage"
+                                            max-size="5" boundary-links="true"
+                                            items-per-page="numPerPage" class="pagination-md">
+                                </pagination>
+                            </div>
                         </div>
 
                     </div>
