@@ -66,13 +66,6 @@
         console.log(JSON.stringify(tree));
         $scope.bmstree = tree;
 
-        $scope.refresh = function () {
-            $scope.ignoreChanges = true;
-            //newId = 0;
-            $scope.treeData = $scope.bmstree;
-            $scope.basicConfig.version++;
-        };
-        $scope.refresh();
     });
     /** @ngInject */
     function routeConfig($stateProvider) {
