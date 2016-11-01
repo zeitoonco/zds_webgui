@@ -28,7 +28,6 @@ var uid, myname, myun, mypic,permns;
                         var index;
                         permns = data.data.permissions;
                         for (index = 0; index < data.data.permissions.length; ++index) {
-
                             if (data.data.permissions[index].state == "true")
                                 $rootScope.$permissions.push(data.data.permissions[index].name);
                         }

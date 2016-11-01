@@ -11,9 +11,8 @@
 
     <div class="col-md-8" ng-controller="bms">
         <div id="bms-nodes" ba-panel ba-panel-title="وسایل" ba-panel-class="with-scroll tree-panel">
-            <div ng-include="'app/pages/bms/list/widgets/hvac/hvac.html'"></div>
-            <div ng-include="'app/pages/bms/list/widgets/lighting/lighting.html'"></div>
-
+            <zds-bms-hvac node-id="19"></zds-bms-hvac>
+            <zds-bms-lighting  node-id="19"></zds-bms-lighting>
         </div>
     </div>
 </div>

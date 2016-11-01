@@ -10,15 +10,15 @@
 (function () {
     'use strict';
     //var aid;
-    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean', 'ZDSGUI.pages.components.tree'])
+    var list = angular.module('ZDSGUI.pages.bms.list', ['ZDSGUI.boolean', 'ZDSGUI.pages.components.tree', 'wo.7segments'])
         .config(routeConfig);
 
     list.controller('bms', function ($scope, zdsSocket, toastr, $uibModal) {
 
-        $scope.switchPanelVminfo1 = true;
+        $scope.switchPanelVminfo1 = false;
         $scope.switchPanelVminfo2 = false;
-        $scope.switchPanelVminfo3 = true;
-        $scope.switchPanelVminfo4 = true;
+        $scope.switchPanelVminfo3 = false;
+        $scope.switchPanelVminfo4 = false;
         $scope.value = '22';
         $scope.options = {
             size: 2,

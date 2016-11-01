@@ -3,7 +3,6 @@
     angular.module('ZDSGUI.pages.bms', ['ZDSGUI.pages.bms.list'])
         .config(routeConfig);
 
-
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
