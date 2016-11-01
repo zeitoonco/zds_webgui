@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var groupmng = angular.module('ZDSGUI.pages.user-mng.group-mng', ['nzToggle','treeGrid'])
+    var groupmng = angular.module('ZDSGUI.pages.user-mng.group-mng', ['nzToggle', 'treeGrid'])
         .config(routeConfig);
     groupmng.controller('group-mng', function ($scope, zdsSocket, toastr, $uibModal) {
         $scope.getgroups = function () {
@@ -156,16 +156,363 @@
 
     groupmng.controller('editgroupperm', function ($scope, zdsSocket, $uibModal, toastr, $TreeDnDConvert) {
         //$scope.treeperms = []; //voucher items
-        $scope.treeperms = [{"id":0,"name":"_masterPermission","state":"true","children":[{"id":1,"name":"_core","state":"true","children":[{"id":2,"name":"_core.commands","state":"true","children":[{"id":4,"name":"_core.registerCommand","state":"true","children":[]},{"id":5,"name":"_core.removeCommand","state":"true","children":[]},{"id":6,"name":"_core.registerEvent","state":"true","children":[]},{"id":7,"name":"_core.removeEvent","state":"true","children":[]},{"id":8,"name":"_core.registerHook","state":"true","children":[]},{"id":9,"name":"_core.removeHook","state":"true","children":[]},{"id":10,"name":"error","state":"true","children":[]},{"id":11,"name":"warning","state":"true","children":[]},{"id":12,"name":"_core.registerSetting","state":"true","children":[]},{"id":13,"name":"_core.removeSetting","state":"true","children":[]},{"id":14,"name":"_core.setSetting","state":"true","children":[]},{"id":15,"name":"_core.getSetting","state":"true","children":[]},{"id":16,"name":"_core.updateSetting","state":"true","children":[]},{"id":17,"name":"_core.resetSetting","state":"true","children":[]},{"id":18,"name":"_core.getListOfServices","state":"true","children":[]},{"id":19,"name":"_core.getServiceInfo","state":"true","children":[]},{"id":20,"name":"_core.installService","state":"true","children":[]},{"id":21,"name":"_core.uninstallService","state":"true","children":[]},{"id":22,"name":"_core.enableService","state":"true","children":[]},{"id":23,"name":"_core.disableService","state":"true","children":[]},{"id":24,"name":"_core.kickService","state":"true","children":[]},{"id":25,"name":"_core.pingService","state":"true","children":[]}]},{"id":3,"name":"_core.events","state":"true","children":[{"id":26,"name":"_core.onSettingUpdate","state":"true","children":[]},{"id":27,"name":"_core.onServiceConnect","state":"true","children":[]},{"id":28,"name":"_core.onServiceDisconnect","state":"true","children":[]},{"id":29,"name":"_core.onServiceEnable","state":"true","children":[]},{"id":30,"name":"_core.onServiceDisable","state":"true","children":[]},{"id":31,"name":"_core.onServiceInstall","state":"true","children":[]},{"id":32,"name":"_core.onServiceUninstall","state":"true","children":[]}]}]},{"id":33,"name":"PGDatabase","state":"true","children":[{"id":34,"name":"PGDatabase.commands","state":"true","children":[{"id":36,"name":"database.query","state":"true","children":[]},{"id":37,"name":"database.execute","state":"true","children":[]},{"id":38,"name":"database.singlefieldquery","state":"true","children":[]}]},{"id":35,"name":"PGDatabase.events","state":"true","children":[{"id":39,"name":"database.newUser","state":"true","children":[]},{"id":40,"name":"database.userLogin","state":"true","children":[]}]}]},{"id":41,"name":"GUI","state":"true","children":[{"id":42,"name":"GUI.commands","state":"true","children":[]},{"id":43,"name":"GUI.events","state":"true","children":[]}]},{"id":44,"name":"AccountingRelay","state":"true","children":[{"id":45,"name":"AccountingRelay.commands","state":"true","children":[{"id":47,"name":"AccountingRelay.getConfig","state":"true","children":[]},{"id":48,"name":"AccountingRelay.setConfig","state":"true","children":[]},{"id":49,"name":"AccountingRelay.newFiscalYear","state":"true","children":[]},{"id":50,"name":"AccountingRelay.modifyFiscalYear","state":"true","children":[]},{"id":51,"name":"AccountingRelay.closeFiscalYear","state":"true","children":[]},{"id":52,"name":"AccountingRelay.removeFiscalYear","state":"true","children":[]},{"id":53,"name":"AccountingRelay.newAccount","state":"true","children":[]},{"id":54,"name":"AccountingRelay.modifyAccount","state":"true","children":[]},{"id":55,"name":"AccountingRelay.removeAccount","state":"true","children":[]},{"id":57,"name":"AccountingRelay.modifyDL","state":"true","children":[]},{"id":58,"name":"AccountingRelay.removeDL","state":"true","children":[]},{"id":59,"name":"AccountingRelay.activeDL","state":"true","children":[]},{"id":60,"name":"AccountingRelay.deactiveDL","state":"true","children":[]},{"id":61,"name":"AccountingRelay.newCategory","state":"true","children":[]},{"id":165,"name":"AccountingRelay.createNewVocher","state":"true","children":[]},{"id":166,"name":"AccountingRelay.modifyNewVocher","state":"true","children":[]},{"id":167,"name":"AccountingRelay.newDL","state":"true","children":[]},{"id":169,"name":"AccountingRelay.accountlist","state":"true","children":[]}]},{"id":46,"name":"AccountingRelay.events","state":"true","children":[]}]},{"id":112,"name":"UserManagement","state":"true","children":[{"id":113,"name":"UserManagement.commands","state":"true","children":[{"id":115,"name":"userman.login","state":"true","children":[]},{"id":116,"name":"userman.logout","state":"true","children":[]},{"id":117,"name":"userman.checkPermission","state":"true","children":[]},{"id":118,"name":"userman.checkPermissionByName","state":"true","children":[]},{"id":119,"name":"userman.addUser","state":"true","children":[]},{"id":120,"name":"userman.modifyUser","state":"true","children":[]},{"id":121,"name":"userman.removeUser","state":"true","children":[]},{"id":122,"name":"userman.getUserInfo","state":"true","children":[]},{"id":123,"name":"userman.registerPermission","state":"true","children":[]},{"id":124,"name":"userman.updatePermission","state":"true","children":[]},{"id":125,"name":"userman.removePermission","state":"true","children":[]},{"id":126,"name":"userman.registerUsergroup","state":"true","children":[]},{"id":127,"name":"userman.updateUsergroup","state":"true","children":[]},{"id":128,"name":"userman.removeUsergroup","state":"true","children":[]},{"id":129,"name":"userman.listUsers","state":"true","children":[]},{"id":130,"name":"userman.listUsersByGroup","state":"true","children":[]},{"id":131,"name":"userman.listPermissions","state":"true","children":[]},{"id":132,"name":"userman.listUsergroups","state":"true","children":[]},{"id":133,"name":"userman.addUserUsergroup","state":"true","children":[]},{"id":134,"name":"userman.removeUserUsergroup","state":"true","children":[]},{"id":135,"name":"userman.addUserPermission","state":"true","children":[]},{"id":136,"name":"userman.removeUserPermission","state":"true","children":[]},{"id":137,"name":"userman.listUserPermissions","state":"true","children":[]},{"id":138,"name":"userman.addUsergroupPermission","state":"true","children":[]},{"id":139,"name":"userman.removeUsergroupPermission","state":"true","children":[]},{"id":140,"name":"userman.listUsergroupPermissions","state":"true","children":[]},{"id":141,"name":"userman.addContact","state":"true","children":[]},{"id":142,"name":"userman.modifyContact","state":"true","children":[]},{"id":143,"name":"userman.removeContact","state":"true","children":[]},{"id":144,"name":"userman.listContacts","state":"true","children":[]},{"id":145,"name":"userman.setUserAvatar","state":"true","children":[]},{"id":146,"name":"userman.getUserAvatar","state":"true","children":[]},{"id":147,"name":"userman.listGroups","state":"true","children":[]},{"id":168,"name":"userman.userlist","state":"true","children":[]},{"id":170,"name":"userman.groupmng","state":"true","children":[]}]},{"id":114,"name":"UserManagement.events","state":"true","children":[{"id":148,"name":"userman.loggedIn","state":"true","children":[]},{"id":149,"name":"userman.loggedOut","state":"true","children":[]},{"id":150,"name":"userman.userAdded","state":"true","children":[]},{"id":151,"name":"userman.userModified","state":"true","children":[]},{"id":152,"name":"userman.userRemoved","state":"true","children":[]},{"id":153,"name":"userman.permissionAdded","state":"true","children":[]},{"id":154,"name":"userman.permissionModified","state":"true","children":[]},{"id":155,"name":"userman.permissionRemoved","state":"true","children":[]},{"id":156,"name":"userman.usergroupAdded","state":"true","children":[]},{"id":157,"name":"userman.usergroupModified","state":"true","children":[]},{"id":158,"name":"userman.usergroupRemoved","state":"true","children":[]},{"id":159,"name":"userman.usersUsergroupRemoved","state":"true","children":[]},{"id":160,"name":"userman.usersUsergroupAdded","state":"true","children":[]},{"id":161,"name":"userman.usersPermissionRemoved","state":"true","children":[]},{"id":162,"name":"userman.usersPermissionAdded","state":"true","children":[]},{"id":163,"name":"userman.usergroupPermissionAdded","state":"true","children":[]},{"id":164,"name":"userman.usergroupPermissionRemoved","state":"true","children":[]}]}]}]}]
+        $scope.treeperms = [{
+            "id": 0,
+            "name": "_masterPermission",
+            "state": "true",
+            "children": [{
+                "id": 1,
+                "name": "_core",
+                "state": "true",
+                "children": [{
+                    "id": 2,
+                    "name": "_core.commands",
+                    "state": "true",
+                    "children": [{"id": 4, "name": "_core.registerCommand", "state": "true", "children": []}, {
+                        "id": 5,
+                        "name": "_core.removeCommand",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 6, "name": "_core.registerEvent", "state": "true", "children": []}, {
+                        "id": 7,
+                        "name": "_core.removeEvent",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 8, "name": "_core.registerHook", "state": "true", "children": []}, {
+                        "id": 9,
+                        "name": "_core.removeHook",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 10, "name": "error", "state": "true", "children": []}, {
+                        "id": 11,
+                        "name": "warning",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 12, "name": "_core.registerSetting", "state": "true", "children": []}, {
+                        "id": 13,
+                        "name": "_core.removeSetting",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 14, "name": "_core.setSetting", "state": "true", "children": []}, {
+                        "id": 15,
+                        "name": "_core.getSetting",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 16, "name": "_core.updateSetting", "state": "true", "children": []}, {
+                        "id": 17,
+                        "name": "_core.resetSetting",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 18, "name": "_core.getListOfServices", "state": "true", "children": []}, {
+                        "id": 19,
+                        "name": "_core.getServiceInfo",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 20, "name": "_core.installService", "state": "true", "children": []}, {
+                        "id": 21,
+                        "name": "_core.uninstallService",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 22, "name": "_core.enableService", "state": "true", "children": []}, {
+                        "id": 23,
+                        "name": "_core.disableService",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 24, "name": "_core.kickService", "state": "true", "children": []}, {
+                        "id": 25,
+                        "name": "_core.pingService",
+                        "state": "true",
+                        "children": []
+                    }]
+                }, {
+                    "id": 3,
+                    "name": "_core.events",
+                    "state": "true",
+                    "children": [{
+                        "id": 26,
+                        "name": "_core.onSettingUpdate",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 27, "name": "_core.onServiceConnect", "state": "true", "children": []}, {
+                        "id": 28,
+                        "name": "_core.onServiceDisconnect",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 29, "name": "_core.onServiceEnable", "state": "true", "children": []}, {
+                        "id": 30,
+                        "name": "_core.onServiceDisable",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 31, "name": "_core.onServiceInstall", "state": "true", "children": []}, {
+                        "id": 32,
+                        "name": "_core.onServiceUninstall",
+                        "state": "true",
+                        "children": []
+                    }]
+                }]
+            }, {
+                "id": 33,
+                "name": "PGDatabase",
+                "state": "true",
+                "children": [{
+                    "id": 34,
+                    "name": "PGDatabase.commands",
+                    "state": "true",
+                    "children": [{"id": 36, "name": "database.query", "state": "true", "children": []}, {
+                        "id": 37,
+                        "name": "database.execute",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 38, "name": "database.singlefieldquery", "state": "true", "children": []}]
+                }, {
+                    "id": 35,
+                    "name": "PGDatabase.events",
+                    "state": "true",
+                    "children": [{"id": 39, "name": "database.newUser", "state": "true", "children": []}, {
+                        "id": 40,
+                        "name": "database.userLogin",
+                        "state": "true",
+                        "children": []
+                    }]
+                }]
+            }, {
+                "id": 41,
+                "name": "GUI",
+                "state": "true",
+                "children": [{"id": 42, "name": "GUI.commands", "state": "true", "children": []}, {
+                    "id": 43,
+                    "name": "GUI.events",
+                    "state": "true",
+                    "children": []
+                }]
+            }, {
+                "id": 44,
+                "name": "AccountingRelay",
+                "state": "true",
+                "children": [{
+                    "id": 45,
+                    "name": "AccountingRelay.commands",
+                    "state": "true",
+                    "children": [{
+                        "id": 47,
+                        "name": "AccountingRelay.getConfig",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 48, "name": "AccountingRelay.setConfig", "state": "true", "children": []}, {
+                        "id": 49,
+                        "name": "AccountingRelay.newFiscalYear",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 50,
+                        "name": "AccountingRelay.modifyFiscalYear",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 51,
+                        "name": "AccountingRelay.closeFiscalYear",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 52,
+                        "name": "AccountingRelay.removeFiscalYear",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 53, "name": "AccountingRelay.newAccount", "state": "true", "children": []}, {
+                        "id": 54,
+                        "name": "AccountingRelay.modifyAccount",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 55, "name": "AccountingRelay.removeAccount", "state": "true", "children": []}, {
+                        "id": 57,
+                        "name": "AccountingRelay.modifyDL",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 58, "name": "AccountingRelay.removeDL", "state": "true", "children": []}, {
+                        "id": 59,
+                        "name": "AccountingRelay.activeDL",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 60, "name": "AccountingRelay.deactiveDL", "state": "true", "children": []}, {
+                        "id": 61,
+                        "name": "AccountingRelay.newCategory",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 165,
+                        "name": "AccountingRelay.createNewVocher",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 166,
+                        "name": "AccountingRelay.modifyNewVocher",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 167, "name": "AccountingRelay.newDL", "state": "true", "children": []}, {
+                        "id": 169,
+                        "name": "AccountingRelay.accountlist",
+                        "state": "true",
+                        "children": []
+                    }]
+                }, {"id": 46, "name": "AccountingRelay.events", "state": "true", "children": []}]
+            }, {
+                "id": 112,
+                "name": "UserManagement",
+                "state": "true",
+                "children": [{
+                    "id": 113,
+                    "name": "UserManagement.commands",
+                    "state": "true",
+                    "children": [{"id": 115, "name": "userman.login", "state": "true", "children": []}, {
+                        "id": 116,
+                        "name": "userman.logout",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 117, "name": "userman.checkPermission", "state": "true", "children": []}, {
+                        "id": 118,
+                        "name": "userman.checkPermissionByName",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 119, "name": "userman.addUser", "state": "true", "children": []}, {
+                        "id": 120,
+                        "name": "userman.modifyUser",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 121, "name": "userman.removeUser", "state": "true", "children": []}, {
+                        "id": 122,
+                        "name": "userman.getUserInfo",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 123, "name": "userman.registerPermission", "state": "true", "children": []}, {
+                        "id": 124,
+                        "name": "userman.updatePermission",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 125, "name": "userman.removePermission", "state": "true", "children": []}, {
+                        "id": 126,
+                        "name": "userman.registerUsergroup",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 127, "name": "userman.updateUsergroup", "state": "true", "children": []}, {
+                        "id": 128,
+                        "name": "userman.removeUsergroup",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 129, "name": "userman.listUsers", "state": "true", "children": []}, {
+                        "id": 130,
+                        "name": "userman.listUsersByGroup",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 131, "name": "userman.listPermissions", "state": "true", "children": []}, {
+                        "id": 132,
+                        "name": "userman.listUsergroups",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 133, "name": "userman.addUserUsergroup", "state": "true", "children": []}, {
+                        "id": 134,
+                        "name": "userman.removeUserUsergroup",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 135, "name": "userman.addUserPermission", "state": "true", "children": []}, {
+                        "id": 136,
+                        "name": "userman.removeUserPermission",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 137, "name": "userman.listUserPermissions", "state": "true", "children": []}, {
+                        "id": 138,
+                        "name": "userman.addUsergroupPermission",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 139,
+                        "name": "userman.removeUsergroupPermission",
+                        "state": "true",
+                        "children": []
+                    }, {
+                        "id": 140,
+                        "name": "userman.listUsergroupPermissions",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 141, "name": "userman.addContact", "state": "true", "children": []}, {
+                        "id": 142,
+                        "name": "userman.modifyContact",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 143, "name": "userman.removeContact", "state": "true", "children": []}, {
+                        "id": 144,
+                        "name": "userman.listContacts",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 145, "name": "userman.setUserAvatar", "state": "true", "children": []}, {
+                        "id": 146,
+                        "name": "userman.getUserAvatar",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 147, "name": "userman.listGroups", "state": "true", "children": []}, {
+                        "id": 168,
+                        "name": "userman.userlist",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 170, "name": "userman.groupmng", "state": "true", "children": []}]
+                }, {
+                    "id": 114,
+                    "name": "UserManagement.events",
+                    "state": "true",
+                    "children": [{"id": 148, "name": "userman.loggedIn", "state": "true", "children": []}, {
+                        "id": 149,
+                        "name": "userman.loggedOut",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 150, "name": "userman.userAdded", "state": "true", "children": []}, {
+                        "id": 151,
+                        "name": "userman.userModified",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 152, "name": "userman.userRemoved", "state": "true", "children": []}, {
+                        "id": 153,
+                        "name": "userman.permissionAdded",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 154, "name": "userman.permissionModified", "state": "true", "children": []}, {
+                        "id": 155,
+                        "name": "userman.permissionRemoved",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 156, "name": "userman.usergroupAdded", "state": "true", "children": []}, {
+                        "id": 157,
+                        "name": "userman.usergroupModified",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 158, "name": "userman.usergroupRemoved", "state": "true", "children": []}, {
+                        "id": 159,
+                        "name": "userman.usersUsergroupRemoved",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 160, "name": "userman.usersUsergroupAdded", "state": "true", "children": []}, {
+                        "id": 161,
+                        "name": "userman.usersPermissionRemoved",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 162, "name": "userman.usersPermissionAdded", "state": "true", "children": []}, {
+                        "id": 163,
+                        "name": "userman.usergroupPermissionAdded",
+                        "state": "true",
+                        "children": []
+                    }, {"id": 164, "name": "userman.usergroupPermissionRemoved", "state": "true", "children": []}]
+                }]
+            }]
+        }];
         $scope.col_defs = [
-            {  field: "id",
+            {
+                field: "id",
                 displayName: "کد"
             },
             {
                 field: "state",
-                displayName: "وضعیت"
+                displayName: "وضعیت",
+                cellTemplate: "<nz-toggle tri-toggle val-false='0' val-null='-1'>"
             }
-        ]
+        ];
         //add empty object as row in items
         $scope.additem = function () {
             $scope.items.push({
@@ -182,28 +529,33 @@
         }
 
 
-        $scope.maketree = function (data,pid) {
+        $scope.maketree = function (data, pid) {
             //var data = d;
-            for (var i = 0 ; i<data.length ; i++){
-                var id = data[i]['permissionID'],name = data[i]['name'],pid = data[i]['parentID'],
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i]['permissionID'], name = data[i]['name'], pid = data[i]['parentID'],
                     dec = data[i]['description'];
-                data.splice(i,1);
-                var child=[];
-                    for (var j=i+1;j<data.length;j++){
-                        if (data[j]['parentID']==id){
-                            child.push({id: data[j]['permissionID'],name: data[j]['name'], dec: data[j]['description'], state: 0});
-                            //data.splice(j,1);
-                        }
+                data.splice(i, 1);
+                var child = [];
+                for (var j = i + 1; j < data.length; j++) {
+                    if (data[j]['parentID'] == id) {
+                        child.push({
+                            id: data[j]['permissionID'],
+                            name: data[j]['name'],
+                            dec: data[j]['description'],
+                            state: 0
+                        });
+                        //data.splice(j,1);
                     }
-                    if (child.length>0){
-                        $scope.treeperms.push({id: id, name: name,dec: dec, state: 0, children:child});
-                    } else {
-                        $scope.treeperms.push({id: id, name: name,dec: dec, state: 0});
-                    }
+                }
+                if (child.length > 0) {
+                    $scope.treeperms.push({id: id, name: name, dec: dec, state: 0, children: child});
+                } else {
+                    $scope.treeperms.push({id: id, name: name, dec: dec, state: 0});
+                }
             }
         }
 
-        $scope.fetchperms = function (){
+        $scope.fetchperms = function () {
             var msg = {
                 type: "call",
                 node: "userman.listPermissions",
@@ -214,20 +566,20 @@
                 //$scope.maketree($scope.allperms);
                 //console.log(JSON.stringify($scope.treeperms));
                 /*$scope.totalItems = $scope.allperms.length;
-                $scope.currentPage = 1;
-                $scope.numPerPage = 10;
-                $scope.paginate = function(value) {
-                    var begin, end, index;
-                    begin = ($scope.currentPage - 1) * $scope.numPerPage;
-                    end = begin + $scope.numPerPage;
-                    index = $scope.allperms.indexOf(value);
-                    return (begin <= index && index < end);
-                };*/
+                 $scope.currentPage = 1;
+                 $scope.numPerPage = 10;
+                 $scope.paginate = function(value) {
+                 var begin, end, index;
+                 begin = ($scope.currentPage - 1) * $scope.numPerPage;
+                 end = begin + $scope.numPerPage;
+                 index = $scope.allperms.indexOf(value);
+                 return (begin <= index && index < end);
+                 };*/
 
             });
         }
         $scope.s = function () {
-            var temp = [{a: 1 , b: 2}];
+            var temp = [{a: 1, b: 2}];
             var msg = {
                 type: "call",
                 node: "userman.addUsergroupPermission",
@@ -245,15 +597,15 @@
         }
 
         $scope.checkstate = function (id) {
-            for (var i=0;i<$scope.myperms.length;i++){
-               if (id==$scope.myperms[i]['id']){
-                   var s = $scope.myperms[i]['state'];
-                   if (s=='1'){
-                       return 'فعال';
-                   } else if (s=='-1'){
-                       return 'غیرفعال';
-                   }
-               }
+            for (var i = 0; i < $scope.myperms.length; i++) {
+                if (id == $scope.myperms[i]['id']) {
+                    var s = $scope.myperms[i]['state'];
+                    if (s == '1') {
+                        return 'فعال';
+                    } else if (s == '-1') {
+                        return 'غیرفعال';
+                    }
+                }
             }
         }
         $scope.getperm = function () {
