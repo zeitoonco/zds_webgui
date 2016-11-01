@@ -43,6 +43,10 @@
 	opacity    : 0;
 }
 
+
+.tree-grid-row > td:first-child {
+	text-align: right;
+}
 /*
  * Angular 1.2.0 Animation placeholders.
  */
@@ -58,47 +62,48 @@
 
 .tree-grid .level-1 .indented {
 	position : relative;
-	left     : 0;
+	right     : 0;
 }
 
 .tree-grid .level-2 .indented {
 	position : relative;
-	left     : 20px;
+	right     : 20px;
+	text-align: right;
 }
 
 .tree-grid .level-3 .indented {
 	position : relative;
-	left     : 40px;
+	right     : 40px;
 }
 
 .tree-grid .level-4 .indented {
 	position : relative;
-	left     : 60px;
+	right     : 60px;
 }
 
 .tree-grid .level-5 .indented {
 	position : relative;
-	left     : 80px;
+	right     : 80px;
 }
 
 .tree-grid .level-6 .indented {
 	position : relative;
-	left     : 100px;
+	right     : 100px;
 }
 
 .tree-grid .level-7 .indented {
 	position : relative;
-	left     : 120px;
+	right     : 120px;
 }
 
 .tree-grid .level-8 .indented {
 	position : relative;
-	left     : 140px;
+	right     : 140px;
 }
 
 .tree-grid .level-9 .indented {
 	position : relative;
-	left     : 160px;
+	right     : 160px;
 }
 
 .tree-grid .tree-icon,

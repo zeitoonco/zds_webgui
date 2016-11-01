@@ -4945,7 +4945,7 @@ a {
 }
 
 .table > tbody > tr > td:first-child {
-    text-align: center;
+    text-align: right;
 }
 
 .table > tbody > tr > td:last-child {
