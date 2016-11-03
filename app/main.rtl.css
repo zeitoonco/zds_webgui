@@ -1080,7 +1080,7 @@ h1, h2, h3, h4, h5, h6 {
 #profilepic {
     float: left;
     width: 50%;
-    background-color:;
+    background-color: inherit;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -1103,10 +1103,9 @@ h1, h2, h3, h4, h5, h6 {
 .accountinfo .col-md-6 {
     padding: 5px;
     margin-right: 15px;
-    width:40%;
-    float:right;
+    width: 40%;
+    float: right;
 }
-
 
 .modal {
     padding: 0;
@@ -1125,7 +1124,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal .form-group #pid {
-    display:block;padding:10px;overflow:auto;color:orange;
+    display: block;
+    padding: 10px;
+    overflow: auto;
+    color: orange;
 }
 
 .modal .form-group input {
@@ -1199,6 +1201,7 @@ h1, h2, h3, h4, h5, h6 {
 .bigmodal .modal-dialog {
     width: 1000px;
 }
+
 .dldisabled {
-    pointer-events:none;
+    pointer-events: none;
 }

@@ -502,6 +502,8 @@
                 }]
             }]
         }];
+        $scope.newperms = [];
+
         $scope.col_defs = [
             {
                 field: "id",
@@ -510,7 +512,13 @@
             {
                 field: "state",
                 displayName: "وضعیت",
-                cellTemplate: "<nz-toggle tri-toggle val-false='0' val-null='-1' val-true='1'></nz-toggle>"
+                cellTemplate: "<nz-toggle tri-toggle on-toggle=\"cellTemplateScope.click(states[row.branch[\'id\']],row.branch[\'id\'])\" ng-model=\"states[row.branch[\'id\']]\" val-false='-1' val-null='0' val-true='1'>",
+                cellTemplateScope: {
+                    click: function (data, id) {         // this works too: $scope.someMethod;
+                        $scope.newperms[id] = data;
+                        console.log($scope.newperms);
+                    }
+                }
             }
         ];
         //add empty object as row in items
