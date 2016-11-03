@@ -510,7 +510,7 @@
             {
                 field: "state",
                 displayName: "وضعیت",
-                cellTemplate: "<nz-toggle tri-toggle val-false='0' val-null='-1'>"
+                cellTemplate: "<nz-toggle tri-toggle val-false='0' val-null='-1' val-true='1'></nz-toggle>"
             }
         ];
         //add empty object as row in items
