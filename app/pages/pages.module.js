@@ -7,14 +7,7 @@
 
     angular.module('ZDSGUI.pages', [
         'ui.router',
-
         'ZDSGUI.pages.dashboard',
-        // 'ZDSGUI.pages.ui',
-        // 'ZDSGUI.pages.components',
-        // 'ZDSGUI.pages.form',
-        // 'ZDSGUI.pages.tables',
-        // 'ZDSGUI.pages.charts',
-        // 'ZDSGUI.pages.maps',
         'ZDSGUI.pages.login',
         'ZDSGUI.pages.profile',
         'ZDSGUI.pages.user-mng',
@@ -23,7 +16,6 @@
         'ZDSGUI.pages.bms',
     ])
         .config(routeConfig);
-
     /** @ngInject */
     function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
         $urlRouterProvider.rule(function ($injector, $location) {
