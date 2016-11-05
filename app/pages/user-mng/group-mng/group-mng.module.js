@@ -502,7 +502,7 @@
                 }]
             }]
         }];
-        $scope.newperms = [];
+        $scope.newperms = {};
 
         $scope.col_defs = [
             {
@@ -515,27 +515,28 @@
                 cellTemplate: "<nz-toggle tri-toggle on-toggle=\"cellTemplateScope.click(states[row.branch[\'id\']],row.branch[\'id\'])\" ng-model=\"states[row.branch[\'id\']]\" val-false='-1' val-null='0' val-true='1'>",
                 cellTemplateScope: {
                     click: function (data, id) {         // this works too: $scope.someMethod;
-                        $scope.newperms[id] = data;
+                        ///if ($scope.newperms[id]==undefined){
+
+                        //}else {
+
+                        //}
+
+                        $scope.newperms[id.toString()] = data;
                         console.log($scope.newperms);
                     }
                 }
             }
         ];
-        //add empty object as row in items
-        $scope.additem = function () {
-            $scope.items.push({
-                id: '0',
-                name: '',
-                description: '',
-                state: '0',
-                parentid: '0'
-            });
-        };
 
-        $scope.maketree2 = function () {
+        $scope.finilizeperms = function () {
 
+            for (var i=0; i<$scope.treeperms.length; i++){
+
+                for (var j=0;j<$scope.newperms.length; j++){
+                    
+                }
+            }
         }
-
 
         $scope.maketree = function (data, pid) {
             //var data = d;
@@ -586,24 +587,6 @@
 
             });
         }
-        $scope.s = function () {
-            var temp = [{a: 1, b: 2}];
-            var msg = {
-                type: "call",
-                node: "userman.addUsergroupPermission",
-                data: {temp}
-            };
-            console.log(JSON.stringify(msg));
-            zdsSocket.send(msg, function (data) {
-                if (data["success"] == true) {
-                    $scope.tree_data = data['data']['listPermissions'];
-                    console.log(JSON.stringify($scope.tree_data));
-                } else {
-                    toastr.error('!', 'خطا!');
-                }
-            });
-        }
-
         $scope.checkstate = function (id) {
             for (var i = 0; i < $scope.myperms.length; i++) {
                 if (id == $scope.myperms[i]['id']) {
@@ -616,6 +599,30 @@
                 }
             }
         }
+
+        $scope.addperms = function () {
+            var temp = [];
+            for (var i in $scope.newperms){
+                if ($scope.newperms.hasOwnProperty(i)) {
+                    temp.push({id: i, state: $scope.newperms[i]});
+                }
+            }
+            //var temp = $scope.newperms.filter(function(x){
+            //    return x !== (null || '' || undefined);
+            //});
+            var msg = {
+                type: "call",
+                node: "userman.addUsergroupPermission",
+                data: {groupid: $scope.gid, permissions: temp}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+
+            });
+
+        }
+
+
         $scope.getperm = function () {
             var msg = {
                 type: "call",

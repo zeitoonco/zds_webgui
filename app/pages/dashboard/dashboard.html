@@ -15,9 +15,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="x in myData">
+      <tr ng-repeat="x in mycontacts">
         <td class="table-id">{{x.ContactID}}</td>
-        <td></td>
         <td>{{x.note}}</td>
         <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
           <button class="btn btn-danger" ng-disabled="true">حذف</button></td>
@@ -41,7 +40,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="x in mycontacts">
+      <tr ng-repeat="x in mygroups">
         <td class="table-id">{{x.groupID}}</td>
         <td></td>
         <td>{{x.note}}</td>
