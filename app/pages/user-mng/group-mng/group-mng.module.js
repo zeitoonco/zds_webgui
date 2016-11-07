@@ -3,6 +3,40 @@
  */
 (function () {
     'use strict';
+    function treefy(list){
+        var r=list[findID(list,0)];
+        var root={id:r.permissionID,name:r.name,state:r.state,children:[]};
+        addChilds(list,root);
+        return root;
+    }
+
+    function findID(l,id) {
+        for (var i in l) {
+            if (l[i].permissionID==id){
+                return i;
+            }
+        }
+        return -1;
+    }
+    function findPID(l,id) {
+        var ch=[];
+        for (var i in l) {
+            if (l[i].parentID==id){
+                ch.push(l[i]);
+            }
+        }
+        return ch;
+    }
+
+    function addChilds(l,p) {
+        var ch=findPID(l,p.id);
+        for (var i in ch){
+            var n={id:ch[i].permissionID,name:ch[i].name,state:ch[i].state,children:[]};
+            addChilds(l,n);
+            p.children.push(n)
+        }
+    }
+
 
     var groupmng = angular.module('ZDSGUI.pages.user-mng.group-mng', ['nzToggle', 'treeGrid'])
         .config(routeConfig);
@@ -155,8 +189,8 @@
     });
 
     groupmng.controller('editgroupperm', function ($scope, zdsSocket, $uibModal, toastr, $TreeDnDConvert) {
-        //$scope.treeperms = []; //voucher items
-        $scope.treeperms = [{
+        $scope.treeperms = []; //voucher items
+        $scope.treeperm = [{
             "id": 0,
             "name": "_masterPermission",
             "state": "true",
@@ -512,58 +546,15 @@
             {
                 field: "state",
                 displayName: "وضعیت",
-                cellTemplate: "<nz-toggle tri-toggle on-toggle=\"cellTemplateScope.click(states[row.branch[\'id\']],row.branch[\'id\'])\" ng-model=\"states[row.branch[\'id\']]\" val-false='-1' val-null='0' val-true='1'>",
+                cellTemplate: "<nz-toggle tri-toggle on-toggle=\"cellTemplateScope.click(row.branch[\'state\'],row.branch[\'id\'])\" ng-model='row.branch.state' val-false='-1' val-null='0' val-true='1'>",
                 cellTemplateScope: {
                     click: function (data, id) {         // this works too: $scope.someMethod;
-                        ///if ($scope.newperms[id]==undefined){
-
-                        //}else {
-
-                        //}
-
                         $scope.newperms[id.toString()] = data;
                         console.log($scope.newperms);
                     }
                 }
             }
         ];
-
-        $scope.finilizeperms = function () {
-
-            for (var i=0; i<$scope.treeperms.length; i++){
-
-                for (var j=0;j<$scope.newperms.length; j++){
-                    
-                }
-            }
-        }
-
-        $scope.maketree = function (data, pid) {
-            //var data = d;
-            for (var i = 0; i < data.length; i++) {
-                var id = data[i]['permissionID'], name = data[i]['name'], pid = data[i]['parentID'],
-                    dec = data[i]['description'];
-                data.splice(i, 1);
-                var child = [];
-                for (var j = i + 1; j < data.length; j++) {
-                    if (data[j]['parentID'] == id) {
-                        child.push({
-                            id: data[j]['permissionID'],
-                            name: data[j]['name'],
-                            dec: data[j]['description'],
-                            state: 0
-                        });
-                        //data.splice(j,1);
-                    }
-                }
-                if (child.length > 0) {
-                    $scope.treeperms.push({id: id, name: name, dec: dec, state: 0, children: child});
-                } else {
-                    $scope.treeperms.push({id: id, name: name, dec: dec, state: 0});
-                }
-            }
-        }
-
         $scope.fetchperms = function () {
             var msg = {
                 type: "call",
@@ -572,34 +563,12 @@
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
                 $scope.allperms = data['data']['listPermissions'];
-                //$scope.maketree($scope.allperms);
-                //console.log(JSON.stringify($scope.treeperms));
-                /*$scope.totalItems = $scope.allperms.length;
-                 $scope.currentPage = 1;
-                 $scope.numPerPage = 10;
-                 $scope.paginate = function(value) {
-                 var begin, end, index;
-                 begin = ($scope.currentPage - 1) * $scope.numPerPage;
-                 end = begin + $scope.numPerPage;
-                 index = $scope.allperms.indexOf(value);
-                 return (begin <= index && index < end);
-                 };*/
-
+                $scope.mergeperms();
+                var t = treefy($scope.allperms);
+                $scope.treeperms = JSON.parse('[' + JSON.stringify(t) + ']');
+                console.log(JSON.stringify($scope.treeperms));
             });
         }
-        $scope.checkstate = function (id) {
-            for (var i = 0; i < $scope.myperms.length; i++) {
-                if (id == $scope.myperms[i]['id']) {
-                    var s = $scope.myperms[i]['state'];
-                    if (s == '1') {
-                        return 'فعال';
-                    } else if (s == '-1') {
-                        return 'غیرفعال';
-                    }
-                }
-            }
-        }
-
         $scope.addperms = function () {
             var temp = [];
             for (var i in $scope.newperms){
@@ -607,9 +576,6 @@
                     temp.push({id: i, state: $scope.newperms[i]});
                 }
             }
-            //var temp = $scope.newperms.filter(function(x){
-            //    return x !== (null || '' || undefined);
-            //});
             var msg = {
                 type: "call",
                 node: "userman.addUsergroupPermission",
@@ -622,7 +588,6 @@
 
         }
 
-
         $scope.getperm = function () {
             var msg = {
                 type: "call",
@@ -634,15 +599,27 @@
                 if (data["success"] == true) {
                     //$scope.matchperm(data['data']['listPermissions']);
                     $scope.myperms = data['data']['listPermissions'];
-                    $scope.mergeperms();
+                    $scope.fetchperms();
+
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
         }
 
-        //$scope.getperm();
-        //$scope.fetchperms();
+        $scope.mergeperms = function (){
+            for (var i = 0; i<$scope.allperms.length; i++){
+                $scope.allperms[i]['state'] = '';
+                for (var j = 0; j<$scope.myperms.length; j++){
+                    if ($scope.allperms[i]['permissionID']==$scope.myperms[j]['id']){
+                        $scope.allperms[i]['state'] = $scope.myperms[j]['state'];
+                    }
+                }
+            }
+        }
+
+        $scope.getperm();
+
 
     });
     /** @ngInject */
