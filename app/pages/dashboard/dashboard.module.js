@@ -8,6 +8,7 @@
     var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
 
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
+        var list = [];
         $scope.listcontacts = function () {
             var msg = {
                 type: "call",
@@ -18,20 +19,52 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        //toastr.success('لیست مخاطبین شما دریافت شد!');
-                        $scope.mycontacts = data['data']['contactList'];
-
+                        $scope.contacts = data['data']['contactList'];
+                        $scope.getinfo();
                     } else {
                         toastr.error('!', 'خطا!');
-
-                        //$scope.LoginDisabled = false;
-
                     }
                 });
             } else {
                 toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
 
             }
+        }
+        $scope.getinfo = function (){
+            for (var i=0; i<$scope.contacts.length; i++){
+                list.push(parseInt($scope.contacts[i].ContactID));
+            }
+            var msg = {
+                type: "call",
+                node: "userman.listUsers",
+                data: {idlist: list}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                $scope.info = data['data']['userList'];
+                $scope.getavatar();
+            });
+        }
+        $scope.getavatar = function () {
+            $scope.mycontacts = [];
+            for (var i=0 ; i<$scope.info.length; i++) {
+                var msg = {
+                    type: "call",
+                    node: "userman.getUserAvatar",
+                    data: {userID: $scope.info[i].userID}
+                };
+                    console.log(JSON.stringify(msg));
+                    zdsSocket.send(msg, function (data) {
+
+                            var pic = data.data.image;
+                            pic = pic.replace(/\\/g, "");
+                            pic = "data:image/png;base64," + pic;
+                            $scope.mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name, avatar: pic});
+
+                    });
+
+            }
+            console.log(JSON.stringify($scope.mycontacts));
         }
         $scope.listcontacts();
     });

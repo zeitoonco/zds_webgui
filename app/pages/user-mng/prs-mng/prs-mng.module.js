@@ -116,8 +116,6 @@ var editid;
                     } else {
                         toastr.error('!', 'خطا!');
 
-                        //$scope.LoginDisabled = false;
-
                     }
                 });
             } else {

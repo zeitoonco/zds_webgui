@@ -1,29 +1,31 @@
 <!--dashboard-pie-chart></dashboard-pie-chart>-->
 
+<div class="container-fluid" ng-app="ZDSGUI.pages.dashboard" ng-controller="contact">
 <div class="row">
-  <div id="listcontact" class="col-lg-6 col-md-12 col-sm-12"
+    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12"
        ba-panel
        ba-panel-title="مخاطبین"
-       ba-panel-class="medium-panel" ng-app="ZDSGUI.pages.dashboard" ng-controller="contact">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th class="table-id">#</th>
-        <th>آواتار</th>
-        <th>نام</th>
-        <th>---</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="x in mycontacts">
-        <td class="table-id">{{x.ContactID}}</td>
-        <td>{{x.note}}</td>
-        <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
-          <button class="btn btn-danger" ng-disabled="true">حذف</button></td>
+       ba-panel-class="medium-panel" >
 
-      </tr>
-      </tbody>
-    </table>
+          <table id="data" class="table table-striped">
+          <thead>
+          <tr>
+            <th class="table-id">#</th>
+            <th>آواتار</th>
+            <th>نام</th>
+            <th>---</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="x in mycontacts">
+            <td class="table-id">{{x.ContactID}}</td>
+            <td></td>
+            <td>{{x.note}}</td>
+            <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
+              <button class="btn btn-danger" ng-disabled="true">حذف</button></td>
+          </tr>
+          </tbody>
+        </table>
 
   </div>
   <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12"
@@ -53,7 +55,7 @@
   </div>
 </div>
 
-
+</div>
 
 
 

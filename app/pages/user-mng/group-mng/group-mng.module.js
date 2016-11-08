@@ -36,11 +36,10 @@
             p.children.push(n)
         }
     }
-
-
     var groupmng = angular.module('ZDSGUI.pages.user-mng.group-mng', ['nzToggle', 'treeGrid'])
         .config(routeConfig);
     groupmng.controller('group-mng', function ($scope, zdsSocket, toastr, $uibModal) {
+
         $scope.getgroups = function () {
             var msg = {
                 type: "call",
@@ -50,6 +49,16 @@
                 console.log(JSON.stringify(data));
                 if (data["success"] == true) {
                     $scope.myData = data['data']['userGroupsList'];
+                    $scope.totalItems = $scope.myData.length;
+                    $scope.currentPage = 1;
+                    $scope.numPerPage = 10;
+                    $scope.paginate = function(value) {
+                        var begin, end, index;
+                        begin = ($scope.currentPage - 1) * $scope.numPerPage;
+                        end = begin + $scope.numPerPage;
+                        index = $scope.myData.indexOf(value);
+                        return (begin <= index && index < end);
+                    };
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -537,7 +546,6 @@
             }]
         }];
         $scope.newperms = {};
-
         $scope.col_defs = [
             {
                 field: "id",
@@ -579,7 +587,7 @@
             var msg = {
                 type: "call",
                 node: "userman.addUsergroupPermission",
-                data: {groupid: $scope.gid, permissions: temp}
+                data: {id: $scope.gid, permissions: temp}
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {

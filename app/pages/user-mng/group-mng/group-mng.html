@@ -1,56 +1,66 @@
+<div class="container-fluid" ng-app='ZDSGUI.pages.user-mng.group-mng' ng-controller="group-mng">
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="panel-group">
+                <div class="panel panel-primary bootstrap-panel">
+                    <div class="panel-heading">لیست گروه ها</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="button-wrapper">
+                                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                                            style="float: right;"
+                                            ng-click="openmodal('app/pages/user-mng/group-mng/newmodal.html', 'md')"><i
+                                            class="ion-plus"></i>
+                                        گروه جدید
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="button-wrapper" style="text-align: left;">
+                                    <button type="button" ng-click="getgroups()" class="btn btn-default"><i
+                                            class="ion-refresh"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                <div class="table-responsive">
+                    <table id="data" class="table table-condensed table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="table-id">#</th>
+                            <th>نام گروه</th>
+                            <th>توضیحات</th>
+                            <th>عملیات</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="x in myData">
+                            <td>{{ x.usergroupID }}</td>
+                            <td>{{ x.title }}</td>
+                            <td>{{ x.description }}</td>
+                            <td>
+                                <button zdsperm="userman.listUsergroupPermissions" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
+                                        ng-click="openmodal('app/pages/user-mng/group-mng/permodal.html', 'md',x.usergroupID)">
+                                    دسترسی ها
+                                </button>
+                                <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                        ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID,x.title,x.description,x.parentID)">
+                                    ویرایش
+                                </button>
+                                <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/group-mng/removemodal.html', 'sm',x.usergroupID)" id='remove-btn'>حذف</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="pager">
+                        <pagination total-items="totalItems" ng-model="currentPage"
+                                    max-size="5" boundary-links="true"
+                                    items-per-page="numPerPage" class="pagination-md">
+                        </pagination>
+                    </div>
+                    </div>
 
-<div class="row" ng-app='ZDSGUI.pages.user-mng.group-mng'>
-    <div class="col-md-12" ng-controller="group-mng">
-        <div class="row">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="button-wrapper">
-                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
-                                style="float: right;"
-                                ng-click="openmodal('app/pages/user-mng/group-mng/newmodal.html', 'md')"><i
-                                class="ion-plus"></i>
-                            دسترسی جدید
-                        </button>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="button-wrapper" style="text-align: left;">
-                        <button type="button" ng-click="getgroups()" class="btn btn-default"><i
-                                class="ion-refresh"></i></button>
-                    </div>
                 </div>
-
-            </div>
-            <div class="table-responsive">
-                <table id="data" class="table table-condensed table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="table-id">#</th>
-                        <th>نام گروه</th>
-                        <th>توضیحات</th>
-                        <th>عملیات</th>
-                    </tr>
-                    </thead>
-                    <tr ng-repeat="x in myData">
-                        <td>{{ x.usergroupID }}</td>
-                        <td>{{ x.title }}</td>
-                        <td>{{ x.description }}</td>
-                        <td>
-                            <button zdsperm="userman.listUsergroupPermissions" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
-                                    ng-click="openmodal('app/pages/user-mng/group-mng/permodal.html', 'md',x.usergroupID)">
-                                دسترسی ها
-                            </button>
-                            <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                    ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID,x.title,x.description,x.parentID)">
-                                ویرایش
-                            </button>
-                            <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/group-mng/removemodal.html', 'sm',x.usergroupID)" id='remove-btn'>حذف</button>
-                        </td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>
-
-
-</div>
