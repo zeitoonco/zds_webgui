@@ -13,7 +13,6 @@
             var msg = {
                 type: "call",
                 node: "userman.listContacts",
-                id: "1234568",
                 data: {value: uid}
             };
             if (zdsSocket.status() == 1) {
@@ -55,12 +54,10 @@
                 };
                     console.log(JSON.stringify(msg));
                     zdsSocket.send(msg, function (data) {
-
                             var pic = data.data.image;
                             pic = pic.replace(/\\/g, "");
                             pic = "data:image/png;base64," + pic;
                             $scope.mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name, avatar: pic});
-
                     });
 
             }
@@ -80,26 +77,16 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
-                        //toastr.success('لیست گروه های شما دریافت شد!');
-                        //var myData = data["data"]["groupList"];
                     } else {
                         toastr.error('!', 'خطا!');
-
-                        //$scope.LoginDisabled = false;
-
                     }
                 });
             } else {
                 toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
-
             }
         }
-
         listgroup();
-
     });
-
-
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider

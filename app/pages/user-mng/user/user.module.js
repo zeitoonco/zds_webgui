@@ -232,7 +232,7 @@ var tempname = '', tempun = '', tempid = '';
             var msg = {
                 type: "call",
                 node: "userman.addUserPermission",
-                data: {id: $scope.gid, permissions: temp}
+                data: {id: tempid, permissions: temp}
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
