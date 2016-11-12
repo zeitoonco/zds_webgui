@@ -9,6 +9,16 @@
 
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];
+        $scope.checkavatar = function (id) {
+            return 'assets/pictures/nonavatar.jpg';
+        }
+        $scope.online = function (s) {
+            if (s == 'true'){
+                return "<i class=\"ion-at\" style=\"color:seagreen;\"></i>";
+            } else if (s == 'false') {
+                return "<i class=\"ion-at\" style=\"color:darkred;\"></i>";
+            }
+        }
         $scope.listcontacts = function () {
             var msg = {
                 type: "call",
@@ -41,10 +51,10 @@
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
                 $scope.info = data['data']['userList'];
-                $scope.getavatar();
+                //$scope.getavatar();
             });
         }
-        $scope.getavatar = function () {
+        /*$scope.getavatar = function () {
             $scope.mycontacts = [];
             for (var i=0 ; i<$scope.info.length; i++) {
                 var msg = {
@@ -52,16 +62,20 @@
                     node: "userman.getUserAvatar",
                     data: {userID: $scope.info[i].userID}
                 };
-                    console.log(JSON.stringify(msg));
-                    zdsSocket.send(msg, function (data) {
-                            var pic = data.data.image;
-                            pic = pic.replace(/\\/g, "");
-                            pic = "data:image/png;base64," + pic;
-                            $scope.mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name, avatar: pic});
-                    });
-
+                    //console.log(JSON.stringify(msg));
+                $scope.avatar(msg);
             }
             console.log(JSON.stringify($scope.mycontacts));
+        }*/
+        $scope.avatar = function (msg) {
+            zdsSocket.send(msg, function (data) {
+                var pic = data.data.image;
+                pic = pic.replace(/\\/g, "");
+                pic = "data:image/png;base64," + pic;
+                $scope.mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name, avatar: pic});
+                console.log(JSON.stringify($scope.mycontacts));
+
+            });
         }
         $scope.listcontacts();
     });

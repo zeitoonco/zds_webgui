@@ -6,23 +6,19 @@
        ba-panel
        ba-panel-title="مخاطبین"
        ba-panel-class="medium-panel" >
+        <div id="search" class="input-group">
+            <input ng-model="search.name" class="form-control with-warning-addon" type="text" placeholder="جستجو..."/>
+        </div>
 
-          <table id="data" class="table table-striped">
-          <thead>
-          <tr>
-            <th class="table-id">#</th>
-            <th>آواتار</th>
-            <th>نام</th>
-            <th>---</th>
-          </tr>
-          </thead>
+          <table id="data" class="table table-responsive">
           <tbody>
-          <tr ng-repeat="x in mycontacts">
-            <td class="table-id">{{x.ContactID}}</td>
-            <td></td>
-            <td>{{x.note}}</td>
-            <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
-              <button class="btn btn-danger" ng-disabled="true">حذف</button></td>
+          <tr ng-repeat="x in info | filter:search">
+            <td class="table-id">{{x.userID}}</td>
+              <td><img ng-src="{{checkavatar(x.userID)}}" class="img-responsive img-rounded" width="64"/></td>
+            <td>{{x.name}}</td>
+              <td ng-bind-html="online(x.isOnline)" ></td>
+            <td><button class="btn btn-info" ng-disabled="false"><i class="ion-chatbox"></i></button>
+              <button class="btn btn-danger" ng-disabled="false"><i class="ion-ios-minus"></i></button></td>
           </tr>
           </tbody>
         </table>
