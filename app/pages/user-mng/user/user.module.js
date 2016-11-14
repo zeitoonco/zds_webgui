@@ -138,28 +138,6 @@ var tempname = '', tempun = '', tempid = '';
 
     });
 
-    user.controller('usergroup', function ($scope, zdsSocket, toastr) {
-        var msg = {
-            type: "call",
-            node: "userman.listGroups",
-            data: {value: tempid}
-        };
-        if (zdsSocket.status() == 1) {
-            console.log(JSON.stringify(msg));
-            zdsSocket.send(msg, function (data) {
-
-                if (data["success"] == true && data["data"]["userGroupsList"].length>0) {
-                    //toastr.success('گروهی برای این کاربر وجود ندارد');
-                    //$scope.getlistuser();
-                    $scope.groups = data['data']['userGroupsList'];
-                } else {
-                    toastr.warning('اطلاعاتی موجود نیست');
-                }
-            });
-        } else {
-            toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
-        }
-    });
 
     user.controller('modalctrl', function ($scope, zdsSocket, toastr) {
         $scope.username = tempun;
@@ -292,6 +270,29 @@ var tempname = '', tempun = '', tempid = '';
             $scope.name = n;
         };
     }
+
+    user.controller('usergroup', function ($scope, zdsSocket, toastr) {
+        var msg = {
+            type: "call",
+            node: "userman.listUsergroups",
+            data: {value: tempid}
+        };
+        if (zdsSocket.status() == 1) {
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+
+                if (data["success"] == true && data["data"]["userGroupsList"].length>0) {
+                    //toastr.success('گروهی برای این کاربر وجود ندارد');
+                    //$scope.getlistuser();
+                    $scope.groups = data['data']['userGroupsList'];
+                } else {
+                    toastr.warning('اطلاعاتی موجود نیست');
+                }
+            });
+        } else {
+            toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+        }
+    });
 
     function routeConfig($stateProvider) {
         $stateProvider
