@@ -91,6 +91,7 @@
             if (zdsSocket.status() == 1) {
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
+                        $scope.mygroups = data['data']['userGroupsList'];
                     } else {
                         toastr.error('!', 'خطا!');
                     }

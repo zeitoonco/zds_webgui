@@ -1,8 +1,8 @@
 <!--dashboard-pie-chart></dashboard-pie-chart>-->
 
-<div class="container-fluid" ng-app="ZDSGUI.pages.dashboard" ng-controller="contact">
+<div class="container-fluid" ng-app="ZDSGUI.pages.dashboard"  >
 <div class="row">
-    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12">
+    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12" ng-controller="contact">
       <div class="panel panel-primary bootstrap-panel medium-panel">
         <div class="panel-heading" style="color:white;font-size:18px">
           <div class="col-md-6">
@@ -45,24 +45,28 @@
   </div>
   <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12"
        ba-panel
-       ba-panel-title="گروه ها"
-       ba-panel-class="medium-panel" ng-controller="group">
-    <table class="table table-striped">
+       ba-panel-title="گروه های شما"
+       ba-panel-class="medium-panel" >
+    <div id="search" class="input-group">
+      <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
+    </div>
+    <table class="table table-responsive table-condensed">
       <thead>
       <tr>
         <th class="table-id">#</th>
-        <th>آواتار</th>
-        <th>نام</th>
+        <th>عنوان</th>
+        <th>توضیحات</th>
         <th>---</th>
       </tr>
       </thead>
-      <tbody>
-      <tr ng-repeat="x in mygroups">
-        <td class="table-id">{{x.groupID}}</td>
-        <td></td>
-        <td>{{x.note}}</td>
-        <td><button class="btn btn-info" ng-disabled="true">ارسال پیام</button>
-          <button class="btn btn-danger" ng-disabled="true">حذف</button></td>
+      <tbody ng-controller="group">
+      <tr ng-repeat="y in mygroups | filter:search">
+        <td class="table-id">{{y.usergroupID}}</td>
+        <td>{{y.title}}</td>
+        <td>{{y.description}}</td>
+        <td>
+
+          <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button></td>
 
       </tr>
       </tbody>
