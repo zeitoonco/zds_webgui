@@ -2,27 +2,46 @@
 
 <div class="container-fluid" ng-app="ZDSGUI.pages.dashboard" ng-controller="contact">
 <div class="row">
-    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12"
-       ba-panel
-       ba-panel-title="مخاطبین"
-       ba-panel-class="medium-panel" >
+    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12">
+      <div class="panel panel-primary bootstrap-panel medium-panel">
+        <div class="panel-heading" style="color:white;font-size:22px">
+          <div class="col-md-6">
+            <i class="ion-android-contacts"></i>          دوستان شما
+          </div>
+          <div class="col-md-6">
+
+          </div>
+        </div>
+        <div class="panel-body">
+
         <div id="search" class="input-group">
-            <input ng-model="search.name" class="form-control with-warning-addon" type="text" placeholder="جستجو..."/>
+            <input ng-model="search.name" class="form-control" type="text" placeholder="جستجو..."/>
         </div>
 
-          <table id="data" class="table table-responsive">
-          <tbody>
+          <table id="data" class="table table-responsive table-condensed" style="/background-color:#eee;/border-radius:5px;/border:1px solid #ddd">
+          <thead>
+          <tr>
+          <th>#</th>
+            <th>آواتار</th>
+            <th>نام</th>
+            <th>وضعیت</th>
+            <th>عملیات</th>
+          </tr>
+          </thead>
+            <tbody>
           <tr ng-repeat="x in info | filter:search">
             <td class="table-id">{{x.userID}}</td>
               <td><img ng-src="{{checkavatar(x.userID)}}" class="img-responsive img-rounded" width="64"/></td>
             <td>{{x.name}}</td>
-              <td ng-bind-html="online(x.isOnline)" ></td>
-            <td><button class="btn btn-info" ng-disabled="false"><i class="ion-chatbox"></i></button>
-              <button class="btn btn-danger" ng-disabled="false"><i class="ion-ios-minus"></i></button></td>
+              <td style="font-size:22px;" ng-bind-html="online(x.isOnline)" ></td>
+            <td><button class="btn btn-primary btn-md " ng-disabled="false"><i class="ion-ios-paperplane"></i></button>
+
+              <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button></td>
           </tr>
           </tbody>
         </table>
-
+          </div>
+      </div>
   </div>
   <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12"
        ba-panel
