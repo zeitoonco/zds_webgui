@@ -1205,3 +1205,5 @@ h1, h2, h3, h4, h5, h6 {
 .dldisabled {
     pointer-events: none;
 }
+#listcontact .panel-body {/background-color:#ddd;}
+#listgroup .panel-body {/background-color:#ddd;}

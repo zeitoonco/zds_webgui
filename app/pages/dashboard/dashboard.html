@@ -3,8 +3,8 @@
 <div class="container-fluid" ng-app="ZDSGUI.pages.dashboard"  >
 <div class="row">
     <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12" ng-controller="contact">
-      <div class="panel panel-primary bootstrap-panel medium-panel">
-        <div class="panel-heading" style="color:white;font-size:18px">
+      <div class="panel panel-default bootstrap-panel medium-panel">
+        <div class="panel-heading" style="/color:white;font-size:18px">
           <div class="col-md-6">
             <i class="ion-android-contacts"></i>          مخاطبین شما
           </div>
@@ -43,10 +43,17 @@
           </div>
       </div>
   </div>
-  <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12"
-       ba-panel
-       ba-panel-title="گروه های شما"
-       ba-panel-class="medium-panel" >
+  <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12">
+      <div class="panel panel-default bootstrap-panel medium-panel">
+          <div class="panel-heading" style="/color:white;font-size:18px">
+              <div class="col-md-6">
+                  <i class="ion-android-contacts"></i>          گروههای شما
+              </div>
+              <div class="col-md-6">
+
+              </div>
+          </div>
+          <div class="panel-body">
     <div id="search" class="input-group">
       <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
     </div>
@@ -71,17 +78,9 @@
       </tr>
       </tbody>
     </table>
+              </div>
+          </div>
   </div>
 </div>
 
 </div>
-
-
-
-<!--<div class="row">
-  <div class="col-lg-4 col-sm-6 col-xs-12">
-    <div ba-panel ba-panel-title="Weather" ba-panel-class="medium-panel with-scroll">
-      <blur-weather forecast="5"></blur-weather>
-    </div>
-  </div>
-</div>-->
