@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-md-12" >
             <div class="panel-group">
-                <div class="panel panel-primary bootstrap-panel">
+                <div class="panel panel-default bootstrap-panel">
                     <div class="panel-heading">لیست گروه ها</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="button-wrapper">
-                                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal"
                                             style="float: right;"
                                             ng-click="openmodal('app/pages/user-mng/group-mng/newmodal.html', 'md')"><i
                                             class="ion-plus"></i>
@@ -50,7 +50,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="pager">
+                    <div id="pager">
                         <pagination total-items="totalItems" ng-model="currentPage"
                                     max-size="5" boundary-links="true"
                                     items-per-page="numPerPage" class="pagination-md">
