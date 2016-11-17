@@ -95,6 +95,9 @@ var tempname = '', tempun = '', tempid = '';
     });
 
     user.controller('newuser', function ($scope, zdsSocket, toastr) {
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.adduser = function () {
             var msg = {
                 type: "call",
@@ -117,8 +120,10 @@ var tempname = '', tempun = '', tempid = '';
     });
 
     user.controller('removeuser', function ($scope, zdsSocket, toastr) {
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.doremove = function () {
-
             var msg = {
                 type: "call",
                 node: "userman.removeUser",
@@ -139,6 +144,9 @@ var tempname = '', tempun = '', tempid = '';
         }
     });
     user.controller('edituser', function ($scope, zdsSocket, toastr) {
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.doedit = function () {
             var msg = {
                 type: "call",
@@ -162,6 +170,9 @@ var tempname = '', tempun = '', tempid = '';
     });
     
     user.controller('edituserperm',function (zdsSocket, $scope, toastr) {
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.treeperms = [];
 
         $scope.newperms = {};
@@ -206,7 +217,7 @@ var tempname = '', tempun = '', tempid = '';
             var msg = {
                 type: "call",
                 node: "userman.addUserPermission",
-                data: {id: tempid, permissions: temp}
+                data: {id: $scope.userid, permissions: temp}
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
@@ -219,7 +230,7 @@ var tempname = '', tempun = '', tempid = '';
             var msg = {
                 type: "call",
                 node: "userman.listUserPermissions",
-                data: {value: tempid}
+                data: {value: $scope.userid}
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
@@ -248,10 +259,13 @@ var tempname = '', tempun = '', tempid = '';
     });
 
     user.controller('usergroup', function ($scope, zdsSocket, toastr) {
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         var msg = {
             type: "call",
             node: "userman.listUsergroups",
-            data: {value: tempid}
+            data: {value: $scope.userid}
         };
         if (zdsSocket.status() == 1) {
             console.log(JSON.stringify(msg));
