@@ -89,8 +89,6 @@
             $scope.getgroups();
         });
         $scope.grouplist = [];
-
-
         $scope.addgroup = function () {
             var msg = {
                 type: "call",

@@ -143,6 +143,7 @@ var tempname = '', tempun = '', tempid = '';
             }
         }
     });
+
     user.controller('edituser', function ($scope, zdsSocket, toastr) {
         $scope.$on('modal.closing', function (event, args) {
             $scope.getlistuser();
@@ -158,7 +159,6 @@ var tempname = '', tempun = '', tempid = '';
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         toastr.success('اطلاعات با موفقیت اعمال شد');
-
                     } else {
                         toastr.error('!', 'خطا!');
                     }
@@ -174,7 +174,6 @@ var tempname = '', tempun = '', tempid = '';
             $scope.getlistuser();
         });
         $scope.treeperms = [];
-
         $scope.newperms = {};
         $scope.col_defs = [
             {
@@ -196,7 +195,7 @@ var tempname = '', tempun = '', tempid = '';
         $scope.fetchperms = function () {
             var msg = {
                 type: "call",
-                node: "userman.listPermissions",
+                node: "userman.listPermissions"
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
