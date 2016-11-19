@@ -57,9 +57,13 @@
                                                 ng-click="openmodal('app/pages/user-mng/user/permodal.html', 'md',x.userID)">
                                             دسترسی ها
                                         </button>
-                                        <button zdsperm="userman.listUsergroups" class="btn btn-info btn-xs"
+                                        <button zdsperm="userman.listUsergroups" class="btn btn-info btn-xs" ng-disabled="true"
                                                 ng-click="openmodal('app/pages/user-mng/user/groupmodal.html', 'md',x.userID)"
                                                 id='usergroup-btn'>گروه ها
+                                        </button>
+                                        <button zdsperm="userman.listUsergroups" class="btn btn-info btn-xs" ng-disabled="true"
+                                                ng-click="openmodal('app/pages/user-mng/user/contactmodal.html', 'md',x.userID)"
+                                                id='usergroup-btn'>مخاطبین
                                         </button>
                                         <button zdsperm="userman.modifyUser" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                                 ng-click="openmodal('app/pages/user-mng/user/editmodal.html', 'md',x.userID,x.username,x.name)">
@@ -71,7 +75,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="pager">
+                            <div id="pager">
                                 <pagination total-items="totalItems" ng-model="currentPage"
                                             max-size="5" boundary-links="true"
                                             items-per-page="numPerPage" class="pagination-md">

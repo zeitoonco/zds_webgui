@@ -2,17 +2,9 @@
 
 <div class="container-fluid" ng-app="ZDSGUI.pages.dashboard"  >
 <div class="row">
-    <div id="listcontact" class="col-lg-6 col-md-6 col-sm-12" ng-controller="contact">
-      <div class="panel panel-default bootstrap-panel medium-panel">
-        <div class="panel-heading" style="/color:white;font-size:18px">
-          <div class="col-md-6">
-            <i class="ion-android-contacts"></i>          مخاطبین شما
-          </div>
-          <div class="col-md-6">
+    <div id="listcontact" class="col-lg-4 col-md-4 col-sm-12" ng-controller="contact">
+        <div id="account-tree" ba-panel ba-panel-title="مخاطبین شما" ba-panel-class="with-scroll tree-panel">
 
-          </div>
-        </div>
-        <div class="panel-body">
 
         <div id="search" class="input-group">
             <input ng-model="search.name" class="form-control" type="text" placeholder="جستجو..."/>
@@ -31,19 +23,19 @@
             <tbody>
           <tr ng-repeat="x in info | filter:search">
             <td class="table-id">{{x.userID}}</td>
-              <td><img ng-src="{{checkavatar(x.userID)}}" class="img-responsive img-rounded" width="64"/></td>
+              <td><img ng-src="{{checkavatar(x.userID)}}" class="img-responsive img-circle" width="64"/></td>
             <td>{{x.name}}</td>
               <td style="font-size:22px;" ng-bind-html="online(x.isOnline)" ></td>
-            <td><button class="btn btn-primary btn-md " ng-disabled="false"><i class="ion-ios-paperplane"></i></button>
+            <td><button class="btn btn-info btn-md " ng-disabled="false"><i class="ion-ios-paperplane"></i></button>
 
-              <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button></td>
+             <!-- <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button>--></td>
           </tr>
           </tbody>
         </table>
-          </div>
+
       </div>
   </div>
-  <div id="listgroup" class="col-lg-6 col-md-12 col-sm-12">
+  <div id="listgroup" class="col-lg-4 col-md-4 col-sm-12">
       <div class="panel panel-default bootstrap-panel medium-panel">
           <div class="panel-heading" style="/color:white;font-size:18px">
               <div class="col-md-6">
@@ -81,6 +73,9 @@
               </div>
           </div>
   </div>
+    <div id="listgroup" class="col-lg-4 col-md-4 col-sm-12">
+
+    </div>
 </div>
 
 </div>

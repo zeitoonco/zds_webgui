@@ -1205,5 +1205,9 @@ h1, h2, h3, h4, h5, h6 {
 .dldisabled {
     pointer-events: none;
 }
+#pager {text-align:center}
+
 #listcontact .panel-body {/background-color:#ddd;}
 #listgroup .panel-body {/background-color:#ddd;}
+
+#listcontact table tbody tr td {padding:15px;}

@@ -14,9 +14,9 @@
         }
         $scope.online = function (s) {
             if (s == 'true'){
-                return "<i class=\"ion-wifi\" style=\"color:seagreen;\"></i>";
+                return "<i class=\"ion-android-person\" style=\"color:seagreen;\"></i>";
             } else if (s == 'false') {
-                return "<i class=\"ion-wifi\" style=\"color:red;\"></i>";
+                return "<i class=\"ion-android-person\" style=\"color:darkred;\"></i>";
             }
         }
         $scope.listcontacts = function () {
