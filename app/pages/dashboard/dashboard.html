@@ -46,8 +46,8 @@
               </div>
           </div>
           <div class="panel-body">
-    <div id="search" class="input-group">
-      <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
+    <div id="search1" class="input-group">
+      <input ng-model="search1.title" class="form-control" type="text" placeholder="جستجو..."/>
     </div>
     <table class="table table-responsive table-condensed">
       <thead>
@@ -59,7 +59,7 @@
       </tr>
       </thead>
       <tbody ng-controller="group">
-      <tr ng-repeat="y in mygroups | filter:search">
+      <tr ng-repeat="y in mygroups | filter:search1">
         <td class="table-id">{{y.usergroupID}}</td>
         <td>{{y.title}}</td>
         <td>{{y.description}}</td>
