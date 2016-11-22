@@ -55,12 +55,12 @@
                                     <td>{{ x.parentID }}</td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
-                                                ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID)"
-                                                ng-disabled="true">ویرایش
+                                                ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID,x.title,x.name,x.description,x.parentID)"
+                                                ng-disabled="false">ویرایش
                                         </button>
-                                        <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)"
+                                        <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/prs-mng/removemodal.html', 'sm',x.permissionID)"
                                                 id='remove-btn'
-                                                ng-disabled="true">حذف
+                                                ng-disabled="false">حذف
                                         </button>
                                     </td>
                                 </tr>

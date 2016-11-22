@@ -7,7 +7,9 @@ var editid;
     var prs = angular.module('ZDSGUI.pages.user-mng.prs-mng', [])
         .config(routeConfig);
     prs.controller('prsaction', function ($scope, zdsSocket, toastr, $uibModal) {
-
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistprs();
+        });
         //$scope.gridOptions = { data: 'myData' };
 
         $scope.getlistprs = function () {
@@ -44,7 +46,6 @@ var editid;
             //console.log("Hello! " + $scope.username)
 
         };
-        $scope.itemsByPage = 15;
         $scope.doremove = function (id) {
             //var rnd = Math.round(Math.random() * 1000000000);
             var msg = {
@@ -70,35 +71,37 @@ var editid;
             }
         }
 
-        $scope.doedit = function () {
-            var msg = {
-                type: "call",
-                node: "userman.updatePermission",
-                data: {
-                    permissionID: $scope.id,
-                    name: $scope.pname,
-                    title: $scope.ptitle,
-                    description: $scope.pdec,
-                    parentID: $scope.pid
-                }
-            };
-            if (zdsSocket.status() == 1) {
-                zdsSocket.send(msg, function (data) {
-                    if (data["success"] == true) {
-                        toastr.success('اطلاعات با موفقیت اعمال شد');
-                        $scope.getlistprs();
-                    } else {
-                        toastr.error('!', 'خطا!');
 
-                        //$scope.LoginDisabled = false;
 
+
+
+        $scope.getlistprs();
+
+        $scope.openmodal = function (page, size, id,title,name,dec,pid) {
+            $scope.id = id;
+            $scope.ptitle = title;
+            $scope.pname = name;
+            $scope.pdec = dec;
+            $scope.ppid = pid;
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
                     }
-                });
-            } else {
-                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
-
-            }
+                }
+            });
         }
+
+    });
+
+    prs.controller('newperm',function(zdsSocket,$scope,toastr){
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistprs();
+        });
 
         $scope.addprs = function () {
 
@@ -124,24 +127,51 @@ var editid;
             }
         }
 
-        $scope.getlistprs();
+    });
 
-        $scope.openmodal = function (page, size, id) {
-            $uibModal.open({
-                animation: true,
-                templateUrl: page,
-                size: size,
-                scope: $scope,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    }
+    prs.controller('editperm',function(zdsSocket,$scope,toastr){
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistprs();
+        });
+        $scope.doedit = function () {
+            var msg = {
+                type: "call",
+                node: "userman.updatePermission",
+                data: {
+                    permissionID: $scope.id,
+                    name: $scope.pname,
+                    title: $scope.ptitle,
+                    description: $scope.pdec,
+                    parentID: $scope.ppid
                 }
-            });
+            };
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('اطلاعات با موفقیت اعمال شد');
+                        $scope.getlistprs();
+                    } else {
+                        toastr.error('!', 'خطا!');
+
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
         }
 
     });
 
+    prs.controller('removeperm',function(zdsSocket,$scope,toastr){
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistprs();
+        });
+
+
+    });
 
     function routeConfig($stateProvider) {
         $stateProvider
