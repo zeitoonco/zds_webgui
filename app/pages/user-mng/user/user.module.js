@@ -7,7 +7,7 @@ var tempname = '', tempun = '', tempid = '';
     'use strict';
     function treefy2(list){
         var r=list[findID2(list,1)];
-        var root={usergroupID:r.usergroupID,title:r.title,parentID:r.parentID,description:r.description,children:[]};
+        var root={usergroupID:r.usergroupID,title:r.title,state:r.state,parentID:r.parentID,description:r.description,children:[]};
         addChilds2(list,root);
         return root;
     }
@@ -65,7 +65,7 @@ var tempname = '', tempun = '', tempid = '';
     function addChilds2(l,p) {
         var ch=findPID2(l,p.usergroupID);
         for (var i in ch){
-            var n={usergroupID:ch[i].usergroupID,title:ch[i].title,parentID:ch[i].parentID,description:ch[i].description,children:[]};
+            var n={usergroupID:ch[i].usergroupID,title:ch[i].title,state:ch[i].state,parentID:ch[i].parentID,description:ch[i].description,children:[]};
             addChilds2(l,n);
             p.children.push(n)
         }
@@ -297,9 +297,13 @@ var tempname = '', tempun = '', tempid = '';
         $scope.newgroup = {};
         $scope.col_defs = [
             {
+                field: "usergroupID",
+                displayName: "#"
+            },
+            {
                 field: "state",
                 displayName: "وضعیت",
-                cellTemplate: "<nz-toggle on-toggle=\"cellTemplateScope.click(row.branch[\'state\'],row.branch[\'id\'])\" ng-model='row.branch.state' val-false='-1' val-true='1'>",
+                cellTemplate: "<nz-toggle on-toggle=\"cellTemplateScope.click(row.branch[\'state\'],row.branch[\'usergroupID\'])\" ng-model='row.branch.state' val-false=false val-true=true>",
                 cellTemplateScope: {
                     click: function (data, id) {         // this works too: $scope.someMethod;
                         $scope.newgroup[id.toString()] = data;
@@ -320,7 +324,6 @@ var tempname = '', tempun = '', tempid = '';
 
                     if (data["success"] == true && data["data"]["userGroupsList"].length > 0) {
                         $scope.allgroups = data['data']['userGroupsList'];
-
                         $scope.mergegroup();
                         var t = treefy2($scope.allgroups);
                         $scope.treegroup = JSON.parse('[' + JSON.stringify(t) + ']');
@@ -337,14 +340,15 @@ var tempname = '', tempun = '', tempid = '';
         $scope.addgroup = function () {
             var temp = [];
             for (var i in $scope.newgroup){
-                if ($scope.newgroup.hasOwnProperty(i)) {
-                    temp.push({id: i, state: $scope.newgroup[i]});
+                if ($scope.newgroup.hasOwnProperty(i) && $scope.newgroup[i]==1) {
+
+                    temp.push({groupid: i, state: $scope.newgroup[i]});
                 }
             }
             var msg = {
                 type: "call",
-                node: "userman.addUserPermission",
-                data: {id: $scope.userid, permissions: temp}
+                node: "userman.updateuserusergroup",
+                data: {id: $scope.userid, list: temp}
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
@@ -372,10 +376,10 @@ var tempname = '', tempun = '', tempid = '';
 
             for (var j = 0; j<$scope.mygroup.length; j++) {
                 for (var i = 0; i < $scope.allgroups.length; i++) {
-                    $scope.allgroups[i]['state'] = 0;
+                    $scope.allgroups[i]['state'] = false;
 
                     if ($scope.allgroups[i]['usergroupID'] == $scope.mygroup[j]['usergroupID']) {
-                        $scope.allgroups[i]['state'] = 1;
+                        $scope.allgroups[i]['state'] = true;
                     }
                 }
             }
