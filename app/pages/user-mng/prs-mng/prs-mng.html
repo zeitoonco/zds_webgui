@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="button-wrapper">
-                                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+                                    <button type="button" class="btn btn-warning btn-lg" zdsperm="userman.registerPermission" data-toggle="modal"
                                             style="float: right;"
                                             ng-click="openmodal('app/pages/user-mng/prs-mng/newmodal.html', 'md')"><i
                                             class="ion-plus"></i>
@@ -54,11 +54,11 @@
                                     <td>{{ x.description }}</td>
                                     <td>{{ x.parentID }}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                        <button class="btn btn-primary btn-xs" id='edit-btn' zdsperm="userman.updatePermission" data-toggle="modal"
                                                 ng-click="openmodal('app/pages/user-mng/prs-mng/editmodal.html', 'md',x.permissionID,x.title,x.name,x.description,x.parentID)"
                                                 ng-disabled="false">ویرایش
                                         </button>
-                                        <button class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/prs-mng/removemodal.html', 'sm',x.permissionID)"
+                                        <button class="btn btn-danger btn-xs" zdsperm="userman.removePermission" ng-click="openmodal('app/pages/user-mng/prs-mng/removemodal.html', 'sm',x.permissionID)"
                                                 id='remove-btn'
                                                 ng-disabled="false">حذف
                                         </button>

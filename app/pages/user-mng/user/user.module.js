@@ -397,7 +397,7 @@ var tempname = '', tempun = '', tempid = '';
                 url: '/user',
                 templateUrl: 'app/pages/user-mng/user/user.html',
                 title: 'کاربران',
-                permission: 'userman.userlist',
+                permission: 'userman.listUsers',
                 sidebarMeta: {
                     icon: 'ion-android-home',
                     order: 3,
