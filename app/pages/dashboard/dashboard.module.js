@@ -6,7 +6,9 @@
     'use strict';
 
     var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
-
+    dash.controller('myinfo',function (zdsSocket,$scope){
+        $scope.name = myname;
+    });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];
         $scope.checkavatar = function (id) {
@@ -50,11 +52,15 @@
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
-                $scope.info = data['data']['userList'];
-                //$scope.getavatar();
+                var temp = data['data']['userList'];
+                for (var i in temp){
+                    temp[i]["avatar"]='assets/pictures/nonavatar.jpg';
+                }
+                $scope.info = temp;
+                $scope.getavatar();
             });
         }
-        /*$scope.getavatar = function () {
+        $scope.getavatar = function () {
             $scope.mycontacts = [];
             for (var i=0 ; i<$scope.info.length; i++) {
                 var msg = {
@@ -62,19 +68,27 @@
                     node: "userman.getUserAvatar",
                     data: {userID: $scope.info[i].userID}
                 };
-                    //console.log(JSON.stringify(msg));
+                    console.log(JSON.stringify(msg));
                 $scope.avatar(msg);
             }
-            console.log(JSON.stringify($scope.mycontacts));
-        }*/
+        }
         $scope.avatar = function (msg) {
             zdsSocket.send(msg, function (data) {
+                var mycontacts = [];
                 var pic = data.data.image;
                 pic = pic.replace(/\\/g, "");
                 pic = "data:image/png;base64," + pic;
-                $scope.mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name, avatar: pic});
-                console.log(JSON.stringify($scope.mycontacts));
-
+                var id = data.data.userID;
+                for (var i in $scope.info){
+                   if ($scope.info[i].userID == id){
+                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: pic});
+                   } else if ($scope.info[i].avatar=='assets/pictures/nonavatar.jpg'){
+                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: 'assets/pictures/nonavatar.jpg'});
+                   } else {
+                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: $scope.info[i].avatar});
+                   }
+                }
+                $scope.info = mycontacts;
             });
         }
         $scope.listcontacts();

@@ -2,77 +2,68 @@
 
 <div class="container-fluid" ng-app="ZDSGUI.pages.dashboard"  >
 <div class="row">
-    <div id="listcontact" zdsperm="userman.listContacts" class="col-lg-4 col-md-4 col-sm-12" ng-controller="contact">
-        <div id="" ba-panel ba-panel-title="مخاطبین شما" ba-panel-class="with-scroll tree-panel">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div ba-panel ba-panel-class="xlarg-panel light-text quickinfo">
+
+            <div id="myinfo" zdsperm="userman.login" ng-controller="myinfo" class="col-lg-4 col-md-4 col-sm-12">
+            <h3><i class="ion-android-contact"></i>{{name}}</h3>
 
 
-        <div id="search" class="input-group">
-            <input ng-model="search.name" class="form-control" type="text" placeholder="جستجو..."/>
+            </div>
+
+            <div id="listgroup" zdsperm="userman.listGroups" class="col-lg-4 col-md-4 col-sm-12" ng-controller="group">
+                <div class="col-md-12 col-lg-12">
+                    <i class="ion-android-people"></i><h3>گروه های شما</h3>
+                </div>
+                <div id="search1" class="input-group">
+                    <input ng-model="search1.title" class="form-control" type="text" placeholder="جستجو..."/>
+                </div>
+                <table class="table table-responsive table-condensed">
+
+                    <tbody ng-controller="group">
+                    <tr ng-repeat="y in mygroups | filter:search1">
+                        <td class="table-id">{{y.usergroupID}}</td>
+                        <td>{{y.title}}</td>
+                        <td>{{y.description}}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+            <div id="listcontact"  zdsperm="userman.listContacts" class="col-lg-4 col-md-4 col-sm-12" ng-controller="contact">
+                <div class="col-md-12 col-lg-12">
+                    <i class="ion-android-contacts"></i><h3>مخاطبین شما</h3>
+                </div>
+                <div id="search" class="input-group">
+                    <input ng-model="search.name" class="form-control" type="text" placeholder="جستجو..."/>
+                </div>
+              <table id="data" class="table table-responsive table-condensed" style="/background-color:#eee;/border-radius:5px;/border:1px solid #ddd">
+                <tbody>
+              <tr ng-repeat="x in info | filter:search" ng-class="mystyle = 'darkgreenhover'">
+                <!--td class="table-id">{{x.userID}}</td-->
+                  <td><img ng-src="{{x.avatar}}" class="img-responsive img-circle" width="64px" height="64px"/></td>
+                <td>{{x.name}}</td>
+                  <td style="font-size:22px;" ng-bind-html="online(x.isOnline)" ></td>
+                <td><button class="btn btn-md btn-primary" ng-disabled="false"><i class="ion-ios-paperplane"></i></button>
+
+                 <!-- <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button>--></td>
+              </tr>
+              </tbody>
+            </table>
         </div>
 
-          <table id="data" class="table table-responsive table-condensed" style="/background-color:#eee;/border-radius:5px;/border:1px solid #ddd">
-          <thead>
-          <tr>
-          <th>#</th>
-            <th>آواتار</th>
-            <th>نام</th>
-            <th>وضعیت</th>
-            <th>عملیات</th>
-          </tr>
-          </thead>
-            <tbody>
-          <tr ng-repeat="x in info | filter:search">
-            <td class="table-id">{{x.userID}}</td>
-              <td><img ng-src="{{checkavatar(x.userID)}}" class="img-responsive img-circle" width="64"/></td>
-            <td>{{x.name}}</td>
-              <td style="font-size:22px;" ng-bind-html="online(x.isOnline)" ></td>
-            <td><button class="btn btn-info btn-md " ng-disabled="false"><i class="ion-ios-paperplane"></i></button>
 
-             <!-- <button class="btn btn-danger btn-md" ng-disabled="false"><i class="ion-ios-minus-outline"></i></button>--></td>
-          </tr>
-          </tbody>
-        </table>
+
 
       </div>
-  </div>
-  <div id="listgroup" zdsperm="userman.listGroups" class="col-lg-4 col-md-4 col-sm-12">
-      <div class="panel panel-default bootstrap-panel medium-panel">
-          <div class="panel-heading" style="/color:white;font-size:18px">
-              <div class="col-md-6">
-                  <i class="ion-android-contacts"></i>          گروههای شما
-              </div>
-              <div class="col-md-6">
-
-              </div>
-          </div>
-          <div class="panel-body">
-    <div id="search1" class="input-group">
-      <input ng-model="search1.title" class="form-control" type="text" placeholder="جستجو..."/>
-    </div>
-    <table class="table table-responsive table-condensed">
-      <thead>
-      <tr>
-        <th class="table-id">#</th>
-        <th>عنوان</th>
-        <th>توضیحات</th>
-        <th>---</th>
-      </tr>
-      </thead>
-      <tbody ng-controller="group">
-      <tr ng-repeat="y in mygroups | filter:search1">
-        <td class="table-id">{{y.usergroupID}}</td>
-        <td>{{y.title}}</td>
-        <td>{{y.description}}</td>
-
-      </tr>
-      </tbody>
-    </table>
-              </div>
-          </div>
-  </div>
-    <div id="listgroup" class="col-lg-4 col-md-4 col-sm-12">
-
     </div>
 </div>
+
+
+
+
 
 </div>

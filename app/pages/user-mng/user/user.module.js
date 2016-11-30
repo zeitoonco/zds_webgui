@@ -340,14 +340,14 @@ var tempname = '', tempun = '', tempid = '';
         $scope.addgroup = function () {
             var temp = [];
             for (var i in $scope.newgroup){
-                if ($scope.newgroup.hasOwnProperty(i) && $scope.newgroup[i]==1) {
+                if ($scope.newgroup.hasOwnProperty(i)) {
 
-                    temp.push({groupid: i, state: $scope.newgroup[i]});
+                    temp.push({id: parseInt(i), state: $scope.newgroup[i]});
                 }
             }
             var msg = {
                 type: "call",
-                node: "userman.updateuserusergroup",
+                node: "userman.updateUserUsergroup",
                 data: {id: $scope.userid, list: temp}
             };
             console.log(JSON.stringify(msg));
@@ -383,14 +383,10 @@ var tempname = '', tempun = '', tempid = '';
                     }
                 }
             }
-
         }
 
         $scope.getusergroups();
     });
-
-
-
     function routeConfig($stateProvider) {
         $stateProvider
             .state('user-mng.user', {

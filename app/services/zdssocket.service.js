@@ -8,7 +8,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
         vm.content = items;
     })
     .factory('zdsSocket', function ($websocket, $rootScope, $location, toastr, $uibModal) {
-        // var ws = $websocket('ws://192.168.1.12:5455/');
+        // var ws = $websocket('ws://192.168.1.251:5455/');
         var ws = $websocket('ws://138.201.152.83:5455/');
         var collection = [];
         var callbacks = [];
