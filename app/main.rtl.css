@@ -1219,20 +1219,20 @@ h1, h2, h3, h4, h5, h6 {
 .quickinfo #myinfo h3{padding:15px;font-size:50px}
 .quickinfo #myinfo h3 i {margin-left:20px}
 .quickinfo #listcontact table tbody tr td img {height:64px;}
-.quickinfo #listcontact table tbody tr td{border:none;padding:15px}
+.quickinfo #listcontact table tbody tr td,#listgroup table tbody tr td{border:none;padding:15px}
 .quickinfo #listcontact .ion-android-contacts,.quickinfo #listgroup .ion-android-people {font-size:40px;float:right;margin-left:20px;margin-right:0;}
 #listcontact h3,#listgroup h3 {font-size:25px;padding:8px;margin:0;}
-.darkgreenhover {
+.darkgreenhover {border-right:10px solid #209e91;
     background: #333; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#666666, #333); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#666666, #333); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#666666, #333); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#666666, #333); /* Standard syntax */}
+/background: -webkit-linear-gradient(#666666, #333); /* For Safari 5.1 to 6.0 */
+/background: -o-linear-gradient(#666666, #333); /* For Opera 11.1 to 12.0 */
+/background: -moz-linear-gradient(#666666, #333); /* For Firefox 3.6 to 15 */
+/background: linear-gradient(#666666, #333); /* Standard syntax */}
 .darkgreenhover:hover {
     background: #209e91; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#209e91, #333); /* For Safari 5.1 to 6.0 */
+/background: -webkit-linear-gradient(#209e91, #333); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#209e91, #333); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#209e91, #333); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#209e91, #333); /* Standard syntax */
-
+/background: linear-gradient(#209e91, #333); /* Standard syntax */
+    transition:0.5s;
 }

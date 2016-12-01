@@ -12,7 +12,7 @@
         var m = date.getMonth()+1;
         var d = date.getDate();
         //console.log(m+'---'+d);
-
+        alert(moment().date());
     });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];
@@ -36,7 +36,9 @@
                 zdsSocket.send(msg, function (data) {
                     if (data["success"] == true) {
                         $scope.contacts = data['data']['contactList'];
-                        $scope.getinfo();
+                        if ($scope.contacts.length>0) {
+                            $scope.getinfo();
+                        }
                     } else {
                         toastr.error('!', 'خطا!');
                     }
