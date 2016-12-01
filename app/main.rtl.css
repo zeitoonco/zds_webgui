@@ -1208,6 +1208,11 @@ h1, h2, h3, h4, h5, h6 {
 #pager {text-align:center}
 
 .quickinfo .panel-body{background-color:rgb(51, 51, 51);color:white;
+    background: #333; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, rgb(51, 51, 51), #666); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgb(51, 51, 51), #666); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgb(51, 51, 51), #666); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right,rgb(51, 51, 51), #666); /* Standard syntax */
     border-radius:5px;box-shadow:1px 1px 8px grey;
 
 }
