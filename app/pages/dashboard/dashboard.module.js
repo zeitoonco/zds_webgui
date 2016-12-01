@@ -8,6 +8,11 @@
     var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
     dash.controller('myinfo',function (zdsSocket,$scope){
         $scope.name = myname;
+        var date = new Date();
+        var m = date.getMonth()+1;
+        var d = date.getDate();
+        //console.log(m+'---'+d);
+
     });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];
@@ -76,18 +81,24 @@
             zdsSocket.send(msg, function (data) {
                 var mycontacts = [];
                 var pic = data.data.image;
-                pic = pic.replace(/\\/g, "");
-                pic = "data:image/png;base64," + pic;
+                if (pic!=""){
+                    pic = pic.replace(/\\/g, "");
+                    pic = "data:image/png;base64," + pic;
+                } else {
+                    pic = 'assets/pictures/nonavatar.jpg';
+                }
+
                 var id = data.data.userID;
                 for (var i in $scope.info){
                    if ($scope.info[i].userID == id){
-                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: pic});
+                       mycontacts.push({userID: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: pic});
                    } else if ($scope.info[i].avatar=='assets/pictures/nonavatar.jpg'){
-                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: 'assets/pictures/nonavatar.jpg'});
+                       mycontacts.push({userID: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: 'assets/pictures/nonavatar.jpg'});
                    } else {
-                       mycontacts.push({id: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: $scope.info[i].avatar});
+                       mycontacts.push({userID: $scope.info[i].userID, name: $scope.info[i].name,isOnline: $scope.info[i].isOnline, avatar: $scope.info[i].avatar});
                    }
                 }
+
                 $scope.info = mycontacts;
             });
         }
