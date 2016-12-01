@@ -1231,8 +1231,8 @@ h1, h2, h3, h4, h5, h6 {
 .darkgreenhover:hover {
     background: #209e91; /* For browsers that do not support gradients */
 /background: -webkit-linear-gradient(#209e91, #333); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#209e91, #333); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#209e91, #333); /* For Firefox 3.6 to 15 */
+   /background: -o-linear-gradient(#209e91, #333); /* For Opera 11.1 to 12.0 */
+ /background: -moz-linear-gradient(#209e91, #333); /* For Firefox 3.6 to 15 */
 /background: linear-gradient(#209e91, #333); /* Standard syntax */
     transition:0.5s;
 }
