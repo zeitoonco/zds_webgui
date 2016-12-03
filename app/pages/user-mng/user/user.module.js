@@ -1,8 +1,6 @@
 /**
  * Created by asus iran on 8/29/2016.
  */
-var tempname = '', tempun = '', tempid = '';
-
 (function () {
     'use strict';
     function treefy2(list){
@@ -324,6 +322,9 @@ var tempname = '', tempun = '', tempid = '';
 
                     if (data["success"] == true && data["data"]["userGroupsList"].length > 0) {
                         $scope.allgroups = data['data']['userGroupsList'];
+                        for (var i in $scope.allgroups){
+                            $scope.allgroups[i]['state']=false;
+                        }
                         $scope.mergegroup();
                         var t = treefy2($scope.allgroups);
                         $scope.treegroup = JSON.parse('[' + JSON.stringify(t) + ']');
@@ -376,7 +377,7 @@ var tempname = '', tempun = '', tempid = '';
 
             for (var j = 0; j<$scope.mygroup.length; j++) {
                 for (var i = 0; i < $scope.allgroups.length; i++) {
-                    $scope.allgroups[i]['state'] = false;
+                    //$scope.allgroups[i]['state'] = false;
 
                     if ($scope.allgroups[i]['usergroupID'] == $scope.mygroup[j]['usergroupID']) {
                         $scope.allgroups[i]['state'] = true;
@@ -387,6 +388,90 @@ var tempname = '', tempun = '', tempid = '';
 
         $scope.getusergroups();
     });
+
+    user.controller('usercontact',function(zdsSocket,$scope,toastr){
+
+        $scope.usercontacts = function () {
+            var msg = {
+                type: "call",
+                node: "userman.listContacts",
+                data: {value: $scope.userid}
+            };
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.contacts = data['data']['contactList'];
+                    if ($scope.contacts.length>0) {
+                        $scope.getinfo();
+                    } else {
+                        $scope.listcontact = [];
+                    }
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+                    //$scope.listusers();
+            });
+        }
+        $scope.getinfo = function (){
+            var list = [];
+            for (var i=0; i<$scope.contacts.length; i++){
+                list.push(parseInt($scope.contacts[i].ContactID));
+            }
+            var msg = {
+                type: "call",
+                node: "userman.listUsers",
+                data: {idlist: list}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+
+                $scope.listcontact = data['data']['userList'];
+
+            });
+        }
+        $scope.listusers = function () {
+            var msg = {
+                type: "call",
+                node: "userman.listUsers"
+            };
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.userslist = data['data']['contactList'];
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
+        $scope.addcontact = function (uid) {
+            var msg = {
+                type: "call",
+                node: "userman.addContact",
+                data:{userID:$scope.userid,contactID:$scope.id,note:$scope.note}
+            };
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.usercontacts();
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
+        $scope.doremove = function (id) {
+            var msg = {
+                type: "call",
+                node: "userman.removeContact",
+                data:{userID:$scope.userid,contactID:id}
+            };
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.usercontacts();
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
+        $scope.usercontacts();
+    });
+
     function routeConfig($stateProvider) {
         $stateProvider
             .state('user-mng.user', {
