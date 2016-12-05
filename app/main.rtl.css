@@ -1224,7 +1224,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius:5px;box-shadow:1px 1px 8px grey;
 
 }
-.quickinfo #myinfo h3{padding:15px;font-size:50px}
+.quickinfo #myinfo h3{padding:15px;font-size:50px;border-bottom:20px solid #209e91;}
 .quickinfo #myinfo h3 i {margin-left:20px}
 .quickinfo #listcontact table tbody tr td img {height:64px;}
 .quickinfo #listcontact table tbody tr td,#listgroup table tbody tr td{border:none;padding:15px}

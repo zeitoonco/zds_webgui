@@ -9,8 +9,8 @@
     dash.controller('myinfo',function (zdsSocket,$scope){
         $scope.name = myname;
         var date = new Date();
-        var m = date.getMonth()+1;
-        var d = date.getDate();
+
+        console.log(moment().format('jdddd'));
     });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];
