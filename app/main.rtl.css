@@ -1205,7 +1205,10 @@ h1, h2, h3, h4, h5, h6 {
 .dldisabled {
     pointer-events: none;
 }
-#pager {text-align:center}
+#pagerdark {text-align:center}
+#pagerdark ul {background-color:#ccc;padding-right:0;}
+#pagerdark ul li a{background-color:#555;color:#f5f5f5;border:1px solid #7d7d7d;}
+#pagerdark ul .active a {background-color:#dfb81c}
 
 .quickinfo .panel-body{background-color:rgb(51, 51, 51);color:white;
     background: #333; /* For browsers that do not support gradients */
@@ -1237,3 +1240,5 @@ h1, h2, h3, h4, h5, h6 {
 /background: linear-gradient(#209e91, #333); /* Standard syntax */
     transition:0.5s;
 }
+.tbheaddark {background-color:#555;color:white;height:35px;border-bottom:5px solid #dfb81c}
+.tbheadgreen {background-color:#555;color:white;height:35px;border-bottom:5px solid #209e91}

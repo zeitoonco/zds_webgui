@@ -3,8 +3,7 @@
         <div class="col-md-12" >
             <div class="panel-group">
                 <div class="panel panel-default bootstrap-panel">
-                    <div class="panel-heading">لیست گروه ها</div>
-                    <div class="panel-body">
+                    <div id="listusers" class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="button-wrapper">
@@ -18,15 +17,15 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="button-wrapper" style="text-align: left;">
-                                    <button type="button" ng-click="getgroups()" class="btn btn-default"><i
+                                    <button type="button" ng-click="getgroups()" class="btn btn-default btn-lg"><i
                                             class="ion-refresh"></i></button>
                                 </div>
                             </div>
                         </div>
-                <div class="table-responsive">
-                    <table id="data" class="table table-condensed table-bordered">
+
+                    <table id="data" class="table table-hover table-condensed table-responsive">
                         <thead>
-                        <tr>
+                        <tr class="tbheaddark">
                             <th class="table-id">#</th>
                             <th>نام گروه</th>
                             <th>توضیحات</th>
@@ -50,17 +49,13 @@
                             </td>
                         </tr>
                     </table>
-                    <div id="pager">
+                    <div id="pagerdark">
                         <pagination total-items="totalItems" ng-model="currentPage"
                                     max-size="5" boundary-links="true"
                                     items-per-page="numPerPage" class="pagination-md">
                         </pagination>
                     </div>
-                    </div>
-
-                    </div>
                 </div>
-                </div>
-            </div>
-        </div>
+        </div> </div> </div>
     </div>
+</div>

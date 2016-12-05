@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>مدیریت کاربران</title>
-</head>
-<body>
 <div class="container-fluid" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="useraction">
     <div class="row">
         <div class="col-md-12">
+
             <div class="panel-group">
                 <div class="panel panel-default bootstrap-panel">
-                    <div class="panel-heading">لیست کاربران</div>
                     <div id="listusers" class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -25,17 +18,14 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="button-wrapper" style="text-align: left;">
-                                        <button type="button" ng-click="getlistuser()" class="btn btn-default"><i
+                                        <button type="button" ng-click="getlistuser()" class="btn btn-default btn-lg"><i
                                                 class="ion-refresh"></i></button>
                                     </div>
                                 </div>
-
                             </div>
-
-                        <div class="table-responsive">
-                            <table id="data" class="table table-bordered table-hover table-condensed">
+                            <table id="data" class="table table-hover table-condensed table-responsive">
                                 <thead>
-                                <tr>
+                                <tr class="tbheaddark">
                                     <th class="table-id">#</th>
                                     <th>نام کاربری</th>
                                     <th>نام</th>
@@ -75,25 +65,17 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="pager">
+                            <div id="pagerdark">
                                 <pagination total-items="totalItems" ng-model="currentPage"
                                             max-size="5" boundary-links="true"
                                             items-per-page="numPerPage" class="pagination-md">
                                 </pagination>
                             </div>
-                        </div>
 
-                    </div>
-                </div>
             </div>
-        </div>
+
 
 
     </div>
-
+            </div></div></div>
 </div>
-<script>
-
-</script>
-</body>
-</html>
