@@ -8,23 +8,39 @@
     var profile = angular.module('ZDSGUI.pages.profile');
 
     profile.controller('userinfo', function ($scope,zdsSocket,toastr) {
+        $scope.status = "";
         $scope.un = myun;
         $scope.name = myname;
+        $scope.chechval = function (state) {
+            if (state==false){
+                return "border-color:darkred;";
+            } else {
+                return "border-color:seagreen;";
+            }
+        }
         $scope.updateinfo = function () {
-            var msg = {
-                type: "call",
-                node: "userman.modifyUser",
-                data: {userID: uid,username: $scope.un,name: $scope.name,password: $scope.pwd}
-            };
+            if ($scope.profile.un.$valid == false || $scope.profile.name.$valid == false || $scope.profile.pwd.$valid == false){
+                $scope.status = "اطلاعات فیلدها نا معتبر است!";
+            } else {
+                var msg = {
+                    type: "call",
+                    node: "userman.modifyUser",
+                    data: {userID: uid, username: $scope.un, name: $scope.name, password: $scope.pwd}
+                };
 
-            console.log(JSON.stringify(msg));
-            zdsSocket.send(msg, function (data) {
-                if (data["success"] == true) {
-                    toastr.success('اطلاعات کاربری بروز شد!');
-                } else {
-                    toastr.danger('خطا!');
-                }
-            });
+                console.log(JSON.stringify(msg));
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('اطلاعات کاربری بروز شد!');
+                        myun = $scope.un;
+                        myname = $scope.name;
+                        $scope.status = "";
+
+                    } else {
+                        toastr.danger('خطا!');
+                    }
+                });
+            }
         };
     });
 
@@ -39,11 +55,6 @@
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, zdsSocket, $filter, $uibModal, toastr) {
         //$scope.picture = $filter('profilePicture')('Nasta');
-
-
-
-
-
 
         $scope.removePicture = function () {
             $scope.picture = $filter('appImage')('theme/no-photo.png');

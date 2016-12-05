@@ -19,27 +19,36 @@
         </div>
       </div>
       <div id="profileinfo" class="col-md-6" ng-controller="userinfo">
-        <div class="form-group row clearfix">
-          <label for="name" class="col-sm-3 control-label">نام</label>
+        <form name="profile">
+          <div class="form-group row clearfix">
+            <label for="name" class="col-sm-3 control-label">نام</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="name" placeholder="نام" ng-model="name" style={{chechval(profile.name.$valid)}} minlength="3" maxlength="12" required>
+              <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="username" class="col-sm-3 control-label">نام کاربری</label>
 
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="un" placeholder="نام کاربری" ng-model="un" style={{chechval(profile.un.$valid)}} minlength="3" maxlength="12" required>
+              <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="pwd" class="col-sm-3 control-label">رمزعبور</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="pwd" placeholder="رمزعبور" ng-model="pwd" style={{chechval(profile.pwd.$valid)}} minlength="3" maxlength="20" required>
+              <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
+            </div>
+          </div>
+        </form>
+
+        <div class="form-group row clearfix">
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="name" placeholder="" ng-model="name" >
+            <p class="formserror">{{status}}</p>
           </div>
         </div>
-        <div class="form-group row clearfix">
-          <label for="username" class="col-sm-3 control-label">نام کاربری</label>
-
-          <div class="col-sm-9">
-              <input type="text" class="form-control" id="username" placeholder="" ng-model="un" >
-          </div>
-      </div>
-          <div class="form-group row clearfix">
-              <label for="pwd" class="col-sm-3 control-label">رمزعبور</label>
-
-              <div class="col-sm-9">
-                  <input type="text" class="form-control" id="pwd" placeholder="" ng-model="pwd">
-              </div>
-          </div>
         <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="updateinfo()">
           تایید
         </button>

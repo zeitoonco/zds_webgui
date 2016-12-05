@@ -1,4 +1,4 @@
-<div class="modal-content" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="usercontact">
+<div class="modal-content modaldark" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="usercontact">
   <div class="modal-header">
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
@@ -32,8 +32,8 @@
           <button class="btn btn-danger btn-xs" ng-click="doremove(x.userID)" id='remove-btn'>حذف</button></td>
       </tr>
     </table>
-
+</div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="doedit();$dismiss()">تایید</button>
+    <button type="button" class="btn btn-warning" ng-click="doedit();$dismiss()">تایید</button>
   </div>
 </div>

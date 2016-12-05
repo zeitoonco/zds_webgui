@@ -11,7 +11,6 @@
         var date = new Date();
         var m = date.getMonth()+1;
         var d = date.getDate();
-
     });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
         var list = [];

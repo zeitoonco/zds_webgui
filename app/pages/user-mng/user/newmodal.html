@@ -1,4 +1,4 @@
-<div class="modal-content" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="newuser">
+<div class="modal-content modaldark" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="newuser">
     <div class="modal-header bg-default">
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
@@ -19,8 +19,9 @@
                 <label for="input03">رمز عبور:</label>
                 <input type="password" class="form-control" id="input03" placeholder="رمز عبور" ng-model='pwd'>
             </div>
+        </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success" ng-click="adduser();$dismiss()">تایید</button>
+        <button type="button" class="btn btn-warning" ng-click="adduser();$dismiss()">تایید</button>
     </div>
 </div>
