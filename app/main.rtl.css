@@ -1249,3 +1249,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 .tbheaddark {background-color:#555;color:white;height:35px;border-bottom:5px solid #dfb81c}
 .tbheadgreen {background-color:#555;color:white;height:35px;border-bottom:5px solid #209e91}
+.sublogo {float:left;}
+.loginlogo img{margin-right:100px;margin-bottom:20px;}

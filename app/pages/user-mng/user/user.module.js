@@ -75,6 +75,15 @@
             $scope.$on('modal.closing', function (event, args) {
                 $scope.getlistuser();
             });
+
+            $scope.chechval = function (state) {
+                if (state==false){
+                    return "border-color:#a94442;";
+                } else {
+                    return "border-color:#209e91;";
+                }
+            }
+
         $scope.getlistuser = function () {
             var msg = {
                 type: "call",

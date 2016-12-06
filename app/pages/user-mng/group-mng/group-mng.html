@@ -5,7 +5,7 @@
                 <div class="panel panel-default bootstrap-panel">
                     <div id="listusers" class="panel-body">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div id="panel-header" class="col-sm-6">
                                 <div class="button-wrapper">
                                     <button type="button" class="btn btn-warning btn-lg" zdsperm="userman.registerUsergroup" data-toggle="modal"
                                             style="float: right;"
@@ -13,12 +13,16 @@
                                             class="ion-plus"></i>
                                         گروه جدید
                                     </button>
+
+                                </div>
+                                <div class="button-wrapper" style="float: right;">
+                                    <button type="button" ng-click="getgroups()" class="btn btn-default btn-lg"><i
+                                            class="ion-refresh"></i></button>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="button-wrapper" style="text-align: left;">
-                                    <button type="button" ng-click="getgroups()" class="btn btn-default btn-lg"><i
-                                            class="ion-refresh"></i></button>
+                                <div class="sublogo">
+                                    <img src="assets\z-usermng.png" class="img-responsive"/>
                                 </div>
                             </div>
                         </div>
