@@ -1142,7 +1142,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 16px
 }
 
-.modal form {
+/*.modal form {
     float: right;
     direction: rtl;
     width: 100%;
@@ -1150,7 +1150,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
-}
+}*/
 
 .modal form label {
     margin-left: 5px;
@@ -1197,6 +1197,8 @@ h1, h2, h3, h4, h5, h6 {
 .modal-footer button {
     margin-top: 10px;
 }
+
+.modal-footer p {float:left;padding:10px;margin:10px 0px 0px 0px;color:white;font-size:16px;background-color:darkred;border-radius:5px}
 
 .bigmodal .modal-dialog {
     width: 1000px;

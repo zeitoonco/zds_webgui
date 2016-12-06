@@ -1,5 +1,6 @@
 <div class="modal-content modaldark" ng-app="ZDSGUI.pages.user-mng.group-mng" ng-controller="newgroup">
-  <div class="modal-header bg-default">
+    <form name="group">
+        <div class="modal-header bg-default">
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
     </button>
@@ -8,20 +9,27 @@
   <div class="modal-body">
       <div class="form-group">
         <label for="title">عنوان:</label>
-        <input type="text" class="form-control" id="title" placeholder="نام" ng-model='title'>
+        <input type="text" class="form-control" name="title" placeholder="نام" ng-model='title' style={{chechval(group.title.$valid)}} minlength="3" maxlength="20" required>
+          <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
       </div>
       <div class="form-group">
         <label for="input02">توضیحات:</label>
-        <input type="text" class="form-control" id="input02" placeholder="عنوان" ng-model='dec'>
+        <input type="text" class="form-control" name="dec" placeholder="توضیحات" ng-model='dec' style={{chechval(group.dec.$valid)}} minlength="3" maxlength="40" required>
+          <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
       </div>
       <div class="form-group">
-      <select class="form-control selectpicker" selectpicker title="گروه والد"
-            ng-model="pid" ng-change=""
+          <label for="input02">گروه والد:</label>
+      <select pid="pid" class="form-control selectpicker" selectpicker title="گروه والد"
+            ng-model="pid"
             ng-options="x.usergroupID as x.usergroupID + '-' + x.title for x in grouplist">
       </select>
+
       </div>
+
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-warning" ng-click="addgroup();$dismiss()">تایید</button>
+    <button type="button" class="btn btn-warning" ng-disabled="(group.title.$invalid || group.dec.$invalid)" ng-click="addgroup();">تایید</button>
+      <p ng-show="(group.title.$invalid || group.dec.$invalid)">اطلاعات فرم معتبر نیست!</p>
   </div>
+    </form>
 </div>

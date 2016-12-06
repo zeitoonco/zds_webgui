@@ -40,6 +40,14 @@
         .config(routeConfig);
     groupmng.controller('group-mng', function ($scope, zdsSocket, toastr, $uibModal) {
 
+        $scope.chechval = function (state) {
+            if (state==false){
+                return "border-color:#a94442;";
+            } else {
+                return "border-color:#209e91;";
+            }
+        }
+
         $scope.getgroups = function () {
             var msg = {
                 type: "call",
@@ -100,8 +108,10 @@
                 console.log(JSON.stringify(data));
                 if (data["success"] == true) {
                     toastr.success('گروه اضافه شد!');
+                    //$uibModal.dialog.close();
                 } else {
                     toastr.error('!', 'خطا!');
+
                 }
             });
         }
@@ -115,12 +125,13 @@
                 console.log(JSON.stringify(data));
                 if (data["success"] == true) {
                     $scope.grouplist = data['data']['userGroupsList'];
-                    $scope.grouplist.push({
+                    $scope.pid = 1;
+                    /*$scope.grouplist.push({
                         "usergroupID": -1,
                         "title": "سرشاخه",
                         "parentID": -1,
                         "description": "test1"
-                    });
+                    });*/
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -159,12 +170,12 @@
                 console.log(JSON.stringify(data));
                 if (data["success"] == true) {
                     $scope.grouplist = data['data']['userGroupsList'];
-                    $scope.grouplist.push({
+                    /*$scope.grouplist.push({
                         "usergroupID": -1,
                         "title": "سرشاخه",
                         "parentID": -1,
                         "description": "test1"
-                    });
+                    });*/
                 } else {
                     toastr.error('!', 'خطا!');
                 }
