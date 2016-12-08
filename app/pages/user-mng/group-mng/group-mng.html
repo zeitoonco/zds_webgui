@@ -13,11 +13,13 @@
                                             class="ion-plus"></i>
                                         گروه جدید
                                     </button>
-
                                 </div>
                                 <div class="button-wrapper" style="text-align: right;">
-                                    <button type="button" ng-click="getgroups()" style="background-color:#555;margin-right:10px;color:#eee;" class="btn btn-default btn-lg"><i
+                                    <button type="button" ng-click="getgroups()" style="float:right;background-color:#555;margin-right:10px;color:#eee;" class="btn btn-default btn-lg"><i
                                             class="ion-refresh"></i></button>
+                                    <div id="darksearch" class="input-group">
+                                        <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -36,7 +38,7 @@
                             <th>عملیات</th>
                         </tr>
                         </thead>
-                        <tr ng-repeat="x in myData" ng-if="if (x.usergroupID==1) { return false};">
+                        <tr ng-repeat="x in myData | filter: search.title" >
                             <td>{{ x.usergroupID }}</td>
                             <td>{{ x.title }}</td>
                             <td>{{ x.description }}</td>

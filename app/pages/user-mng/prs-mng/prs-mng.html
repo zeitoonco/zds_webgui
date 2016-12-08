@@ -16,24 +16,20 @@
                                     </button>
                                 </div>
                                 <div class="button-wrapper" style="text-align: right;">
-                                    <button type="button" ng-click="getlistuser()" style="background-color:#555;margin-right:10px;color:#eee;" class="btn btn-default btn-lg"><i
+                                    <button type="button" ng-click="getlistuser()" style="float:right;background-color:#555;margin-right:10px;color:#eee;" class="btn btn-default btn-lg"><i
                                             class="ion-refresh"></i></button>
+                                    <div id="darksearch" class="input-group">
+                                        <input ng-model="search.name" class="form-control" type="text" placeholder="جستجو..."/>
+                                    </div>
                                 </div>
-                                <div id="search1" class="input-group">
-                                    <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
-                                </div>
+
                             </div>
                             <div class="col-sm-6">
                                 <div class="sublogo">
                                     <img src="assets\z-usermng.png" class="img-responsive"/>
                                 </div>
-
                             </div>
-
                         </div>
-
-
-
                             <table id="data" class="table table-hover table-condensed table-responsive"
                                    st-table="myData">
                                 <thead>
@@ -47,7 +43,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="x in myData | filter: paginate">
+                                <tr ng-repeat="x in myData | filter: paginate | filter: search.name">
                                     <td>{{ x.permissionID }}</td>
                                     <td>{{ x.name }}</td>
                                     <td>{{ x.title }}</td>
