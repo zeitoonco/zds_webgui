@@ -36,7 +36,7 @@
                             <th>عملیات</th>
                         </tr>
                         </thead>
-                        <tr ng-repeat="x in myData">
+                        <tr ng-repeat="x in myData" ng-if="if (x.usergroupID==1) { return false};">
                             <td>{{ x.usergroupID }}</td>
                             <td>{{ x.title }}</td>
                             <td>{{ x.description }}</td>

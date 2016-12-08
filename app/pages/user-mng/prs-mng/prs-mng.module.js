@@ -52,34 +52,6 @@ var editid;
             //console.log("Hello! " + $scope.username)
 
         };
-        $scope.doremove = function (id) {
-            //var rnd = Math.round(Math.random() * 1000000000);
-            var msg = {
-                type: "call",
-                node: "userman.removePermission",
-                data: {value: id}
-            };
-            if (zdsSocket.status() == 1) {
-                zdsSocket.send(msg, function (data) {
-                    if (data["success"] == true) {
-                        toastr.success('دسترسی با موفقیت حذف شد!');
-                        $scope.getlistprs();
-                    } else {
-                        toastr.error('!', 'خطا!');
-
-                        //$scope.LoginDisabled = false;
-
-                    }
-                });
-            } else {
-                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
-
-            }
-        }
-
-
-
-
 
         $scope.getlistprs();
 
@@ -176,7 +148,31 @@ var editid;
             $scope.getlistprs();
         });
 
+        $scope.doremove = function () {
+            //var rnd = Math.round(Math.random() * 1000000000);
+            var msg = {
+                type: "call",
+                node: "userman.removePermission",
+                data: {value: $scope.id}
+            };
+            console.log(JSON.stringify(msg));
+            if (zdsSocket.status() == 1) {
+                zdsSocket.send(msg, function (data) {
+                    if (data["success"] == true) {
+                        toastr.success('دسترسی با موفقیت حذف شد!');
+                        $scope.getlistprs();
+                    } else {
+                        toastr.error('!', 'خطا!');
 
+                        //$scope.LoginDisabled = false;
+
+                    }
+                });
+            } else {
+                toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
+            }
+        }
     });
 
     function routeConfig($stateProvider) {

@@ -43,15 +43,7 @@
             }
         };
     });
-
-
-
-
-
-
-
     profile.controller('ProfilePageCtrl', ProfilePageCtrl);
-
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, zdsSocket, $filter, $uibModal, toastr) {
         //$scope.picture = $filter('profilePicture')('Nasta');
@@ -95,7 +87,6 @@
             fr.onload = function (readerEvt) {
                 var binaryString = readerEvt.target.result;
                 var encoded = btoa(binaryString);
-
 
                 var msg = {
                     type: "call",
