@@ -22,12 +22,12 @@
       </div>
       <div class="form-group">
         <label for="input03">دسترسی والد:</label>
-        <input type="number" class="form-control" name="pid" placeholder="شماره دسترسی والد" ng-model='pid' style={{chechval(perm.pid.$valid)}} minlength="1" maxlength="12" required>
+        <input type="number" class="form-control" name="ppid" placeholder="شماره دسترسی والد" ng-model='ppid' style={{chechval(perm.ppid.$valid)}} minlength="1" maxlength="12" required>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-warning" ng-disabled="(perm.pname.$invalid || perm.ptitle.$invalid || perm.pdec.$invalid || perm.pid.$invalid)" ng-click="doedit();$dismiss()">تایید</button>
-      <p ng-show="(perm.pname.$invalid || perm.ptitle.$invalid || perm.pdec.$invalid || perm.pid.$invalid)">اطلاعات فرم معتبر نیست!</p>
+      <button type="button" class="btn btn-warning" ng-disabled="(perm.pname.$invalid || perm.ptitle.$invalid || perm.pdec.$invalid || perm.ppid.$invalid)" ng-click="doedit();$dismiss()">تایید</button>
+      <p ng-show="(perm.pname.$invalid || perm.ptitle.$invalid || perm.pdec.$invalid || perm.ppid.$invalid)">اطلاعات فرم معتبر نیست!</p>
     </div>
   </form>
 </div>
