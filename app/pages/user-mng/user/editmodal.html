@@ -26,7 +26,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-warning" ng-disabled="(user.username.$invalid || user.name.$invalid || user.pwd.$invalid)" ng-click="adduser();$dismiss()">تایید</button>
+      <button type="button" class="btn btn-warning" ng-disabled="(user.username.$invalid || user.name.$invalid || user.pwd.$invalid)" ng-click="doedit();$dismiss()">تایید</button>
       <p ng-show="(user.username.$invalid || user.name.$invalid || user.pwd.$invalid)">اطلاعات فرم معتبر نیست!</p>
     </div>
   </form>

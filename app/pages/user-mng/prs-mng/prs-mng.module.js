@@ -10,7 +10,13 @@ var editid;
         $scope.$on('modal.closing', function (event, args) {
             $scope.getlistprs();
         });
-        //$scope.gridOptions = { data: 'myData' };
+        $scope.chechval = function (state) {
+            if (state==false){
+                return "border-color:#a94442;";
+            } else {
+                return "border-color:#209e91;";
+            }
+        }
 
         $scope.getlistprs = function () {
             var msg = {

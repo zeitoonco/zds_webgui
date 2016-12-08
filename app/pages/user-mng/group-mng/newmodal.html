@@ -28,7 +28,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-warning" ng-disabled="(group.title.$invalid || group.dec.$invalid)" ng-click="addgroup();">تایید</button>
+    <button type="button" class="btn btn-warning" ng-disabled="(group.title.$invalid || group.dec.$invalid)" ng-click="addgroup();$dismiss()">تایید</button>
       <p ng-show="(group.title.$invalid || group.dec.$invalid)">اطلاعات فرم معتبر نیست!</p>
   </div>
     </form>
