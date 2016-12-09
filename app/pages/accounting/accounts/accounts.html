@@ -1,6 +1,8 @@
 <div class="row" ng-app='ZDSGUI.pages.accounting.accounts'>
-    <div class="col-md-6" ng-controller="accounttree">
-        <div id="account-tree" ba-panel ba-panel-title="درختواره حساب ها" ba-panel-class="with-scroll tree-panel">
+    <div class="col-md-6 col-sm-12 col-xs-12" ng-controller="accounttree">
+        <div class="panel-group">
+            <div class="panel panel-default bootstrap-panel">
+                <div id="account-tree" class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <div style="direction: rtl;" js-tree="basicConfig" tree-events="activate_node:clicknode"
@@ -58,31 +60,43 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-6" ng-controller="accounttable">
-        <div id="account-table" ba-panel ba-panel-title="جدول حساب ها" ba-panel-class="with-scroll tree-panel">
+    <div class="col-md-6 col-sm-12 col-xs-12" ng-controller="accounttable">
+        <div class="panel-group">
+            <div class="panel panel-default bootstrap-panel">
+                <div id="account-table" class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="button-wrapper">
-                        <button type="button" zdsperm="AccountingRelay.newAccount" class="btn btn-default btn-lg" data-toggle="modal"
+                        <button type="button" zdsperm="AccountingRelay.newAccount" class="btn btn-primary btn-md" data-toggle="modal"
                                 style="float: right;"
                                 ng-click="openmodal('app/pages/accounting/accounts/newmodal.html', 'md',[])"><i
                                 class="ion-plus"></i>
                             حساب جدید
                         </button>
                     </div>
+                    <div class="button-wrapper" style="text-align: right;">
+                        <button type="button" ng-click="getaccounts()" style="float:right;margin-right: 10px;background-color:#555;color:#eee;" class="btn btn-default btn-md"><i
+                                class="ion-refresh"></i></button>
+                        <div id="darksearch" class="input-group">
+                            <input ng-model="search.title" class="form-control" type="text" placeholder="جستجو..."/>
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="col-sm-6">
-                    <div class="button-wrapper" style="text-align: left;">
-                        <button type="button" ng-click="getaccounts()" class="btn btn-default"><i
-                                class="ion-refresh"></i></button>
+                    <div class="sublogo">
+                        <img src="assets\zaccounting.png" width="150px" class="img-responsive"/>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table id="data" class="table table-bordered table-hover table-condensed" >
+
+                <table id="data" class="table table-hover table-condensed table-responsive" >
                     <thead>
                     <tr class="tbheadgreen">
                         <th class="table-id">#</th>
@@ -117,11 +131,8 @@
 
                 </table>
 
-
-            </div>
-
         </div>
-
+</div></div>
     </div>
 
 </div>

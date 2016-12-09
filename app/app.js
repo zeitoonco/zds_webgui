@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ZDSGUI', [
+    'angular-loading-bar',
     'ngAnimate',
     'ui.bootstrap',
     'ui.sortable',
