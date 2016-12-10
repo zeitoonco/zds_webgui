@@ -5,14 +5,14 @@
 (function () {
     'use strict';
 
-    var dash = angular.module('ZDSGUI.pages.dashboard', []).config(routeConfig);
+    var dash = angular.module('ZDSGUI.pages.dashboard', ['cfp.loadingBar']).config(routeConfig);
     dash.controller('myinfo',function (zdsSocket,$scope){
         $scope.name = myname;
         var date = new Date();
 
         console.log(moment().format('jdddd'));
     });
-    dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal) {
+    dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal,cfpLoadingBar) {
         var list = [];
         $scope.checkavatar = function (id) {
             return 'assets/pictures/nonavatar.jpg';
@@ -25,6 +25,7 @@
             }
         }
         $scope.listcontacts = function () {
+            cfpLoadingBar.start();
             var msg = {
                 type: "call",
                 node: "userman.listContacts",
@@ -100,6 +101,7 @@
                 }
 
                 $scope.info = mycontacts;
+                cfpLoadingBar.complete();
             });
         }
         $scope.listcontacts();
