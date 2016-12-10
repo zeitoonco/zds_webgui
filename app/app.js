@@ -23,4 +23,6 @@ angular.module('ZDSGUI', [
     'ntt.TreeDnD',
     'wo.7segments',
     'ZDSGUI.elements',
-]);
+]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.latencyThreshold = 0;
+}]);
