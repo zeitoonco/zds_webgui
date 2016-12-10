@@ -43,7 +43,6 @@
                 $scope.i3 = 'انتظامی';
                 $scope.refreshpid('0');
             }
-
         }
 
         $scope.refreshpid = function (type) {
@@ -54,7 +53,6 @@
                     'table': 'Account',
                     'columns': ['accountid', 'title'],
                     'where': [['del', '=', '0', 'AND'], ['type', '=', type]]
-
                 }
             };
             console.log(JSON.stringify(msg));
@@ -103,9 +101,7 @@
         }
     });
 
-
     account.controller('editaccount', function ($scope, zdsSocket, toastr) {
-
         $scope.accounttypes = {1: 'گروه', 2: 'کل', 3: 'معین'};
         $scope.refreshmodal = function () {
             if ($scope.type == 3) {
@@ -126,7 +122,6 @@
                 $scope.i3 = 'انتظامی';
                 $scope.refreshpid('0');
             }
-
         }
 
         $scope.refreshpid = function (type) {
@@ -137,7 +132,6 @@
                     'table': 'Account',
                     'columns': ['accountid', 'title'],
                     'where': [['del', '=', '0', 'AND'], ['type', '=', type]]
-
                 }
             };
             console.log(JSON.stringify(msg));
@@ -153,7 +147,6 @@
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getaccounts();
         });
-
 
         $scope.getinfo = function () {
             var msg = {
@@ -171,8 +164,6 @@
                     $scope.pid = $scope.myData[1];
                     $scope.title = $scope.myData[5];
                     $scope.code = $scope.myData[4];
-
-
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -208,7 +199,6 @@
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
                     toastr.success('تغییرات با موفقیت اعمال شد!');
-
                 } else {
                     toastr.error('!', 'خطا!');
                 }
@@ -225,36 +215,69 @@
         editableOptions.theme = 'bs3';
 
         $scope.openmodal = function (page, size, x) {
-            $scope.id = x[0];
-            $scope.type = x[1];
-            switch (x[1]) {
-                case '1':
-                    $scope.i1 = 'ترازنامه ای';
-                    $scope.i2 = 'سود و زیانی';
-                    $scope.i3 = 'انتظامی';
-                    break;
-                case '2':
-                    $scope.i1 = 'بدهکار';
-                    $scope.i2 = 'بستانکار';
-                    $scope.i3 = 'مهم نیست';
-                    break;
-                case '3':
-                    $scope.i1 = 'بدهکار';
-                    $scope.i2 = 'بستانکار';
-                    $scope.i3 = 'مهم نیست';
-                    break;
+
+            if (x.length > 0){
+                $scope.id = x[0];
+                $scope.type = x[1];
+                switch (x[1]) {
+                    case '1':
+                        $scope.i1 = 'ترازنامه ای';
+                        $scope.i2 = 'سود و زیانی';
+                        $scope.i3 = 'انتظامی';
+                        break;
+                    case '2':
+                        $scope.i1 = 'بدهکار';
+                        $scope.i2 = 'بستانکار';
+                        $scope.i3 = 'مهم نیست';
+                        break;
+                    case '3':
+                        $scope.i1 = 'بدهکار';
+                        $scope.i2 = 'بستانکار';
+                        $scope.i3 = 'مهم نیست';
+                        break;
+                }
+                $scope.title = x[2];
+                $scope.code = parseInt(x[0]);
+                $scope.pid = parseInt(x[8]);
+                $scope.en = x[6] == 't';
+                $scope.btype = parseInt(x[9]);
+                $scope.hbtc = x[10] == 't';
+                $scope.hsdl = x[3] == 't';
+                $scope.hc = x[4] == 't';
+                $scope.hcc = x[11] == 't';
+                $scope.ht = x[5] == 't';
+                $scope.path = x[12];
+            } else {
+                $scope.type = '1';
+                switch ($scope.type) {
+                    case '1':
+                        $scope.i1 = 'ترازنامه ای';
+                        $scope.i2 = 'سود و زیانی';
+                        $scope.i3 = 'انتظامی';
+                        break;
+                    case '2':
+                        $scope.i1 = 'بدهکار';
+                        $scope.i2 = 'بستانکار';
+                        $scope.i3 = 'مهم نیست';
+                        break;
+                    case '3':
+                        $scope.i1 = 'بدهکار';
+                        $scope.i2 = 'بستانکار';
+                        $scope.i3 = 'مهم نیست';
+                        break;
+                }
+                $scope.title = '';
+                $scope.code = 0;
+                $scope.pid = 0;
+                $scope.en = 0;
+                $scope.btype = null;
+                $scope.hbtc = 0;
+                $scope.hsdl = 0;
+                $scope.hc = 0;
+                $scope.hcc = 0;
+                $scope.ht = 0;
+                $scope.path = 0;
             }
-            $scope.title = x[2];
-            $scope.code = parseInt(x[0]);
-            $scope.pid = parseInt(x[8]);
-            $scope.en = x[6] == 't';
-            $scope.btype = parseInt(x[9]);
-            $scope.hbtc = x[10] == 't';
-            $scope.hsdl = x[3] == 't';
-            $scope.hc = x[4] == 't';
-            $scope.hcc = x[11] == 't';
-            $scope.ht = x[5] == 't';
-            $scope.path = x[12];
 
             $uibModal.open({
                 animation: true,
@@ -277,7 +300,6 @@
                     'table': 'accountview',
                     'columns': ['accountid', 'type', 'title2', 'HasDL', 'HasCurrency',
                         'HasTracking', 'IsActive', 'code', 'parentid', 'balancetype', 'hasbalancetypecheck', 'HasCurrencyConversion', 'path']
-
                 }
             };
             zdsSocket.send(msg, function (data) {
@@ -294,20 +316,13 @@
                             hast: $scope.myData[i][5],
                             en: $scope.myData[i][6]
                         });
-
                     }
-
                 } else {
                     toastr.error('!', 'خطا!');
                 }
             });
-
-
         }
-
-
         $scope.getaccounts();
-
     });
 
     account.controller('removeaccount', function ($scope, zdsSocket, toastr, $uibModal) {
@@ -320,7 +335,6 @@
                 type: "call",
                 node: "AccountingRelay.removeAccount",
                 data: {userid: uid, id: $scope.id}
-
             };
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {
@@ -330,8 +344,6 @@
                     toastr.error('!', 'خطا!');
                 }
             });
-
-
         }
         $scope.getaccounts();
     });

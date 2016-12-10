@@ -1,4 +1,5 @@
 <div id="accountmodal" class="modal-content" ng-app="ZDSGUI.pages.accounting.accounts" ng-controller="newaccount">
+  <form name="account">
   <div class="modal-header">
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
@@ -9,29 +10,29 @@
     <div class="form-group">
       <label for="type">نوع:</label>
       <select class="form-control selectpicker" selectpicker title="نوع حساب"
-              ng-model="type" ng-change="refreshmodal()"
-              ng-options="k as v for (k,v)  in accounttypes">
+       name="type" ng-model="type" ng-change="refreshmodal()" ng-init="type=type"
+              ng-options="k as v for (k,v)  in accounttypes" required>
       </select>
     </div>
 
     <div class="form-group">
       <label for="pid">حساب سرشاخه:</label>
       <!--<input type="number" class="form-control" id="parentid" ng-model="pid">-->
-      <select class="form-control selectpicker" selectpicker title="نوع حساب"
-              ng-model="pid"
-              ng-options="i[0] as i[0] + '-' + i[1] for i in pids">
+      <select class="form-control selectpicker" selectpicker title="حساب سرشاخه"
+       name="pid" ng-model="pid" ng-init="pid=pid"
+              ng-options="i[0] as i[0] + '-' + i[1] for i in pids" required>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="code">کد:</label>
-      <input type="number" min="10"  max="99" class="form-control" id="code" ng-model="code">
+      <label>کد:</label>
+      <input type="number" min="10"  max="99" maxlength="2" class="form-control" name="code" ng-model="code" required/>
       <span id="pid">کد نهایی: {{pid + code}}</span>
     </div>
 
     <div class="form-group">
-      <label for="title2">عنوان حساب:</label>
-      <input type="text" class="form-control" id="title2" ng-model="title">
+      <label>عنوان حساب:</label>
+      <input type="text" class="form-control" name="title2" ng-model="title" minlength="3" maxlength="50" required/>
     </div>
 
     <div class="form-group">
@@ -41,7 +42,7 @@
 
     <div class="form-group">
       <form>
-        <label for="btype">ماهیت:</label>
+        <label>ماهیت:</label>
         <div class="radio1">
           <label><input id="btype1" type="radio" ng-model="btype" name="btype" ng-value="1" >{{i1}}</label>
         </div>
@@ -70,6 +71,8 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="addaccount()">تایید</button>
+    <button type="button" class="btn btn-primary" ng-disabled="(account.title2.$invalid || account.code.$invalid || account.pid.$invalid || account.type.$invalid)" ng-click="addaccount()">تایید</button>
+    <p ng-show="(account.title2.$invalid || account.code.$invalid || account.pid.$invalid || account.type.$invalid)">اطلاعات فرم معتبر نیست!</p>
   </div>
+  </form>
 </div>

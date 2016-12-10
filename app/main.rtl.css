@@ -1237,6 +1237,12 @@ h1, h2, h3, h4, h5, h6 {
 #darksearch {float:right;width:auto;margin-right:15px;margin-top:5px}
 #darksearch input {border-radius:5px;}
 #darksearch input:focus {border-color:#dfb81c}
+
+#greensearch {float:right;width:auto;margin-right:15px;margin-top:5px}
+#greensearch input {border-radius:5px;}
+#greensearch input:focus {border-color:#209e91}
+
+
 .darkgreenhover {border-right:10px solid #209e91;
     background: #333; /* For browsers that do not support gradients */
 /background: -webkit-linear-gradient(#666666, #333); /* For Safari 5.1 to 6.0 */
