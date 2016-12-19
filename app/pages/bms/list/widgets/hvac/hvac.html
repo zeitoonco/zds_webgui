@@ -2,19 +2,22 @@
     <div class="panel-heading">
         <h3 class="panel-title">تهویه مطبوع</h3>
     </div>
-    <div class="panel-body">
+    <div id="acpanel" class="panel-body">
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div id="temp" class="col-sm-2">
+                        <h5>کنترل دما</h5>
                         <button style="border-width: 0;" type="button" ng-click="settemp = settemp + 1"
-                                class="btn  btn-default btn-lg"><i
+                                class="btn  btn-warning btn-lg"><i
                                 class="ion-ios-arrow-up"></i>
                         </button>
+
                         <input type="text" size="2" maxlength="2" class="form-control" id="input01" ng-model="settemp"
-                               style="max-width: 45px;     margin-left: 0;    margin-right: 0;">
+                               style="max-width:45px;margin-left:0;margin-right:0;">
+
                         <button style="border-width: 0;" type="button" ng-click="settemp = settemp - 1"
-                                class="btn  btn-default btn-lg"><i
+                                class="btn  btn-warning btn-lg"><i
                                 class="ion-ios-arrow-down"></i>
                         </button>
                     </div>

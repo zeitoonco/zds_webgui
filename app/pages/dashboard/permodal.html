@@ -1,0 +1,24 @@
+<div class="modal-content modaldark" ng-app="ZDSGUI.pages.dashboard" ng-controller="groupperm">
+    <div class="modal-header bg-default">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">دسترسی گروه</h4>
+    </div>
+    <div class="modal-body">
+        <table class="table table-responsive table-condensed">
+            <thead>
+            <tr>
+                <th>نام دسترسی</th>
+                <th>توضیحات</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="x in list">
+                <td>{{ x.name }}</td>
+                <td>{{ x.description }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

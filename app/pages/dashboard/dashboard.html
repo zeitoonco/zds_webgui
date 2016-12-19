@@ -7,10 +7,7 @@
 
             <div id="myinfo" zdsperm="userman.login" ng-controller="myinfo" class="col-lg-4 col-md-4 col-sm-12">
             <h3><i class="ion-android-contact"></i>{{name}}</h3>
-
-
             </div>
-
             <div id="listgroup" zdsperm="userman.listGroups" class="col-lg-4 col-md-4 col-sm-12" ng-controller="group">
                 <div class="col-md-12 col-lg-12">
                     <i class="ion-android-people"></i><h3>گروه های شما</h3>
@@ -25,7 +22,7 @@
                         <!--td class="table-id">{{y.usergroupID}}</td-->
                         <td>{{y.title}}</td>
                         <!--td>{{y.description}}</td-->
-                        <td><button class="btn btn-sm btn-warning" ng-disabled="false">دسترسی ها</button></td>
+                        <td><button class="btn btn-sm btn-warning" ng-disabled="false" ng-click="openmodal('app/pages/dashboard/permodal.html', 'md',y.usergroupID)">دسترسی ها</button></td>
 
                     </tr>
                     </tbody>

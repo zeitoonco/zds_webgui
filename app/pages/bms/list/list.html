@@ -1,6 +1,6 @@
 <div class="row" ng-app='ZDSGUI.pages.bms.list'>
     <div class="col-md-4" ng-controller="bms2">
-        <div id="bms-tree" ba-panel ba-panel-title="لیست ساختمان ها" ba-panel-class="with-scroll tree-panel">
+        <div id="bms-tree" ba-panel ba-panel-title="لیست ساختمان ها" ba-panel-class="tree-panel">
             <div class="row">
                 <div class="col-sm-12">
                     <div style="direction: rtl;" js-tree="basicConfig" tree-events="" ng-model="bmstree"></div>
@@ -10,9 +10,12 @@
     </div>
 
     <div class="col-md-8" ng-controller="bms">
-        <div id="bms-nodes" ba-panel ba-panel-title="وسایل" ba-panel-class="with-scroll tree-panel">
+        <div class="panel panel-default bootstrap-panel">
+            <div id="bms-nodes" class="panel-body">
             <zds-bms-hvac node-id="19"></zds-bms-hvac>
             <zds-bms-lighting  node-id="19"></zds-bms-lighting>
+            <zds-bms-door node-id="19"></zds-bms-door>
+        </div>
         </div>
     </div>
 </div>

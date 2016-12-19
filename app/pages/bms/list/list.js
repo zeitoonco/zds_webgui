@@ -52,7 +52,6 @@
             'version': 1
         };
 
-
         var tree = [];
 
         tree.push({'id': 1, 'parent': '#', 'text': "ساختمان ها", 'state': {'opened': true}});

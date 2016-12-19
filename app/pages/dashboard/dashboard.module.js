@@ -108,6 +108,20 @@
     });
 
     dash.controller('group', function ($scope, zdsSocket, toastr, $uibModal) {
+        $scope.openmodal = function (page, size, id) {
+            $scope.gid = id;
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+        }
         function listgroup() {
             var msg = {
                 type: "call",
@@ -128,6 +142,24 @@
             }
         }
         listgroup();
+    });
+    dash.controller('groupperm', function (zdsSocket,$scope,toastr) {
+        $scope.getperm = function () {
+            var msg = {
+                type: "call",
+                node: "userman.listUsergroupPermissions",
+                data: {value: $scope.gid}
+            };
+            console.log(JSON.stringify(msg));
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    $scope.list = data['data']['listPermissions'];
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
+        $scope.getperm();
     });
     /** @ngInject */
     function routeConfig($stateProvider) {
