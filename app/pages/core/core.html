@@ -23,16 +23,16 @@
                                     <td>{{ x.state }}</td>
                                     <td>{{ x.version }}</td>
                                     <td>
-                                        <button zdsperm="userman.listUsergroupPermissions" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
+                                        <button zdsperm="userman.listUsergroupPermissions" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
                                            ng-disabled="x.state==6 || x.state==4"     ng-click="openmodal('app/pages/core/enablemodal.html', 'sm',x.name)">
                                             فعال
                                         </button>
-                                        <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                        <button zdsperm="userman.updateUsergroup" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
                                                 ng-disabled="x.state==3"     ng-click="openmodal('app/pages/core/disablemodal.html', 'sm',x.name)">
                                             غیرفعال
                                         </button>
                                         <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/core/kickmodal.html', 'sm',x.name)" id='remove-btn'>قطع سرویس</button>
-                                        <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                        <button zdsperm="userman.updateUsergroup" class="btn btn-info btn-xs" id='edit-btn' data-toggle="modal"
                                                 ng-click="openmodal('app/pages/core/pingmodal.html', 'sm',x.name)">
                                             پینگ
                                         </button>
