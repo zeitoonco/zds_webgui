@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container-fluid" ng-app='ZDSGUI.pages.core' ng-controller="core">
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="panel-group">
+                <div class="panel panel-default bootstrap-panel">
+                    <div id="listusers" class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                            </div>
+                            <table id="data" class="table table-hover table-condensed table-responsive">
+                                <thead>
+                                <tr class="tbheaddark">
+                                    <th class="table-id">#</th>
+                                    <th>نام سرویس</th>
+                                    <th>وضعیت</th>
+                                    <th>نسخه</th>
+                                    <th>عملیات</th>
+                                </tr>
+                                </thead>
+                                <tr ng-repeat="x in myData | filter: search.title" >
+                                    <td>{{ $index }}</td>
+                                    <td>{{ x.name }}</td>
+                                    <td>{{ x.state }}</td>
+                                    <td>{{ x.version }}</td>
+                                    <td>
+                                        <button zdsperm="userman.listUsergroupPermissions" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
+                                           ng-disabled="x.state==6 || x.state==4"     ng-click="openmodal('app/pages/core/enablemodal.html', 'sm',x.name)">
+                                            فعال
+                                        </button>
+                                        <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                                ng-disabled="x.state==3"     ng-click="openmodal('app/pages/core/disablemodal.html', 'sm',x.name)">
+                                            غیرفعال
+                                        </button>
+                                        <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/core/kickmodal.html', 'sm',x.name)" id='remove-btn'>قطع سرویس</button>
+                                        <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                                ng-click="openmodal('app/pages/core/pingmodal.html', 'sm',x.name)">
+                                            پینگ
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

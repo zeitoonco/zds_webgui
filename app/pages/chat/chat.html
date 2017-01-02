@@ -1,0 +1,50 @@
+<div class="container-fluid" ng-app='ZDSGUI.pages.chat' ng-controller="chat">
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="panel-group">
+                <div class="panel panel-default bootstrap-panel">
+                    <div id="listusers" class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-warning btn-md" ng-click="newsess()">سیژنها</button>
+                                <button class="btn btn-warning btn-md" ng-click="listsess()">لیست سیژنها</button>
+                                <input type="number" ng-model="uid">
+                                <button class="btn btn-warning btn-md" ng-click="addu()">کاربر</button>
+                                <input type="number" ng-model="sid">
+                                <button class="btn btn-warning btn-md" ng-click="newmsg()">پیام</button>
+                                <button class="btn btn-warning btn-md" ng-click="removemsg()">حذف پیام</button>
+                                <button class="btn btn-warning btn-md" ng-click="checknewmsg()">چک</button>
+                            </div>
+                            <table id="data" class="table table-hover table-condensed table-responsive">
+                                <thead>
+                                <tr class="tbheaddark">
+                                    <th class="table-id">#</th>
+                                    <th>نام گروه</th>
+                                    <th>توضیحات</th>
+                                    <th>عملیات</th>
+                                </tr>
+                                </thead>
+                                <tr ng-repeat="x in myData | filter: search.title" >
+                                    <td>{{ x.usergroupID }}</td>
+                                    <td>{{ x.title }}</td>
+                                    <td>{{ x.description }}</td>
+                                    <td>
+                                        <button zdsperm="userman.listUsergroupPermissions" class="btn btn-warning btn-xs" id='edit-btn' data-toggle="modal"
+                                                ng-click="openmodal('app/pages/user-mng/group-mng/permodal.html', 'md',x.usergroupID)">
+                                            دسترسی ها
+                                        </button>
+                                        <button zdsperm="userman.updateUsergroup" class="btn btn-primary btn-xs" id='edit-btn' data-toggle="modal"
+                                                ng-click="openmodal('app/pages/user-mng/group-mng/editmodal.html', 'md',x.usergroupID,x.title,x.description,x.parentID)">
+                                            ویرایش
+                                        </button>
+                                        <button zdsperm="userman.removeUsergroup" class="btn btn-danger btn-xs" ng-click="openmodal('app/pages/user-mng/group-mng/removemodal.html', 'sm',x.usergroupID)" id='remove-btn'>حذف</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

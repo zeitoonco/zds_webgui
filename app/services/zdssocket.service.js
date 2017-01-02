@@ -40,6 +40,8 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
 
         ws.onOpen(function () {
             console.log('connection open');
+
+
         });
         return {
             collection: collection,
@@ -54,6 +56,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
                     return;
                 }
                 if (angular.isString(message)) {
+
                     ws.send(message);
                 }
                 else if (angular.isObject(message)) {
@@ -61,6 +64,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
                     if (typeof callback === 'function') {
                         callbacks[message.id] = callback;
                     }
+                    console.log(JSON.stringify(message));
                     ws.send(JSON.stringify(message));
                 }
             },
@@ -98,9 +102,7 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
                         }
                     }
                 });
-
             }
-
 
         };
     });

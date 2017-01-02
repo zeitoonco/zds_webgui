@@ -1,0 +1,15 @@
+<div class="modal-content modaldark" ng-app="ZDSGUI.pages.core" ng-controller="enable">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">فعال کردن سرویس</h4>
+    </div>
+    <div class="modal-body">
+        آیا می خواهید سرویس {{sname}} را فعال کنید؟
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-warning" ng-click="enableservices();$dismiss()">تایید</button>
+        <button type="button" class="btn btn-danger" ng-click="$dismiss()" aria-label="Close">لغو</button>
+    </div>
+</div>

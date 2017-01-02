@@ -9,6 +9,6 @@
 (function () {
   'use strict';
 
-  angular.module('ZDSGUI.theme.components', []);
+  angular.module('ZDSGUI.theme.components', ['ngCookies']);
 
 })();

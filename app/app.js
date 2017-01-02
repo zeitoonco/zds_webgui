@@ -8,13 +8,15 @@ angular.module('ZDSGUI', [
     'ui.router',
     'ngTouch',
     'toastr',
+    'ngWebSocket',
+    'ZDSGUI.websocket',
     'smart-table',
     "xeditable",
     'ui.slimscroll',
     'ngJsTree',
-    'ngWebSocket',
+
     'angular-progress-button-styles',
-    'ZDSGUI.websocket',
+
     'ZDSGUI.zdsperm',
     'ZDSGUI.boolean',
     'ZDSGUI.theme',
