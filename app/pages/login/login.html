@@ -6,10 +6,10 @@
     <div class="col-sm-12 loginlogo">
     <img src="assets\zlogo.png" class="img-rounded"/>
     </div>
-    <h1>به سامانه مدیریتی زیتون خوش آمدید</h1>
-    <h3 ng-if="!logedin">لطفا نام کاربری و روز عبور خود را وارد کنید</h3>
-    <div ng-if="!logedin">
-    <form class="form-horizontal" >
+    <h1 ng-if="!banned">به سامانه مدیریتی زیتون خوش آمدید</h1>
+    <h3 ng-if="!logedin && !banned">لطفا نام کاربری و روز عبور خود را وارد کنید</h3>
+    <div ng-if="!logedin && !banned">
+    <form class="form-horizontal">
         <div class="form-group">
             <label for="inputUsername3"  class="col-sm-2 control-label">نام کاربری</label>
 
@@ -50,6 +50,12 @@
     <form class="form-horizontal" ng-if="logedin">
         <div class="form-group">
             <label class="col-md-12 col-sm-12 control-label" style="text-align: center;"><h3>در حال احراز هویت...</h3></label>
+
+        </div>
+    </form>
+    <form class="form-horizontal" ng-if="banned">
+        <div class="form-group">
+            <label class="col-md-12 col-sm-12 control-label" style="text-align: center;"><h3>حساب شما مسدود شده!</h3></label>
 
         </div>
     </form>
