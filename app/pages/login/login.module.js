@@ -4,8 +4,16 @@ var uid, myname, myun, mypic,permns;
 
     var login = angular.module('ZDSGUI.pages.login', ['ngCookies'])
         .config(routeConfig);
+    /*login.service('checklogin',function ($scope,$cookies,$cookieStore) {
+        $scope.log = function () {
+            console.log($cookieStore.get('authtoken'));
+            console.log($cookieStore.get('userid'));
+        }
+    });*/
+
     login.controller('loginAction', function ($scope, $location, $rootScope, zdsSocket, toastr, baSidebarService,$cookies,$cookieStore) {
         $scope.logedin = false;
+        $scope.banned = false;
         $scope.username = "admin";
         $scope.password = "admin";
         $scope.mypic = function () {
@@ -56,15 +64,17 @@ var uid, myname, myun, mypic,permns;
                             }
                             baSidebarService.setPermissions($rootScope.$permissions);
                             $rootScope.$logedin = true;
-                            //$scope.mypic();
+                            $scope.mypic();
                             $location.path("/dashboard");
 
+                        } else if (data["data"]["result"] == "banned"){
+                            $scope.banned = true;
                         } else {
                             toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
                             $scope.LoginDisabled = false;
                         }
                     });
-                },1500);
+                },3000);
             } else {
                 zdsSocket.send(msg, function (data) {
                     if (data["data"]["result"] == "ok") {
@@ -85,6 +95,8 @@ var uid, myname, myun, mypic,permns;
                         $rootScope.$logedin = true;
                         //$scope.mypic();
                         $location.path("/dashboard");
+                    } else if (data["data"]["result"] == "banned"){
+                        $scope.banned = true;
                     } else {
                         toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
                         $scope.LoginDisabled = false;
@@ -137,6 +149,9 @@ var uid, myname, myun, mypic,permns;
                                 $rootScope.$logedin = true;
                                 $scope.mypic();
                                 $location.path("/dashboard");
+
+                            } else if (data["data"]["result"] == "banned"){
+                                $scope.banned = true;
 
                             } else {
                                 toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
