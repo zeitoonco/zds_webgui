@@ -34,13 +34,15 @@ angular.module('ZDSGUI.websocket', ['ngWebSocket','ui.bootstrap'])
 
         ws.onClose(function (event) {
             $rootScope.$logedin = false;
+            $rootScope.$disconnect= true;
             $location.path("/login");
             console.log('connection closed', event);
+
         });
 
         ws.onOpen(function () {
             console.log('connection open');
-
+            //checklogin.log();
 
         });
         return {
