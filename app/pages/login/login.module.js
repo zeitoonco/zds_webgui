@@ -32,10 +32,14 @@ var uid, myname, myun, mypic,permns;
                         document.getElementById('mypic').setAttribute('src', mypic);
                     } else {
                         toastr.error('!', 'خطا!');
+
+
                     }
                 });
             } else {
                 toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+                $rootScope.$disconnect= true;
+                $location.path("/login");
 
             }
         }
@@ -48,32 +52,39 @@ var uid, myname, myun, mypic,permns;
             };
             if (zdsSocket.status()!=1){
                 window.setTimeout(function(){
-                    console.log(JSON.stringify(msg));
-                    zdsSocket.send(msg, function (data) {
-                        if (data["data"]["result"] == "ok") {
-                            uid = data.data.userInfo['userID'];
-                            myname = data.data.userInfo['name'];
-                            myun = data.data.userInfo['username'];
-                            $scope.mypic();
-                            $rootScope.$permissions = [];
-                            var index;
-                            permns = data.data.permissions;
-                            for (index = 0; index < data.data.permissions.length; ++index) {
-                                if (data.data.permissions[index].state == "true")
-                                    $rootScope.$permissions.push(data.data.permissions[index].name);
-                            }
-                            baSidebarService.setPermissions($rootScope.$permissions);
-                            $rootScope.$logedin = true;
-                            $scope.mypic();
-                            $location.path("/dashboard");
+                    if (zdsSocket.status() == 1) {
+                        console.log(JSON.stringify(msg));
+                        zdsSocket.send(msg, function (data) {
+                            if (data["data"]["result"] == "ok") {
+                                uid = data.data.userInfo['userID'];
+                                myname = data.data.userInfo['name'];
+                                myun = data.data.userInfo['username'];
+                                $scope.mypic();
+                                $rootScope.$permissions = [];
+                                var index;
+                                permns = data.data.permissions;
+                                for (index = 0; index < data.data.permissions.length; ++index) {
+                                    if (data.data.permissions[index].state == "true")
+                                        $rootScope.$permissions.push(data.data.permissions[index].name);
+                                }
+                                baSidebarService.setPermissions($rootScope.$permissions);
+                                $rootScope.$logedin = true;
+                                $scope.mypic();
+                                $location.path("/dashboard");
 
-                        } else if (data["data"]["result"] == "banned"){
-                            $scope.banned = true;
-                        } else {
-                            toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
-                            $scope.LoginDisabled = false;
-                        }
-                    });
+                            } else if (data["data"]["result"] == "banned") {
+                                $scope.banned = true;
+                            } else if (data["data"]["result"] == "accessDenied") {
+                                toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
+                                $scope.LoginDisabled = false;
+
+                            }
+                        });
+                    } else {
+                        toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+                        $rootScope.$disconnect= true;
+                        $location.path("/login");
+                    }
                 },3000);
             } else {
                 zdsSocket.send(msg, function (data) {
@@ -97,16 +108,17 @@ var uid, myname, myun, mypic,permns;
                         $location.path("/dashboard");
                     } else if (data["data"]["result"] == "banned"){
                         $scope.banned = true;
-                    } else {
+                    }else if (data["data"]["result"] == "accessDenied"){
                         toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
                         $scope.LoginDisabled = false;
+
                     }
                 });
             }
         }
             var token = $cookieStore.get('authtoken');
             var userid = $cookieStore.get('userid');
-            if (token != undefined && token.length > 0 && $rootScope.$logedin!=true) {
+            if (token != undefined && token.length > 0 && $rootScope.$logedin!=true && $rootScope.$disconnect!=true) {
             $scope.logedin = true;
                 console.log(token);
                 console.log(userid);
@@ -153,7 +165,7 @@ var uid, myname, myun, mypic,permns;
                             } else if (data["data"]["result"] == "banned"){
                                 $scope.banned = true;
 
-                            } else {
+                            } else if (data["data"]["result"] == "accessDenied"){
                                 toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');
                                 $scope.LoginDisabled = false;
 
@@ -161,6 +173,7 @@ var uid, myname, myun, mypic,permns;
                         });
                     } else {
                         toastr.error('اتصال با وبسوکت برقرار نیست!!', 'خطا!');
+
                     }
                     console.log("Hello! " + $scope.username)
                 }

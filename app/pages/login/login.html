@@ -7,6 +7,7 @@
     <img src="assets\zlogo.png" class="img-rounded"/>
     </div>
     <h1 ng-if="!banned">به سامانه مدیریتی زیتون خوش آمدید</h1>
+    <div ng-if="!$disconnect">
     <h3 ng-if="!logedin && !banned">لطفا نام کاربری و روز عبور خود را وارد کنید</h3>
     <div ng-if="!logedin && !banned">
     <form class="form-horizontal">
@@ -53,11 +54,21 @@
 
         </div>
     </form>
-    <form class="form-horizontal" ng-if="banned">
-        <div class="form-group">
-            <label class="col-md-12 col-sm-12 control-label" style="text-align: center;"><h3>حساب شما مسدود شده!</h3></label>
+        <form class="form-horizontal" ng-if="banned">
+            <div class="form-group">
+                <label class="col-md-12 col-sm-12 control-label" style="text-align: center;"><h3>حساب شما مسدود شده!</h3></label>
+            </div>
+        </form>
+    </div>
 
-        </div>
-    </form>
-
+    <div ng-if="$disconnect">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-12 col-sm-12 control-label" style="text-align: center;"><h3>اتصال قطع شده است!</h3></label>
+                <div class="col-md-offset-5 col-md-2">
+                <button class="btn btn-lg btn-warning" onclick="location.reload();"><i class="ion-loop"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
