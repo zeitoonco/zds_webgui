@@ -259,7 +259,12 @@
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
+                if (data["success"] == true){
+                    toastr.success('اطلاعات با موفقیت اعمال شد');
+                } else {
+                    toastr.error('!', 'خطا!');
 
+                }
             });
 
         }
@@ -351,7 +356,6 @@
             var temp = [];
             for (var i in $scope.newgroup){
                 if ($scope.newgroup.hasOwnProperty(i)) {
-
                     temp.push({id: parseInt(i), state: $scope.newgroup[i]});
                 }
             }
@@ -362,6 +366,11 @@
             };
             console.log(JSON.stringify(msg));
             zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    toastr.success('تغییرات با موفقیت اعمال شد!');
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
             });
         }
         $scope.getusergroups = function () {
@@ -479,6 +488,23 @@
             });
         }
         $scope.usercontacts();
+    });
+
+    user.controller('ban',function(zdsSocket,$scope,toastr){
+        $scope.doban = function () {
+            var msg = {
+                type: "call",
+                node: "userman.banuser",
+                data: {userid: $scope.userid,ban:$scope.banstate,banreason:$scope.dec}
+            };
+            zdsSocket.send(msg, function (data) {
+                if (data["success"] == true) {
+                    toastr.success('حساب کاربر مورد نظر مسدود شد!');
+                } else {
+                    toastr.error('!', 'خطا!');
+                }
+            });
+        }
     });
 
     function routeConfig($stateProvider) {
