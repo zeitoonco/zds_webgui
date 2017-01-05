@@ -408,7 +408,9 @@
     });
 
     user.controller('usercontact',function(zdsSocket,$scope,toastr){
-
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.usercontacts = function () {
             var msg = {
                 type: "call",
@@ -491,6 +493,9 @@
     });
 
     user.controller('ban',function(zdsSocket,$scope,toastr){
+        $scope.$on('modal.closing', function (event, args) {
+            $scope.getlistuser();
+        });
         $scope.doban = function () {
             var msg = {
                 type: "call",
