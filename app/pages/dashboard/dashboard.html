@@ -1,7 +1,25 @@
 <!--dashboard-pie-chart></dashboard-pie-chart>-->
 
 <div class="container-fluid" ng-app="ZDSGUI.pages.dashboard"  >
-<div class="row">
+    <!--div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div ba-panel ba-panel-class="xlarg-panel light-text quickinfo">
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div ba-panel ba-panel-class="xlarg-panel light-text quickinfo">
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div ba-panel ba-panel-class="xlarg-panel light-text quickinfo">
+
+            </div>
+        </div>
+    </div-->
+
+    <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div ba-panel ba-panel-class="xlarg-panel light-text quickinfo">
 
@@ -31,7 +49,7 @@
 
             </div>
 
-            <div id="listcontact"  zdsperm="userman.listContacts" class="col-lg-4 col-md-4 col-sm-12" ng-controller="contact">
+            <div id="listcontact"  zdsperm="userman.listContacts" class="col-lg-4 col-md-4 col-sm-12" ng-controller="contact" bs-loading-overlay>
                 <div class="col-md-12 col-lg-12">
                     <i class="ion-android-contacts"></i><h3>مخاطبین شما</h3>
                 </div>
@@ -51,6 +69,7 @@
               </tr>
               </tbody>
             </table>
+
         </div>
 
 
@@ -59,6 +78,7 @@
       </div>
     </div>
 </div>
+
 
 
 

@@ -115,10 +115,12 @@
 
         $scope.getlistuser();
 
-        $scope.openmodal = function (page, size, id, un, n) {
+        $scope.openmodal = function (page, size, id, un, n,ban,banr) {
             $scope.userid = id;
             $scope.username = un;
             $scope.name = n;
+            $scope.banstate = ban == 'true';
+            $scope.banreason = banr;
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -500,7 +502,7 @@
             var msg = {
                 type: "call",
                 node: "userman.banuser",
-                data: {userid: $scope.userid,ban:$scope.banstate,banreason:$scope.dec}
+                data: {userid: $scope.userid,ban:$scope.banstate,banreason:$scope.banreason}
             };
             zdsSocket.send(msg, function (data) {
                 if (data["success"] == true) {

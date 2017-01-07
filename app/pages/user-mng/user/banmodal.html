@@ -1,27 +1,29 @@
 <div class="modal-content modaldark" ng-app="ZDSGUI.pages.user-mng.user" ng-controller="ban">
-    <form name="ban">
+
     <div class="modal-header bg-default">
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
         <h4 class="modal-title" id="myModalLabel"></h4>
     </div>
+
     <div class="modal-body">
+
         <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group" style="width:100%;">
                 <label>علت مسدود سازی کاربر:</label>
-                <input type="text" class="form-control" name="dec" placeholder="علت مسدود سازی" ng-model='dec' style={{chechval(ban.dec.$valid)}} minlength="3" maxlength="20" required>
+                <input type="text" class="form-control" name="dec" placeholder="علت مسدود سازی" ng-model='banreason' style={{chechval(ban.dec.$valid)}} minlength="3" maxlength="20" required>
                 <span class="help-block sub-little-text">حداقل 3 کاراکتر</span>
             </div>
-            <div class="form-group">
+        </div>
+        <div class="col-md-12">
+            <div class="form-group" style="width:100%;">
                 <label style="float: right;">مسدود:</label>
                 <input style="float:right;" type="checkbox" ng-model="banstate">
             </div>
-</div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-warning" ng-disabled="(ban.dec.$invalid)" ng-click="doban();$dismiss()">تایید</button>
-        <p ng-show="(ban.dec.$invalid)">اطلاعات فرم معتبر نیست!</p>
+        <button type="button" class="btn btn-warning"  ng-click="doban();$dismiss()">تایید</button>
     </div>
-    </form>
 </div>

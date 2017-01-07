@@ -22,7 +22,6 @@
                 }
             });
         }
-
         $scope.getservices = function () {
             var msg = {
                 node:"_core.getListOfServices",
@@ -37,9 +36,7 @@
                 }
             });
         }
-
         $scope.getservices();
-
     });
 
     core.controller('enable', function ($scope,zdsSocket,$uibModal,toastr) {
@@ -83,7 +80,6 @@
             });
         }
     });
-
     core.controller('kick', function ($scope,zdsSocket,$uibModal,toastr) {
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getservices();
@@ -104,7 +100,6 @@
             });
         }
     });
-
     core.controller('ping', function ($scope,zdsSocket,$uibModal,toastr) {
         $scope.$on('modal.closing', function (event, reason, closed) {
             $scope.getservices();

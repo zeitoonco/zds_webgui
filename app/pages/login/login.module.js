@@ -164,6 +164,7 @@ var uid, myname, myun, mypic,permns;
 
                             } else if (data["data"]["result"] == "banned"){
                                 $scope.banned = true;
+                                $scope.dec = data["data"]["description"];
 
                             } else if (data["data"]["result"] == "accessDenied"){
                                 toastr.error('نام کاربری یا رمز عبور اشتباه است!', 'خطا!');

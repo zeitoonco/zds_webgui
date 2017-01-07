@@ -9,7 +9,6 @@
     dash.controller('myinfo',function (zdsSocket,$scope){
         $scope.name = myname;
         var date = new Date();
-
         console.log(moment().format('jdddd'));
     });
     dash.controller('contact', function ($scope, zdsSocket, toastr, $uibModal,cfpLoadingBar) {
@@ -102,6 +101,7 @@
 
                 $scope.info = mycontacts;
                 cfpLoadingBar.complete();
+
             });
         }
         $scope.listcontacts();

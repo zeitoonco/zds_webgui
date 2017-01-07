@@ -3476,6 +3476,12 @@ button.btn.btn-danger:active, button.btn.btn-danger:target {
     background-color: #c54949;
 }
 
+button.btn.btn-black {
+    background-color:#4a4a4a;
+    border-color:#333333;
+    color:white;
+}
+
 button.btn.btn-inverse {
     background: #949494;
     border-color: #949494;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ZDSGUI', [
+var zdsgui = angular.module('ZDSGUI', [
     'angular-loading-bar',
     'ngAnimate',
     'ui.bootstrap',
@@ -14,9 +14,7 @@ angular.module('ZDSGUI', [
     "xeditable",
     'ui.slimscroll',
     'ngJsTree',
-
     'angular-progress-button-styles',
-
     'ZDSGUI.zdsperm',
     'ZDSGUI.boolean',
     'ZDSGUI.theme',

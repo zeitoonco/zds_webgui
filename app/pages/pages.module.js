@@ -15,6 +15,7 @@
         'ZDSGUI.pages.accounting',
         'ZDSGUI.pages.bms',
         'ZDSGUI.pages.logout'
+        //'ZDSGUI.pages.disconnect'
     ])
         .config(routeConfig);
     /** @ngInject */
