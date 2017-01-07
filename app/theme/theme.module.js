@@ -7,9 +7,9 @@
 
   angular.module('ZDSGUI.theme', [
       'toastr',
-      'chart.js',
-      'angular-chartist',
-      'angular.morris-chart',
+      //'chart.js',
+      //'angular-chartist',
+      //'angular.morris-chart',
       'textAngular',
       'ZDSGUI.theme.components'
   ]);
