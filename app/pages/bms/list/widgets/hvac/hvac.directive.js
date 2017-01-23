@@ -9,6 +9,20 @@ angular.module('ZDSGUI.pages.bms.list').directive('zdsBmsHvac', function ($inter
         },
         templateUrl: 'app/pages/bms/list/widgets/hvac/hvac.html',
         link: function (scope, elem, attr) {
+            var display = new SegmentDisplay("display");
+            display.pattern         = "##";
+            display.displayAngle    = 0;
+            display.digitHeight     = 22.5;
+            display.digitWidth      = 13;
+            display.digitDistance   = 2.5;
+            display.segmentWidth    = 2.4;
+            display.segmentDistance = 0.5;
+            display.segmentCount    = 7;
+            display.cornerType      = 0;
+            display.colorOn         = "#333";
+            display.colorOff        = "#ccc";
+            display.draw();
+            display.setValue('16');
             String.prototype.reverse = function () {
                 return this.split("").reverse().join("");
             };

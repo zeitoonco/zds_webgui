@@ -4,36 +4,35 @@
     </div>
     <div id="acpanel" class="panel-body">
         <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-4">
             <div id="temp" class="col-md-12 col-sm-12 col-xs-12">
-                        <h5>کنترل دما</h5>
                         <div class="col-md-4">
                         <button style="border-width: 0;" type="button" ng-click="settemp = settemp + 1"
-                                class="btn btn-info btn-lg uptemp"><i
+                                class="uptemp"><i
                                 class="ion-ios-arrow-up"></i>
                         </button>
-                        </div>
-                        <div class="col-md-4">
+                        <button style="border-width: 0;" type="button" ng-click="settemp = settemp - 1"
+                                class="downtemp"><i
+                                class="ion-ios-arrow-down"></i>
+                        </button>
+                </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
                         <input type="text" size="2" maxlength="2" class="form-control" id="input01" ng-model="settemp"
                                style="">
                         </div>
-                        <div class="col-md-4">
-                        <button style="border-width: 0;" type="button" ng-click="settemp = settemp - 1"
-                                class="btn  btn-info btn-lg downtemp"><i
-                                class="ion-ios-arrow-down"></i>
-                        </button>
-                        </div>
             </div>
-
             </div>
-            <div id="segment" class="col-md-8 col-sm-12 col-xs-12">
+            <div id="segment" class="col-md-8 col-sm-8 col-xs-8">
+                <canvas id="display" style="width:200px;" height="140">
+                    Your browser is unfortunately not supported.
+                </canvas>
                             <div class="col-md-2 col-sm-2 col-xs-2" style="direction: ltr;">°C</div>
-                            <div class="col-md-10 col-sm-10 col-xs-10" style="direction: rtl;">
+                            <!--div class="col-md-10 col-sm-10 col-xs-10" style="direction: rtl;">
                                 <div style="float: right;">
                                     <div seg-group data-ng-model="temp" seg-options="options"></div>
                                 </div>
-                            </div>
-                    </div>
+                            </div-->
+            </div>
 
         </div>
         <div class="row">
@@ -72,3 +71,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+
+</script>

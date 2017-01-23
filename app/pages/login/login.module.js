@@ -48,7 +48,7 @@ var uid, myname, myun, mypic,permns;
                 type: "call",
                 node: "userman.login",
                 id: "1234568",
-                data: {authtoken: token, userid: userid}
+                data: {authtoken: token, selector: selector}
             };
             if (zdsSocket.status()!=1){
                 window.setTimeout(function(){
@@ -117,11 +117,11 @@ var uid, myname, myun, mypic,permns;
             }
         }
             var token = $cookieStore.get('authtoken');
-            var userid = $cookieStore.get('userid');
+            var selector = $cookieStore.get('selector');
             if (token != undefined && token.length > 0 && $rootScope.$logedin!=true && $rootScope.$disconnect!=true) {
             $scope.logedin = true;
                 console.log(token);
-                console.log(userid);
+                console.log(selector);
             $scope.nologin();
             } else {
                 //$scope.logedin = $rootScope.$logedin = false;
@@ -144,8 +144,9 @@ var uid, myname, myun, mypic,permns;
                                     $cookieStore.put("authtoken", data['data']['authtoken']);
                                     console.log($cookieStore.get('authtoken'));
                                 }
+
+                                $cookieStore.put("selector", data['data']['selector']);
                                 uid = data.data.userInfo['userID'];
-                                $cookieStore.put("userid", uid);
                                 myname = data.data.userInfo['name'];
                                 myun = data.data.userInfo['username'];
                                 //mypwd = data.data.userInfo['password'];
@@ -181,9 +182,7 @@ var uid, myname, myun, mypic,permns;
 
             }
 
-
     });
-
 
 
     /** @ngInject */
